@@ -1,12 +1,24 @@
-import React from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
+import Nav from '../components/nav';
 
-const Home = () => (
-  <div>
-    <h1>hello world</h1>
-  </div>
-)
+interface HomeProps {
+}
 
-export default Home
+const Home: React.FC<HomeProps> = () => {
+
+  const [count, setCount] = useState(10);
+
+  return (
+    <div>
+      <h1>hello world</h1>
+      <p>count {count} !!</p>
+      <button onClick={() => setCount(count + 1)}>
+        increase
+      </button>
+    </div>
+  );
+};
+
+export default Home;
