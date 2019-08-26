@@ -8,7 +8,7 @@ const TOGGLE_SIDE_BAR: string = `${prefix}TOGGLE_SIDE_BAR`;
 const TOGGLE_EDIT_MODE: string = `${prefix}TOGGLE_EDIT_MODE`;
 const INCREASE_COUNTER: string = `${prefix}INCREASE_COUNTER`;
 
-export const increaseCounter = createStandardAction(INCREASE_COUNTER)<string>();
+export const increaseCounter = createStandardAction(INCREASE_COUNTER)<number>();
 export const toggleSpinnerLoading = createStandardAction(TOGGLE_SPINNER_LOADING)<string>();
 export const showMobileHeader = createStandardAction(SHOW_MOBILE_HEADER)<string>();
 export const toggleSideBar = createStandardAction(TOGGLE_SIDE_BAR)<string>();
@@ -34,12 +34,13 @@ export interface initType {
   editMode: boolean,
   counter: number;
 }
+
 const initialState: initType = {
   spinnerLoading: false,
   sideBar: false,
   mobileHeader: false,
   editMode: false,
-  counter: 0
+  counter: 5,
 };
 
 export default createReducer({
@@ -47,7 +48,7 @@ export default createReducer({
     return { ...state, sideBar: action.payload };
   },
   [INCREASE_COUNTER]: (state, action) => {
-    return { ...state, counter: action.payload };
+    return { ...state, counter: state.counter + action.payload };
   },
   [SHOW_MOBILE_HEADER]: (state, action) => {
     return { ...state, spinnerLoading: action.payload };
@@ -58,5 +59,6 @@ export default createReducer({
   [TOGGLE_EDIT_MODE]: (state, action) => {
     return { ...state, editMode: action.payload };
   },
-}, initialState);;
+}, initialState);
+;
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { , initType } from '../store/reducers/postReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { increaseCounter, initType } from '../store/reducers/postReducer';
 
 interface HomeProps {
 }
@@ -13,7 +13,7 @@ export type RootState = {
 const Home: React.FC<HomeProps> = () => {
 
   const counter: number = useSelector((state: RootState) => state.postReducer.counter);
-
+  const dispatch = useDispatch();
 
   const [count, setCount] = useState(10);
 
@@ -24,6 +24,9 @@ const Home: React.FC<HomeProps> = () => {
       <p>count {count} !!</p>
       <button onClick={() => setCount(count + 1)}>
         increase
+      </button>
+      <button onClick={() => dispatch(increaseCounter(3))}>
+        increase reducer counter
       </button>
     </div>
   );
