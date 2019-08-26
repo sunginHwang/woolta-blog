@@ -6,7 +6,9 @@ const TOGGLE_SPINNER_LOADING: string = `${prefix}TOGGLE_SPINNER_LOADING`;
 const SHOW_MOBILE_HEADER: string = `${prefix}SHOW_MOBILE_HEADER`;
 const TOGGLE_SIDE_BAR: string = `${prefix}TOGGLE_SIDE_BAR`;
 const TOGGLE_EDIT_MODE: string = `${prefix}TOGGLE_EDIT_MODE`;
+const INCREASE_COUNTER: string = `${prefix}INCREASE_COUNTER`;
 
+export const increaseCounter = createStandardAction(INCREASE_COUNTER)<string>();
 export const toggleSpinnerLoading = createStandardAction(TOGGLE_SPINNER_LOADING)<string>();
 export const showMobileHeader = createStandardAction(SHOW_MOBILE_HEADER)<string>();
 export const toggleSideBar = createStandardAction(TOGGLE_SIDE_BAR)<string>();
@@ -25,22 +27,27 @@ export function createReducer<S>(handlers: Handlers<S>, initialState: S) {
   };
 }
 
-interface initType {
+export interface initType {
   spinnerLoading: boolean,
   sideBar: boolean,
   mobileHeader: boolean,
   editMode: boolean,
+  counter: number;
 }
 const initialState: initType = {
   spinnerLoading: false,
   sideBar: false,
   mobileHeader: false,
   editMode: false,
+  counter: 0
 };
 
 export default createReducer({
   [TOGGLE_SPINNER_LOADING]: (state, action) => {
     return { ...state, sideBar: action.payload };
+  },
+  [INCREASE_COUNTER]: (state, action) => {
+    return { ...state, counter: action.payload };
   },
   [SHOW_MOBILE_HEADER]: (state, action) => {
     return { ...state, spinnerLoading: action.payload };
