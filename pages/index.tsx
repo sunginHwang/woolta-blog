@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSomething, increaseCounter, initType } from '../store/reducers/postReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { increaseCounter, getSomething, initType } from '../store/reducers/postReducer';
 
 interface HomeProps {
 }
@@ -23,15 +23,7 @@ const Home: React.FC<HomeProps> = () => {
       <h1>hello world</h1>
       <p>counter {counter}</p>
       <p>count {count} !!</p>
-      <button onClick={() => setCount(count + 1)}>
-        increase
-      </button>
-      <button onClick={() => dispatch(increaseCounter(3))}>
-        increase reducer counter
-      </button>
-      <button onClick={() => dispatch(getSomething(axios.get('https://jsonplaceholder.typicode.com/posts/1')))}>
-        async call
-      </button>
+
     </div>
   );
 };

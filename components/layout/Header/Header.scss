@@ -1,0 +1,67 @@
+@import '../../../style/scss/CommonUtil';
+@import '../../../style/scss/CommonLayout';
+
+.mainHeader{
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $white-color;
+  color: $main-theme-color;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  height: $main-header-height;
+  border-color: $custom-gray-color;
+  border-width: 2px;
+
+  @media screen and (max-width: $mobile-width){
+    transition: all .2s ease-in-out;
+  }
+}
+
+.hideHeaderMobile{
+  @media screen and (max-width: $mobile-width){
+    top:-$main-header-height;
+    border: none;
+  }
+}
+
+.flexAuto {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 auto;
+  flex: 1 auto;
+}
+
+.headerLeftArea{
+  float: left;
+  display: flex;
+}
+
+.headerRightArea{
+  float: right;
+  display: flex;
+}
+
+.headerLogo{
+  font-weight: bolder;
+  font-size: 20px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.headerMenu{
+  cursor: pointer;
+  font-size: 30px;
+  margin: 1rem;
+}
+
+.headerMobileSideBarMenu{
+
+}

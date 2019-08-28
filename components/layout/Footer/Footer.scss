@@ -1,0 +1,21 @@
+@import '../../../style/scss/CommonUtil';
+@import '../../../style/scss/CommonLayout';
+
+.footer {
+  height: $main-footer-height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background-color: $white-color;
+  border-top: 1px solid $custom-gray-color;
+  color: $main-theme-color;
+  text-align: center;
+}
+
+.text {
+  font-size: 14px;
+  margin-bottom: 1rem;
+}

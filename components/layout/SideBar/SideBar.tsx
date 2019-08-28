@@ -11,9 +11,9 @@ interface SideBarProps {
   isOpen: boolean,
   authInfo: IUserInfo,
   categories?: ICategory[],
-  onClickLogout: any,
-  onClickCategoryPage: any,
-  onClickSideBarPage: any
+  onClickLogout: () => void,
+  onClickCategoryPage: (categoryNo: number) => void,
+  onClickSideBarPage: (type: string) => void
 }
 
 const SideBar: React.FC<SideBarProps> = ({
@@ -27,7 +27,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
   const renderCategories = categories.map((category) => {
     return <li key={category.value}>
-      <a onClick={onClickCategoryPage(category.value)}>{category.label}</a>
+      <a onClick={() => onClickCategoryPage(category.value)}>{category.label}</a>
     </li>;
   });
 
@@ -40,19 +40,19 @@ const SideBar: React.FC<SideBarProps> = ({
              src={authInfo.imageUrl}/>
         <span>{authInfo.userId}</span>
         <div className={cn.logoutArea}
-             onClick={onClickLogout()}>로그아웃
+             onClick={() => onClickLogout()}>로그아웃
         </div>
       </a>
     </li>;
 
   const nonUserMenu =
     <li>
-      <a onClick={onClickSideBarPage('login')}>로그인</a>
+      <a onClick={() => onClickSideBarPage('login')}>로그인</a>
     </li>;
 
   const renderPostWriteMenu = isLogin === true &&
     <li>
-      <a onClick={onClickSideBarPage('postEdit')}>글쓰기 페이지 이동</a>
+      <a onClick={() => onClickSideBarPage('postEdit')}>글쓰기 페이지 이동</a>
     </li>;
 
   return <div>
