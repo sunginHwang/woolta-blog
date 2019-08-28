@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { increaseCounter, initType } from '../store/reducers/postReducer';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSomething, increaseCounter, initType } from '../store/reducers/postReducer';
 
 interface HomeProps {
 }
@@ -27,6 +28,9 @@ const Home: React.FC<HomeProps> = () => {
       </button>
       <button onClick={() => dispatch(increaseCounter(3))}>
         increase reducer counter
+      </button>
+      <button onClick={() => dispatch(getSomething(axios.get('https://jsonplaceholder.typicode.com/posts/1')))}>
+        async call
       </button>
     </div>
   );
