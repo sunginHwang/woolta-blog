@@ -1,0 +1,35 @@
+$blueColor: #78ccdd;
+
+body {
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.tag {
+  background-color: #78ccdd;
+  color: white;
+  width: 200px;
+  height: 50px;
+  border: none;
+  margin: 15px;
+  border-radius: 3px;
+
+}
+
+.customTag {
+  color: $blueColor;
+  button {
+    color: purple;
+    width: 200px;
+    height: 100px;
+    border: none;
+  }
+}
+
+
+.linkTag {
+  color: $blueColor;
+  &:hover {
+    color: rebeccapurple;
+  }
+}

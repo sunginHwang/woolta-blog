@@ -1,0 +1,19 @@
+
+
+/*color*/
+$main-theme-color: #6e827f;
+$white-color: #fff;
+$custom-gray-color: rgba(23, 42, 58, .1);
+$side-font-gray-color : #c2cab9;
+$title-font-color: #6e827f;
+$custom-black-color: #585858;
+$bottom-line-color: #f2f5ee;
+
+.main-button{
+  cursor: pointer;
+  color: $main-theme-color;
+  border: 1px solid $main-theme-color;
+  border-radius: 3px;
+  padding: 8px;
+}
+

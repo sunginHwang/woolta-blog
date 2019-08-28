@@ -1,0 +1,71 @@
+
+@import '../../../style/scss/CommonUtil';
+@import '../../../style/scss/CommonLayout';
+
+.sideBar{
+  border: 1px solid $custom-gray-color;
+  width: $main-right-width;
+  height: 100%;
+  position: fixed;
+  z-index: $side-bar-z-index*2;
+  background-color: $white-color;
+  top: $main-header-height;
+
+  right: -$main-right-width;
+  transition: all .1s ease;
+
+  ul{
+    margin-top: 2em !important;
+
+    li{
+      a{
+        text-align: left;
+        display: block;
+        text-decoration: none;
+        padding: 1em;
+        border-left: 2px solid transparent;
+        font-weight: 400;
+        color: $main-theme-color;
+        cursor: pointer;
+      }
+
+      &:hover{
+        color: $main-theme-color;
+        background-color: $custom-gray-color;
+      }
+    }
+  }
+
+}
+
+.sideBarOpen{
+  right: 0;
+}
+
+.sideBarWhiteSpace{
+  background-color: rgba(0,0,0,.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: $side-bar-z-index;
+}
+
+.imageArea{
+
+}
+
+.logoutArea{
+  cursor: pointer;
+  float:right;
+}
+
+.userImage{
+  float: left;
+  width: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
+  height: 100%;
+  vertical-align: middle;
+}
