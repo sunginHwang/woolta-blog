@@ -27,9 +27,11 @@ const App = (props: Props) => {
 };
 
 
-App.getInitialProps = async ({ ctx }) => {
+App.getInitialProps = async ({Component, ctx }) => {
+  const appProps = await Component.getInitialProps(ctx);
   await ctx.store.dispatch(getCategories(fetchCategories()));
-  return {};
+
+  return { ...appProps };
 };
 
 export default withRedux(store)(App);
