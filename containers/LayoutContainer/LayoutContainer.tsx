@@ -18,11 +18,16 @@ import { nanoBarLoadingSetup } from '../../core/util/apiCall';
 
 // @ts-ignore
 import cn from './LayoutContainer.scss';
+import { Store } from 'redux';
+import { getCategories } from '../../store/reducers/categoryReducer';
+import { fetchCategories } from '../../core/api/blogApi';
+import Index from '../../pages';
 
 const cx = classNames.bind(cn);
 
 interface LayoutContainerProps {
   children?: React.ReactNode;
+  getInitialProps?: any;
 }
 
 const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {

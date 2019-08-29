@@ -16,7 +16,7 @@ const categories: ICategory[] = [{
   label: '12',
 }];
 
-const Home: FC<void> = () => (
+const Home = () => (
   <div>
     <SideBar isOpen={true}
              authInfo={userInfo}
@@ -27,4 +27,8 @@ const Home: FC<void> = () => (
   </div>
 );
 
+Home.getInitialProps = async () => {
+  console.log('here');
+  return {};
+}
 export default Home;

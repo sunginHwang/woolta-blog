@@ -1,0 +1,65 @@
+@import '../../../../style/scss/CommonUtil';
+@import '../../../../style/scss/CommonLayout';
+
+$margin-bottom: 10px;
+
+.postItem{
+  text-align: left;
+  padding-bottom: 1em;
+  padding-top: 1.7em;
+  border-bottom: 2px solid $bottom-line-color;
+
+  @media screen and (max-width: $phone-width){
+    padding-bottom: 0.5em;
+    padding-top: 1.2em;
+  }
+}
+
+.title{
+  color: $main-theme-color;
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: $margin-bottom;
+  cursor: pointer;
+
+  @media screen and (max-width: $phone-width){
+    font-size: 1.5em;
+  }
+}
+
+.content{
+  margin-bottom: $margin-bottom;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: $main-theme-color;
+  max-width: 80%;
+  line-height: 1.5;
+  @media screen and (max-width: $phone-width){
+    font-size: 0.8em;
+    max-width: 100%;
+  }
+}
+
+.meta{
+  color: $side-font-gray-color;
+  font-size: 0.8em;
+  margin-right: 5px;
+
+  @media screen and (max-width: $phone-width){
+    font-size: 0.6em;
+  }
+}
+
+.separator{
+  font-size: 0.8em;
+  color: #ebebeb;
+  margin-right: 5px;
+  @media screen and (max-width: $phone-width){
+    font-size: 0.6em;
+  }
+}
+
+.categoryLabel{
+  color:#9ba5a0 !important;
+  margin-right: 10px !important;
+}

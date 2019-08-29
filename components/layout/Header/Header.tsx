@@ -7,27 +7,27 @@ import cn from './Header.scss';
 
 const cx = classNames.bind(cn);
 
-interface IHeaderProps{
-  onClickSideBar: any,
-  onClickLogo: any,
+interface IHeaderProps {
+  onClickSideBar: () => void,
+  onClickLogo: () => void,
   showMobileHeader: boolean
 }
 
 const Header: React.FC<IHeaderProps> = ({
-                                         onClickSideBar,
-                                         onClickLogo,
-                                         showMobileHeader,
-                                       }) => (
+                                          onClickSideBar,
+                                          onClickLogo,
+                                          showMobileHeader,
+                                        }) => (
   <div className={cx(cn.mainHeader, { hideHeaderMobile: showMobileHeader })}>
     <div className={cn.headerLeftArea}>
       <span className={cn.headerLogo} onClick={onClickLogo}>woolta</span>
     </div>
     <span className={cn.flexAuto}/>
     <div className={cn.headerRightArea}>
-                <span className={cx(cn.headerMenu, cn.headerMobileSideBarMenu)}
-                      onClick={onClickSideBar}>
-                    <MdList/>
-                </span>
+      <span className={cx(cn.headerMenu, cn.headerMobileSideBarMenu)}
+            onClick={onClickSideBar}>
+          <MdList/>
+      </span>
     </div>
   </div>
 

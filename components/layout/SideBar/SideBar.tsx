@@ -31,8 +31,6 @@ const SideBar: React.FC<SideBarProps> = ({
     </li>;
   });
 
-  const isLogin: boolean = authInfo.userId !== '';
-
   const userMenu =
     <li>
       <a>
@@ -49,6 +47,8 @@ const SideBar: React.FC<SideBarProps> = ({
     <li>
       <a onClick={() => onClickSideBarPage('login')}>로그인</a>
     </li>;
+
+  const isLogin: boolean = authInfo.userId !== '';
 
   const renderPostWriteMenu = isLogin === true &&
     <li>

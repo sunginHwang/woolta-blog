@@ -1,0 +1,18 @@
+@import '../../../../style/scss/CommonLayout';
+
+.postItemPlaceHolder{
+
+    margin-top: 2em;
+    max-width: $content-max-width;
+    margin: 0 auto;
+
+    @media screen and (max-width: $mobile-width){
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media screen and (max-width: $phone-width){
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+}

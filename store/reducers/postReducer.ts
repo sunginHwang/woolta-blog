@@ -1,8 +1,13 @@
 import { createStandardAction } from 'typesafe-actions';
-import { createReducer } from '../../core/util/reduxUtil';
+import { asyncActionTypeCreator, createReducer } from '../../core/util/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';
+import IAsyncAction from '../../models/redux/IAsyncAction';
+import { AxiosResponse } from 'axios';
+import { ICategory } from '../../models/post/ICategory';
+import { CATEGORIES } from './categoryReducer';
+import IPosts from '../../models/post/IPosts';
 
 const prefix: string = 'LAYOUT_';
 
@@ -15,8 +20,9 @@ const GET_SOMETHING: string = `${prefix}GET_SOMETHING`;
 const GET_SOMETHING_PENDING: string = `${prefix}GET_SOMETHING_PENDING`;
 const GET_SOMETHING_FULFILLED: string = `${prefix}GET_SOMETHING_FULFILLED`;
 const GET_SOMETHING_REJECTED: string = `${prefix}GET_SOMETHING_REJECTED`;
+const RECENT_POSTS: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_RECENT_POSTS`);
 
-
+export const getRecentPosts = createStandardAction(RECENT_POSTS.INDEX)<Promise<AxiosResponse<IPosts[]>>>();
 export const increaseCounter = createStandardAction(INCREASE_COUNTER)<number>();
 export const toggleSpinnerLoading = createStandardAction(TOGGLE_SPINNER_LOADING)<string>();
 export const showMobileHeader = createStandardAction(SHOW_MOBILE_HEADER)<string>();
@@ -70,7 +76,6 @@ export default createReducer({
     console.log(action);
     return { ...state, sideBar: action.payload };
   },
-
   [GET_SOMETHING_REJECTED]: (state, action) => {
     return { ...state, sideBar: action.payload };
   },
