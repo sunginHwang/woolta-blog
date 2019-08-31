@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
-
-import SideBar from '../components/layout/SideBar/SideBar';
+import React from 'react';
 import { IUserInfo } from '../models/user/IUserInfo';
 import { ICategory } from '../models/post/ICategory';
+import { goMainPage } from '../core/util/routeUtil';
 
 const userInfo: IUserInfo = {
   userId: 'gommpo',
@@ -18,17 +17,12 @@ const categories: ICategory[] = [{
 
 const Home = () => (
   <div>
-    <SideBar isOpen={true}
-             authInfo={userInfo}
-             categories={categories}
-             onClickCategoryPage={() => console.log(1)}
-             onClickLogout={() => console.log(2)}
-             onClickSideBarPage={() => console.log(3)}/>
+    <p onClick={()=> goMainPage()}>go main page</p>
   </div>
 );
 
 Home.getInitialProps = async () => {
   console.log('here');
   return {};
-}
+};
 export default Home;

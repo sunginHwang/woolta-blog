@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Store } from 'redux';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { increaseCounter, getSomething, initType } from '../store/reducers/postReducer';
+import { useSelector } from 'react-redux';
+import { initType } from '../store/reducers/postReducer';
 import { getRecentPosts, postsInitType } from '../store/reducers/postsReducer';
-import { fetchCategories, fetchRecentPostList } from '../core/api/blogApi';
-
-import IntroPage from '../components/main/IntroPage/IntroPage';
-import { ICategory } from '../models/post/ICategory';
-import { AxiosResponse } from 'axios';
+import { fetchRecentPostList } from '../core/api/blogApi';
 import { categoryInitType } from '../store/reducers/categoryReducer';
 import IPosts from '../models/post/IPosts';
+
+import IntroPage from '../components/main/IntroPage/IntroPage';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
 import PostLayout from '../components/post/list/PostLayout/PostLayout';
 
@@ -29,11 +27,6 @@ export type RootState = {
 const Index: IndexProps = () => {
 
   const { posts, loading } = useSelector((state: RootState) => state.postsReducer);
-  const dispatch = useDispatch();
-
-  useEffect(()=>{
-    dispatch(getRecentPosts(fetchRecentPostList()))
-  },[]);
 
   const newPosts = loading
     ? <PostsPlaceHolder/>
@@ -50,7 +43,6 @@ const Index: IndexProps = () => {
 };
 
 Index.getInitialProps = async ({ store }: { store: Store<RootState> }) => {
-  await console.log('getInitialProps');
   await store.dispatch(getRecentPosts(fetchRecentPostList()));
   return {};
 };
