@@ -1,0 +1,49 @@
+@import '../../../../style/scss/CommonLayout';
+@import '../../../../style/scss/CommonUtil';
+
+
+.postPlaceHolder{
+  margin-top: 2em;
+  @media screen and (max-width: $mobile-width){
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media screen and (max-width: $phone-width){
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.title{
+  margin-bottom: 15px;
+}
+
+.sub{
+  display: flex;
+  align-items: center;
+  margin-bottom: 45px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.circlePlaceHolder{
+  animation: loading-animation 1.3s infinite ease-in-out;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(0,0%,89%);
+  }
+  50% {
+    background-color: hsl(0,0%,85%);
+  }
+  100% {
+    background-color: hsl(0,0%,89%);
+  }
+}
+
