@@ -2,11 +2,10 @@ import React from 'react';
 import { Store } from 'redux';
 
 import { useSelector } from 'react-redux';
-import { initType } from '../store/reducers/postReducer';
+import { postInitType } from '../store/reducers/postReducer';
 import { getRecentPosts, postsInitType } from '../store/reducers/postsReducer';
 import { fetchRecentPostList } from '../core/api/blogApi';
 import { categoryInitType } from '../store/reducers/categoryReducer';
-import IPosts from '../models/post/IPosts';
 
 import IntroPage from '../components/main/IntroPage/IntroPage';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
@@ -14,11 +13,10 @@ import PostLayout from '../components/post/list/PostLayout/PostLayout';
 
 interface IndexProps {
   getInitialProps: any,
-  posts?: IPosts[]
 }
 
 export type RootState = {
-  postReducer: initType;
+  postReducer: postInitType;
   postsReducer: postsInitType;
   categoriesReducer: categoryInitType;
 };

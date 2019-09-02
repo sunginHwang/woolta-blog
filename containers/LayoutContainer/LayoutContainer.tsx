@@ -13,15 +13,10 @@ import SideBar from '../../components/layout/SideBar/SideBar';
 import * as layoutReducer from '../../store/reducers/layoutReducer';
 import * as authReducer from '../../store/reducers/authReducer';
 
-import { goPostListPage, goLoginPage, goPostEditPage, goMainPage } from '../../core/util/routeUtil';
+import { goLoginPage, goMainPage, goPostEditPage, goPostListPage } from '../../core/util/routeUtil';
 import { nanoBarLoadingSetup } from '../../core/util/apiCall';
-
 // @ts-ignore
 import cn from './LayoutContainer.scss';
-import { Store } from 'redux';
-import { getCategories } from '../../store/reducers/categoryReducer';
-import { fetchCategories } from '../../core/api/blogApi';
-import Index from '../../pages';
 
 const cx = classNames.bind(cn);
 
@@ -108,29 +103,31 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   };
 
 
-  return <div>
-    <SideBar
-      isOpen={sideBar}
-      authInfo={authInfo}
-      onClickCategoryPage={onClickCategoryPage}
-      onClickSideBarPage={onClickSideBarPage}
-      onClickLogout={onClickLogout}
-      categories={categories}
-    />
-    <Header
-      showMobileHeader={mobileHeader}
-      onClickLogo={() => this.onClickSideBarPage('main')}
-      onClickSideBar={() => onToggleSideBar(!sideBar)}
-    />
-    <SpinnerLoading loading={spinnerLoading}/>
-    <NanoBarLoading/>
-    <div className={cx(cn.contentWrapper, !editMode && cn.contentWidth)}>
-      {
-        children
-      }
+  return (
+    <div>
+      <SideBar
+        isOpen={sideBar}
+        authInfo={authInfo}
+        onClickCategoryPage={onClickCategoryPage}
+        onClickSideBarPage={onClickSideBarPage}
+        onClickLogout={onClickLogout}
+        categories={categories}
+      />
+      <Header
+        showMobileHeader={mobileHeader}
+        onClickLogo={() => this.onClickSideBarPage('main')}
+        onClickSideBar={() => onToggleSideBar(!sideBar)}
+      />
+      <SpinnerLoading loading={spinnerLoading}/>
+      <NanoBarLoading/>
+      <div className={cx(cn.contentWrapper, !editMode && cn.contentWidth)}>
+        {
+          children
+        }
+      </div>
+      <Footer/>
     </div>
-    <Footer/>
-  </div>;
+  );
 };
 
 export default LayoutContainer;
