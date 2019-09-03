@@ -7,7 +7,6 @@ import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlace
 import { deletePost, getPost } from '../store/reducers/postReducer';
 import { delPost, fetchPostInfo } from '../core/api/blogApi';
 import { RootState } from './index';
-import { NextPage } from 'next';
 // @ts-ignore
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
 // @ts-ignore
@@ -18,7 +17,19 @@ interface PostProps {
   postNo: number;
 }
 
-const post: NextPage<PostProps> = ({
+type NextPages<P = {}, IP = P> = {
+  (props: P): JSX.Element | null
+  defaultProps?: Partial<P>
+  displayName?: string
+  /**
+   * Used for initial page load data population. Data returned from `getInitialProps` is serialized when server rendered.
+   * Make sure to return plain `Object` without using `Date`, `Map`, `Set`.
+   * @param ctx Context of `page`
+   */
+  getInitialProps?(ctx: any): Promise<IP>
+}
+
+const post: NextPages<PostProps> = ({
                                      categoryNo,
                                      postNo,
                                    }) => {
@@ -29,25 +40,27 @@ const post: NextPage<PostProps> = ({
     dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
   });
 
-  const { post, loading } = useSelector((state: RootState) => state.postReducer);
-  const { categories } = useSelector((state: RootState) => state.categoriesReducer);
+  const { post, loading } = useSelector((state: RootState) => ({
+    post: state.postReducer.post,
+    loading: state.postReducer.loading,
+  }));
 
 
   /*게시글 수정*/
   const onClickPostModify = async () => {
-    const { postNo, title, content, categoryLabel } = post;
+ /*   const { postNo, title, content, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
     await dispatch(settingPostInfo({ postNo, title, content, category }));
-    goPostEditPage();
+    goPostEditPage();*/
   };
 
   /*게시글 삭제*/
   const onClickDeletePost = () => {
-    const { postNo, categoryLabel } = post;
+   /* const { postNo, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
-    dispatch(deletePost(delPost(category.value, postNo)));
+    dispatch(deletePost(delPost(category.value, postNo)));*/
   };
 
   //todo 권한 작업 진행 해야 함.
@@ -77,9 +90,11 @@ const post: NextPage<PostProps> = ({
 
 };
 
-post.getInitialProps = async ({ query }) => {
+post.getInitialProps = async ({store, query }) => {
   const categoryNo = Number(query.categoryNo);
   const postNo = Number(query.postNo);
+  await store.dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
+
   return { categoryNo, postNo };
 };
 
