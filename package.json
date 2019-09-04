@@ -5,17 +5,20 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "local": "NODE_ENV=dev ENV=local node server.js"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
+    "express": "^4.17.1",
     "highlight.js": "^9.15.10",
     "immer": "^3.2.0",
     "nanobar": "^0.4.2",
     "next": "9.0.4",
     "next-redux-wrapper": "^3.0.0",
+    "next-routes": "^1.4.2",
     "node-sass": "^4.12.0",
     "open-color": "^1.7.0",
     "react": "16.9.0",
