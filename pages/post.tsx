@@ -26,9 +26,10 @@ const post: NextPageCustom<PostProps> = (props) => {
     !isServer && dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
   }, [categoryNo, postNo]);
 
-  const { post, loading, categories, } = useSelector((state: RootState) => ({
+  const { post, loading, authInfo, categories } = useSelector((state: RootState) => ({
     post: state.postReducer.post,
     loading: state.postReducer.loading,
+    authInfo: state.authReducer.authInfo,
     categories: state.categoryReducer.categories,
   }));
 
@@ -48,9 +49,7 @@ const post: NextPageCustom<PostProps> = (props) => {
 
     dispatch(deletePost(delPost(category.value, postNo)));
   };
-  //todo 권한 작업 진행 해야 함.
-  // const isPostingUser = authInfo.no === post.writer.no;
-  const isPostingUser = true;
+  const isPostingUser = authInfo.no === post.writer.no;
 
   if (loading) return <PostPlaceHolder/>;
   if (post.postNo === 0) return null;

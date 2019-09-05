@@ -62,7 +62,7 @@ export default createReducer(initialState, {
     produce<postInitType>(state, draft => {
       draft.loading = true;
     }),
-  [DELETE_POST.FULFILLED]: (state, action: FluxStandardAction) =>
+  [DELETE_POST.FULFILLED]: (state) =>
     produce<postInitType>(state, draft => {
       draft.loading = false;
       draft.post = initialState.post;
