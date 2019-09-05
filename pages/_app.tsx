@@ -1,4 +1,4 @@
-import { Container, AppInitialProps, AppContext } from 'next/app';
+import { AppContext, AppInitialProps, Container } from 'next/app';
 import React from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
@@ -28,10 +28,9 @@ const App = (props: Props) => {
 
 
 App.getInitialProps = async ({Component, ctx }) => {
-  const appProps = await Component.getInitialProps(ctx);
+  const pageProps = await Component.getInitialProps(ctx);
   await ctx.store.dispatch(getCategories(fetchCategories()));
-
-  return { ...appProps };
+  return { pageProps };
 };
 
 export default withRedux(store)(App);

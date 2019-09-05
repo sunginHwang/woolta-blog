@@ -6,61 +6,57 @@ import PostSeoHeader from '../components/post/detail/PostSeoHeader/PostSeoHeader
 import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlaceHolder';
 import { deletePost, getPost } from '../store/reducers/postReducer';
 import { delPost, fetchPostInfo } from '../core/api/blogApi';
-import { RootState } from './index';
 // @ts-ignore
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
 // @ts-ignore
 import { goPostEditPage } from '../core/util/routeUtil';
+import { RootState } from '../models/redux/RootState';
+import { NextPageCustom } from '../models/next/NextPageCustom';
 
 interface PostProps {
   categoryNo: number;
   postNo: number;
 }
 
-type NextPages<P = {}, IP = P> = {
-  (props: P): JSX.Element | null
-  defaultProps?: Partial<P>
-  displayName?: string
-  /**
-   * Used for initial page load data population. Data returned from `getInitialProps` is serialized when server rendered.
-   * Make sure to return plain `Object` without using `Date`, `Map`, `Set`.
-   * @param ctx Context of `page`
-   */
-  getInitialProps?(ctx: any): Promise<IP>
-}
+const post: NextPageCustom<PostProps> = (props) => {
 
-const post: NextPages<PostProps> = ({
-                                     categoryNo,
-                                     postNo,
-                                   }) => {
-
+  const {categoryNo, postNo} = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
-  });
+    console.log('useEffect-start');
+    console.log(categoryNo);
+    console.log(postNo);
+    console.log('useEffect-end');
 
-  const { post, loading } = useSelector((state: RootState) => ({
+    dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
+  }, [categoryNo, postNo]);
+
+  const {
+    post,
+    loading,
+    categories,
+  } = useSelector((state: RootState) => ({
     post: state.postReducer.post,
     loading: state.postReducer.loading,
+    categories: state.categoryReducer.categories,
   }));
-
 
   /*게시글 수정*/
   const onClickPostModify = async () => {
- /*   const { postNo, title, content, categoryLabel } = post;
+    const { postNo, title, content, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
     await dispatch(settingPostInfo({ postNo, title, content, category }));
-    goPostEditPage();*/
+    goPostEditPage();
   };
 
   /*게시글 삭제*/
   const onClickDeletePost = () => {
-   /* const { postNo, categoryLabel } = post;
+    const { postNo, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
-    dispatch(deletePost(delPost(category.value, postNo)));*/
+    dispatch(deletePost(delPost(category.value, postNo)));
   };
 
   //todo 권한 작업 진행 해야 함.
@@ -90,11 +86,13 @@ const post: NextPages<PostProps> = ({
 
 };
 
-post.getInitialProps = async ({store, query }) => {
+post.getInitialProps = async ({ store, query }) => {
   const categoryNo = Number(query.categoryNo);
   const postNo = Number(query.postNo);
+  console.log('start-getInitialProps');
   await store.dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
-
+  console.log(categoryNo, postNo);
+  console.log('end-getInitialProps');
   return { categoryNo, postNo };
 };
 
