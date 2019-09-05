@@ -45,16 +45,14 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     nanoBarLoadingSetup();
     onDetectMobileScrollUpAndDown();
   }, []);
 
-
 // 모바일 스크롤 헤더 이벤트
   const onDetectMobileScrollUpAndDown = () => {
-    let lastScroll = 0;
+    let lastScroll:number = 0;
 
     window.onscroll = throttle(() => {
       if (!sideBar) {
@@ -82,7 +80,6 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
     dispatch(authReducer.logout());
   };
 
-//
   const onClickSideBarPage = (type: string) => {
 
     switch (type) {
@@ -115,7 +112,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
       />
       <Header
         showMobileHeader={mobileHeader}
-        onClickLogo={() => this.onClickSideBarPage('main')}
+        onClickLogo={() => onClickSideBarPage('main')}
         onClickSideBar={() => onToggleSideBar(!sideBar)}
       />
       <SpinnerLoading loading={spinnerLoading}/>
