@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
-import { asyncActionTypeCreator, createReducer } from '../../core/util/reduxUtil';
+import { createReducer, createStandardAction } from 'typesafe-actions';
+import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';
@@ -12,7 +12,7 @@ const prefix: string = 'POST_';
 const GET_POST: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_POST`);
 const DELETE_POST: IAsyncAction = asyncActionTypeCreator(`${prefix}DELETE_POST`);
 const POST_INFO_INITIALIZE: string = `${prefix}POST_INFO_INITIALIZE`;
-const MODIFY_POST:string = `${prefix}MODIFY_POST`;
+const MODIFY_POST: string = `${prefix}MODIFY_POST`;
 
 export const modifyPost = createStandardAction(MODIFY_POST)<void>();
 export const postInfoInitialize = createStandardAction(POST_INFO_INITIALIZE)<void>();
@@ -42,7 +42,7 @@ const initialState: postInitType = {
   loading: false,
 };
 
-export default createReducer({
+export default createReducer(initialState, {
   [GET_POST.PENDING]: (state) =>
     produce<postInitType>(state, draft => {
       draft.loading = true;
@@ -75,7 +75,7 @@ export default createReducer({
     produce<postInitType>(state, draft => {
       draft.post = initialState.post;
     }),
-}, initialState);
+});
 
 
 

@@ -1,6 +1,4 @@
-import { createStandardAction } from 'typesafe-actions';
-import { createReducer } from '../../core/util/reduxUtil';
-
+import { createReducer, createStandardAction } from 'typesafe-actions';
 import { produce } from 'immer';
 import { IUserInfo } from '../../models/user/IUserInfo';
 
@@ -28,11 +26,11 @@ const initialState: authInitType = {
   },
 };
 
-export default createReducer({
+export default createReducer(initialState, {
   [LOGOUT]: (state) =>
     produce<authInitType>(state, draft => {
       draft.authInfo = initialState.authInfo;
     }),
-}, initialState);
+});
 
 

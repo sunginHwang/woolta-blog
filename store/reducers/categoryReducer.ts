@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
-import { asyncActionTypeCreator, createReducer } from '../../core/util/reduxUtil';
+import { createReducer, createStandardAction } from 'typesafe-actions';
+import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
 
 import { produce } from 'immer';
 import { ICategory } from '../../models/post/ICategory';
@@ -8,7 +8,6 @@ import { FluxStandardAction } from 'redux-promise-middleware';
 import { AxiosResponse } from 'axios';
 
 const prefix: string = 'CATEGORY_';
-
 
 
 export const CATEGORIES: IAsyncAction = asyncActionTypeCreator(`${prefix}FETCH_CATEGORIES`);
@@ -22,7 +21,7 @@ const initialState: categoryInitType = {
   categories: [],
 };
 
-export default createReducer({
+export default createReducer(initialState, {
   [CATEGORIES.FULFILLED]: (state, action: FluxStandardAction) =>
     produce<categoryInitType>(state, draft => {
       draft.categories = action.payload.data.data;
@@ -31,6 +30,6 @@ export default createReducer({
     produce<categoryInitType>(state, draft => {
       draft.categories = initialState.categories;
     }),
-}, initialState);
+});
 
 

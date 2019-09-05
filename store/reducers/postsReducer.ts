@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
-import { asyncActionTypeCreator, createReducer } from '../../core/util/reduxUtil';
+import { createReducer, createStandardAction } from 'typesafe-actions';
+import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';
@@ -23,7 +23,7 @@ const initialState: postsInitType = {
   loading: false,
 };
 
-export default createReducer({
+export default createReducer(initialState, {
   [RECENT_POSTS.PENDING]: (state) =>
     produce<postsInitType>(state, draft => {
       draft.loading = true;
@@ -39,5 +39,5 @@ export default createReducer({
       draft.loading = false;
       draft.posts = initialState.posts;
     }),
-}, initialState);
+});
 

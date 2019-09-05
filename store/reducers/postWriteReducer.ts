@@ -1,6 +1,5 @@
 import { produce } from 'immer';
-import { createStandardAction } from 'typesafe-actions';
-import { createReducer } from '../../core/util/reduxUtil';
+import { createReducer, createStandardAction } from 'typesafe-actions';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 const prefix: string = 'POST_WRITE_';
@@ -14,6 +13,7 @@ interface settingPostInfoFn {
   content: string;
   category: any
 }
+
 export const settingPostInfo = createStandardAction(SETTING_POST_INFO)<settingPostInfoFn>();
 
 
@@ -38,7 +38,7 @@ const initialState: PostWriteInitType = {
 };
 
 
-export default createReducer({
+export default createReducer(initialState, {
   [SETTING_POST_INFO]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
       draft.postNo = action.payload.postNo;
@@ -46,4 +46,4 @@ export default createReducer({
       draft.title = action.payload.title;
       draft.content = action.payload.content;
     }),
-}, initialState);
+});

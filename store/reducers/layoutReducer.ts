@@ -1,6 +1,4 @@
-import { createStandardAction } from 'typesafe-actions';
-import { createReducer } from '../../core/util/reduxUtil';
-
+import { createReducer, createStandardAction } from 'typesafe-actions';
 import { produce } from 'immer';
 
 const prefix: string = 'CATEGORY_';
@@ -30,7 +28,7 @@ const initialState: layoutInitType = {
   editMode: false,
 };
 
-export default createReducer({
+export default createReducer(initialState, {
   [TOGGLE_SPINNER_LOADING]: (state, action) =>
     produce<layoutInitType>(state, draft => {
       draft.spinnerLoading = action.payload;
@@ -47,6 +45,6 @@ export default createReducer({
     produce<layoutInitType>(state, draft => {
       draft.editMode = action.payload;
     }),
-}, initialState);
+});
 
 
