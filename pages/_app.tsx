@@ -8,6 +8,7 @@ import store from '../store';
 import LayoutContainer from '../containers/LayoutContainer/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
+import UserInfoLoadContainer from '../containers/UserInfoLoadContainer/UserInfoLoadContainer';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 
@@ -18,9 +19,12 @@ const App = (props: Props) => {
   return (
     <Container>
       <Provider store={store}>
-        <LayoutContainer>
-          <Component {...pageProps} />
-        </LayoutContainer>
+        <div>
+          <UserInfoLoadContainer/>
+          <LayoutContainer>
+            <Component {...pageProps} />
+          </LayoutContainer>
+        </div>
       </Provider>
     </Container>
   );
@@ -29,7 +33,7 @@ const App = (props: Props) => {
 
 App.getInitialProps = async ({Component, ctx }) => {
   const pageProps = await Component.getInitialProps(ctx);
-  await ctx.store.dispatch(getCategories(fetchCategories()));
+  ctx.isServer && await ctx.store.dispatch(getCategories(fetchCategories()));
   return { pageProps };
 };
 

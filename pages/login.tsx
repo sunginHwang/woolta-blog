@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../models/redux/RootState';
 import { changeLoginInput, login } from '../store/reducers/authReducer';
 import { userLogin } from '../core/api/AuthApi';
-import { bool } from 'prop-types';
 import { goMainPage } from '../core/util/routeUtil';
 
 interface LoginProps {
@@ -14,15 +13,11 @@ interface LoginProps {
 const Login: NextPageCustom<LoginProps> = ({}) => {
 
   const dispatch = useDispatch();
-  const { id, password, authInfo } = useSelector((state: RootState) => state.authReducer);
+  const { id, password } = useSelector((state: RootState) => state.authReducer);
 
+  const onChangeLoginInfo = (type, value) => {
 
-  const onChangeLoginInfo = (inputType, value) => {
-
-    dispatch(changeLoginInput({
-      type: inputType,
-      value: value,
-    }));
+    dispatch(changeLoginInput({ type, value }));
   };
 
   // 로그인 클릭
