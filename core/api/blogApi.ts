@@ -13,6 +13,10 @@ export const fetchRecentPostList = () => {
   return apiCall.get<IPosts[]>(`${BLOG_API}/post/categories/new/posts`);
 };
 
+export const fetchPosts = (categoryNo) => {
+  return apiCall.get<IPosts[]>(`${BLOG_API}/post/categories/${categoryNo}/posts`);
+};
+
 
 export const fetchPostInfo = (categoryNo, postNo) => {
   return apiCall.get<IPost>(`${BLOG_API}/post/categories/${categoryNo}/posts/${postNo}`);

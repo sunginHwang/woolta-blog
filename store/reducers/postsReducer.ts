@@ -10,7 +10,9 @@ import IPosts from '../../models/post/IPosts';
 const prefix: string = 'POSTS_';
 
 const RECENT_POSTS: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_RECENT_POSTS`);
+const GET_POSTS: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_POSTS`);
 
+export const getPosts = createStandardAction(GET_POSTS.INDEX)<Promise<AxiosResponse<IPosts[]>>>();
 export const getRecentPosts = createStandardAction(RECENT_POSTS.INDEX)<Promise<AxiosResponse<IPosts[]>>>();
 
 export interface postsInitType {
@@ -24,6 +26,21 @@ const initialState: postsInitType = {
 };
 
 export default createReducer(initialState, {
+  [GET_POSTS.PENDING]: (state) =>
+    produce<postsInitType>(state, draft => {
+      draft.loading = true;
+    }),
+  [GET_POSTS.FULFILLED]: (state, action: FluxStandardAction) =>
+    produce<postsInitType>(state, draft => {
+      console.log('getIn');
+      draft.loading = false;
+      draft.posts = action.payload.data.data;
+    }),
+  [GET_POSTS.REJECTED]: (state) =>
+    produce<postsInitType>(state, draft => {
+      draft.loading = false;
+      draft.posts = initialState.posts;
+    }),
   [RECENT_POSTS.PENDING]: (state) =>
     produce<postsInitType>(state, draft => {
       draft.loading = true;
