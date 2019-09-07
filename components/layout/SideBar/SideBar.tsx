@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames/bind';
-import { IUserInfo } from '../../../models/user/IUserInfo';
-import { ICategory } from '../../../models/post/ICategory';
+import { IUserInfo } from '../../../types/user/IUserInfo';
+import { ICategory } from '../../../types/post/ICategory';
 // @ts-ignore
 import cn from './SideBar.scss';
 

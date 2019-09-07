@@ -2,7 +2,7 @@ import React from 'react';
 import PostItem from '../PostItem/PostItem';
 // @ts-ignore
 import cn from './PostLayout.scss';
-import IPosts from '../../../../models/post/IPosts';
+import IPosts from '../../../../types/post/IPosts';
 
 interface PostLayoutProps {
   posts: IPosts[],

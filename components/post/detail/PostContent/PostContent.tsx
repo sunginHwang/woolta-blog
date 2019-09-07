@@ -2,7 +2,7 @@ import PostSubTitle from '../PostSubTitle/PostSubTitle';
 // @ts-ignore
 import cn from './PostContent.scss';
 import React from 'react';
-import { IPost } from '../../../../models/post/IPost';
+import { IPost } from '../../../../types/post/IPost';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
 
 
