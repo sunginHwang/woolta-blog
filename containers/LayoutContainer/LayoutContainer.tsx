@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
-import { RootState } from '../../models/redux/RootState';
+import { RootState } from '../../types/redux/RootState';
 import NanoBarLoading from '../../components/common/loading/NanoBarLoading/NanoBarLoading';
 import SpinnerLoading from '../../components/common/loading/SpinnerLoading/SpinnerLoading';
 

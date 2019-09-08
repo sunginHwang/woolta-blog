@@ -1,8 +1,8 @@
 import apiCall from '../util/apiCall';
 import { BLOG_API } from '../constants';
-import { ICategory } from '../../models/post/ICategory';
-import IPosts from '../../models/post/IPosts';
-import { IPost } from '../../models/post/IPost';
+import { ICategory } from '../../types/post/ICategory';
+import IPosts from '../../types/post/IPosts';
+import { IPost } from '../../types/post/IPost';
 
 
 export const fetchCategories = () => {

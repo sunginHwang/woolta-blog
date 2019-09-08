@@ -2,8 +2,8 @@ import { createReducer, createStandardAction } from 'typesafe-actions';
 import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
 
 import { produce } from 'immer';
-import { ICategory } from '../../models/post/ICategory';
-import IAsyncAction from '../../models/redux/IAsyncAction';
+import { ICategory } from '../../types/post/ICategory';
+import IAsyncAction from '../../types/redux/IAsyncAction';
 import { FluxStandardAction } from 'redux-promise-middleware';
 import { AxiosResponse } from 'axios';
 

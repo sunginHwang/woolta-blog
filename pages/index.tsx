@@ -5,8 +5,8 @@ import { fetchRecentPostList } from '../core/api/blogApi';
 import IntroPage from '../components/main/IntroPage/IntroPage';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
 import PostLayout from '../components/post/list/PostLayout/PostLayout';
-import { NextPageCustom } from '../models/next/NextPageCustom';
-import { RootState } from '../models/redux/RootState';
+import { NextPageCustom } from '../types/next/NextPageCustom';
+import { RootState } from '../types/redux/RootState';
 
 const Index: NextPageCustom<{}> = () => {
 

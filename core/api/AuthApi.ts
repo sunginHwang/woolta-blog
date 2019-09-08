@@ -1,6 +1,6 @@
 import apiCall from '../util/apiCall';
 import { BLOG_API } from '../constants';
-import { IUserInfo } from '../../models/user/IUserInfo';
+import { IUserInfo } from '../../types/user/IUserInfo';
 
 export const userLogin =  (id: string, password: string) => {
   let data = new FormData();

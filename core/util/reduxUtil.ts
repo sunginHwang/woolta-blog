@@ -1,4 +1,4 @@
-import IAsyncAction from '../../models/redux/IAsyncAction';
+import IAsyncAction from '../../types/redux/IAsyncAction';
 
 export const asyncActionTypeCreator = (actionName: string): IAsyncAction => {
   const asyncTypeAction: string[] = ['_PENDING', '_FULFILLED', '_REJECTED'];

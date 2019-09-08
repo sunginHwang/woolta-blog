@@ -3,9 +3,9 @@ import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';
-import IAsyncAction from '../../models/redux/IAsyncAction';
+import IAsyncAction from '../../types/redux/IAsyncAction';
 import { AxiosResponse } from 'axios';
-import IPosts from '../../models/post/IPosts';
+import IPosts from '../../types/post/IPosts';
 
 const prefix: string = 'POSTS_';
 

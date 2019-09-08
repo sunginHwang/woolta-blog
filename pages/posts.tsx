@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { NextPageCustom } from '../models/next/NextPageCustom';
+import { NextPageCustom } from '../types/next/NextPageCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../models/redux/RootState';
+import { RootState } from '../types/redux/RootState';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
 import { fetchPosts } from '../core/api/blogApi';
 import { getPosts } from '../store/reducers/postsReducer';

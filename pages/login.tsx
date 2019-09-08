@@ -1,8 +1,8 @@
 import React from 'react';
-import { NextPageCustom } from '../models/next/NextPageCustom';
+import { NextPageCustom } from '../types/next/NextPageCustom';
 import LoginView from '../components/user/loginView/LoginView';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../models/redux/RootState';
+import { RootState } from '../types/redux/RootState';
 import { changeLoginInput, login } from '../store/reducers/authReducer';
 import { userLogin } from '../core/api/AuthApi';
 import { goMainPage } from '../core/util/routeUtil';
