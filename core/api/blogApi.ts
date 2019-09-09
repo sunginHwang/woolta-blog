@@ -26,5 +26,7 @@ export const delPost = (categoryNo, postNo) => {
   return apiCall.delete(`${BLOG_API}/post`, { data: { categoryNo, postNo } });
 };
 
-
+export const upsertPostApi = (postData) => {
+  return apiCall.post(`${BLOG_API}/post`, postData);
+};
 
