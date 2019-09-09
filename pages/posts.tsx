@@ -6,6 +6,7 @@ import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlac
 import { fetchPosts } from '../core/api/blogApi';
 import { getPosts } from '../store/reducers/postsReducer';
 import PostLayout from '../components/post/list/PostLayout/PostLayout';
+import useTitle from '../core/hooks/useTitle';
 
 interface PostsProps {
   categoryNo: number;
@@ -14,19 +15,33 @@ interface PostsProps {
 
 const Posts: NextPageCustom<PostsProps> = ({ categoryNo, isServer }) => {
 
-  const { posts, loading } = useSelector((state: RootState) => state.postsReducer);
+  const { posts, loading, categories } = useSelector((state: RootState) => ({
+    posts: state.postsReducer.posts,
+    loading: state.postsReducer.loading,
+    categories: state.categoryReducer.categories,
+  }));
 
   const dispatch = useDispatch();
+  const setTitle = useTitle();
 
   useEffect(() => {
-    !isServer && dispatch(getPosts(fetchPosts(categoryNo)))
+    !isServer && dispatch(getPosts(fetchPosts(categoryNo)));
+    changeHeaderTitle();
   }, [categoryNo]);
+
+  const getCategoryNameByCategoryNo = (categoryNo: number) => {
+    const category = categories.find((c) => c.value == categoryNo);
+    return category !== undefined ? category.label : '';
+  };
+
+  const changeHeaderTitle = () => {
+    const headerTitle = getCategoryNameByCategoryNo(categoryNo);
+    setTitle(headerTitle);
+  };
 
   if (loading) return <PostsPlaceHolder/>;
 
-  return (
-    <PostLayout posts={posts}/>
-  );
+  return <PostLayout posts={posts}/>;
 };
 
 Posts.getInitialProps = async ({ store, query, isServer }) => {

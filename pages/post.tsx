@@ -7,7 +7,7 @@ import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlace
 import { deletePost, getPost } from '../store/reducers/postReducer';
 import { delPost, fetchPostInfo } from '../core/api/blogApi';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
-import { goPostEditPage } from '../core/util/routeUtil';
+import { goPostEditPage } from '../core/utils/routeUtil';
 import { RootState } from '../types/redux/RootState';
 import { NextPageCustom } from '../types/next/NextPageCustom';
 
@@ -49,6 +49,7 @@ const post: NextPageCustom<PostProps> = (props) => {
 
     dispatch(deletePost(delPost(category.value, postNo)));
   };
+
   const isPostingUser = authInfo.no === post.writer.no;
 
   if (loading) return <PostPlaceHolder/>;
