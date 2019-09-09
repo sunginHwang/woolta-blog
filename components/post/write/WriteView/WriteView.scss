@@ -1,0 +1,63 @@
+@import '../../../../style/scss/CommonUtil';
+@import '../../../../style/scss/CommonLayout';
+
+$wrapper-height:700px;
+$wrapper-title-height:60px;
+
+.write{
+  padding-top: 1.5em;
+}
+
+.markDownWrapper {
+  background-color: #fff;
+  padding: 1em;
+  width: 44%;
+  display: inline-block;
+  height: $wrapper-height;
+  word-break: break-word;
+
+  @media screen and (max-width: $mobile-width){
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .titleArea{
+    height: $wrapper-title-height;
+  }
+
+  .contentArea{
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    height: $wrapper-height -$wrapper-title-height;
+    cursor: pointer;
+  }
+
+}
+.saveBtn{
+  float: right;
+  text-align: center;
+  width: 5em;
+  @extend .main-button;
+}
+
+
+.previewTitle{
+  color: $main-theme-color;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.markDownWrapper img{
+  max-width: 100%;
+}
+
+.view{
+  text-align: left;
+}
+.edit{
+  margin-right: 3em;
+
+  @media screen and (max-width: $mobile-width){
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,50 @@
+@import '../../../../style/scss/CommonUtil';
+
+.markDownEditor {
+  width: 100%;
+  display: inline-block;
+  outline-style: none;
+  height: 75%;
+  font-size: 16px;
+  border: none;
+  resize: none;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+.writeTitleArea{
+  display: flex;
+  height: 60px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.writeTitle{
+  width: 75%;
+  border: none;
+  outline-style: none;
+  font-size: 24px;
+}
+
+.imageInsertBtn{
+  width: 20%;
+  float: right;
+  @extend .main-button
+}
+
+.writeTopArea{
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.author{
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.authorName{
+  color: $main-theme-color;
+  font-weight: bold;
+}
