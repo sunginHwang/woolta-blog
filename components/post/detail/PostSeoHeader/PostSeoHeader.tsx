@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { BLOG_THUMBNAIL_IMAGE_URL, BLOG_URL } from '../../../../core/constants';
-import { convertToPlainText } from '../../../../core/util/StringUtil';
+import { convertToPlainText } from '../../../../core/utils/StringUtil';
 
 interface PostSeoHeaderProps {
   title: string

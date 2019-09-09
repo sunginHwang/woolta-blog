@@ -1,4 +1,4 @@
-import apiCall from '../util/apiCall';
+import apiCall from '../utils/apiCall';
 import { BLOG_API } from '../constants';
 import { ICategory } from '../../types/post/ICategory';
 import IPosts from '../../types/post/IPosts';

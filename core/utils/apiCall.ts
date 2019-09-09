@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import { ACCESS_HEADER_TOKEN, ACCESS_TOKEN } from '../constants';
 
 let apiCall = axios.create();

@@ -2,7 +2,7 @@ import { createReducer, createStandardAction } from 'typesafe-actions';
 import { produce } from 'immer';
 import { IUserInfo } from '../../types/user/IUserInfo';
 import IAsyncAction from '../../types/redux/IAsyncAction';
-import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
+import { asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 import { AxiosResponse } from 'axios';
 import { FluxStandardAction } from 'redux-promise-middleware';
 

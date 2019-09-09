@@ -1,5 +1,5 @@
 import { createReducer, createStandardAction } from 'typesafe-actions';
-import { asyncActionTypeCreator } from '../../core/util/reduxUtil';
+import { asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { changeLoginInput, login } from '../store/reducers/authReducer';
 import { userLogin } from '../core/api/AuthApi';
-import { goMainPage } from '../core/util/routeUtil';
+import { goMainPage } from '../core/utils/routeUtil';
 
 interface LoginProps {
 }
@@ -15,10 +15,7 @@ const Login: NextPageCustom<LoginProps> = ({}) => {
   const dispatch = useDispatch();
   const { id, password } = useSelector((state: RootState) => state.authReducer);
 
-  const onChangeLoginInfo = (type, value) => {
-
-    dispatch(changeLoginInput({ type, value }));
-  };
+  const onChangeLoginInfo = (type, value) => dispatch(changeLoginInput({ type, value }));
 
   // 로그인 클릭
   const onLoginClick = async () => {
