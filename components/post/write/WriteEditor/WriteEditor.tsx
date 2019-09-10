@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MdAddToPhotos } from 'react-icons/md';
 import Select from 'react-select';
 // @ts-ignore
 import cn from './WriteEditor.scss';
 import { ICategory } from '../../../../types/post/ICategory';
 import { IUserInfo } from '../../../../types/user/IUserInfo';
+import { addElement } from '../../../../core/utils/domUtil';
 
 interface WriteEditorProps {
   content: string;
@@ -14,7 +15,6 @@ interface WriteEditorProps {
   selectedCategory: string;
   onChangeContent: (content: string) => void;
   onChangeTitle: (title: string) => void;
-  onClickUploadImage: any;
   uploadImage: any;
   onChangeCategories: any;
 
@@ -24,7 +24,6 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
                                                    onChangeContent,
                                                    onChangeTitle,
                                                    content,
-                                                   onClickUploadImage,
                                                    categories,
                                                    uploadImage,
                                                    onChangeCategories,
@@ -32,6 +31,8 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
                                                    title,
                                                    authInfo,
                                                  }) => {
+
+  const contentRef = useRef(null);
 
   useEffect(() => {
     createEventListener();
@@ -56,7 +57,7 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
     const file = items[1].getAsFile();
 
     const markdownImg = await uploadImage(file);
-    addImage(markdownImg, e.target.selectionStart);
+    addImage(markdownImg, contentRef.current.selectionStart);
     e.preventDefault();
   };
 
@@ -71,13 +72,24 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
     }
 
     const images = await Promise.all(imagePromises);
-    addImage(images.flat(), e.target.selectionStart);
+    addImage(images.flat(), contentRef.current.selectionStart);
+  };
+
+  /*이미지 버튼 삽입*/
+  const onClickUploadImage = () => {
+    const fileInput = addElement('input');
+    fileInput.type = 'file';
+    fileInput.onchange = async () => {
+      if (!fileInput.files) return;
+      const markdownImg = await uploadImage(fileInput.files[0]);
+      addImage(markdownImg, contentRef.current.selectionStart);
+    };
+    fileInput.click();
   };
 
   const addImage = (image, addIndex) => {
     onChangeContent(content.slice(0, addIndex) + image + content.slice(addIndex));
   };
-
 
   return (
     <div style={{ height: '100%' }}>
@@ -102,6 +114,7 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
           onClick={onClickUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
       </div>
       <textarea className={cn.markDownEditor}
+                ref={contentRef}
                 placeholder='작성할 내용을 입력해 주세요.'
                 onChange={(e) => onChangeContent(e.target.value)}
                 value={content}/>

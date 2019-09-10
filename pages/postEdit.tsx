@@ -4,7 +4,6 @@ import { TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { confirm } from '../core/utils/dialogUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { ICategory } from '../types/post/ICategory';
-import { addElement } from '../core/utils/domUtil';
 import * as FileApi from '../core/api/FileApi';
 import { RootState } from '../types/redux/RootState';
 import {
@@ -155,17 +154,6 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
     return true;
   };
 
-  /*이미지 버튼 삽입*/
-  const onClickUploadImage = async () => {
-    const fileInput = addElement('input');
-    fileInput.type = 'file';
-    fileInput.onchange = () => {
-      if (!fileInput.files) return;
-      uploadImage(fileInput.files[0]);
-    };
-    fileInput.click();
-  };
-
   // 이미지 업로드
   const uploadImage = async (file) => {
     dispatch(toggleSpinnerLoading(true));
@@ -186,7 +174,6 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
         authInfo={authInfo}
         selectedCategory={category}
         upsertPost={upsertPost}
-        onClickUploadImage={onClickUploadImage}
         onClickShowOriginPreview={onClickShowOriginPreview}
         onChangeContent={onChangeContent}
         onChangeTitle={onChangeTitle}

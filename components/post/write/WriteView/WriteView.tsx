@@ -16,7 +16,6 @@ interface WriteViewProps {
   categories: ICategory[];
   selectedCategory: string;
   onClickShowOriginPreview: () => void;
-  onClickUploadImage: any;
   onChangeContent: (content: string) => void;
   onChangeTitle: (content: string) => void;
   onChangeCategories: (category: ICategory) => void;
@@ -31,7 +30,6 @@ const WriteView: React.FC<WriteViewProps> = ({
                                                categories,
                                                selectedCategory,
                                                onClickShowOriginPreview,
-                                               onClickUploadImage,
                                                onChangeContent,
                                                onChangeTitle,
                                                onChangeCategories,
@@ -51,16 +49,13 @@ const WriteView: React.FC<WriteViewProps> = ({
           onChangeCategories={onChangeCategories}
           onChangeContent={onChangeContent}
           onChangeTitle={(e) => onChangeTitle(e)}
-          uploadImage={uploadImage}
-          onClickUploadImage={(e) => onClickUploadImage(e)}/>
+          uploadImage={uploadImage}/>
       </div>
       {/*writeViewContainer*/}
       <div className={cx(cn.markDownWrapper, cn.view)}>
         <div className={cn.titleArea}>
           <span className={cn.previewTitle}>preview</span>
-          <div className={cn.saveBtn} onClick={() => {
-            upsertPost();
-          }}>
+          <div className={cn.saveBtn} onClick={() => upsertPost()}>
             저장하기
           </div>
         </div>
