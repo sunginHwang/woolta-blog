@@ -6,3 +6,5 @@ export const IMAGE_API: string = 'https://image.woolta.com';
 export const BLOG_URL: string = 'https://blog.woolta.com';
 export const TEMP_POST_AUTO_SAVE: string = 'TEMP_POST_AUTO_SAVE';
 export const BLOG_THUMBNAIL_IMAGE_URL: string = `${IMAGE_API}/3fed2d102ca753c6.png`;
+
+export const FIVE_MIN:number = 1000 * 60 * 5;

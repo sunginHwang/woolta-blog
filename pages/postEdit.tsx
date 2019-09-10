@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NextPageCustom } from '../types/next/NextPageCustom';
-import { TEMP_POST_AUTO_SAVE } from '../core/constants';
+import { FIVE_MIN, TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { confirm } from '../core/utils/dialogUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { ICategory } from '../types/post/ICategory';
@@ -25,7 +25,7 @@ interface PostEditProps {
 
 const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
 
-  const [interval, setttingInterval] = useState(null);
+  const [interval, settingInterval] = useState(null);
 
   const { authInfo, postNo, title, content, category, categories, error, errorMsg, previewModal } = useSelector((state: RootState) => ({
     authInfo: state.authReducer.authInfo,
@@ -63,14 +63,8 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
     }
   };
 
-  const startAutoSave = () => {
-    const fiveMin = 1000 * 60 * 5;
-    setttingInterval(setInterval(autoSaveTempPost, fiveMin));
-  };
-
-  const stopAutoSave = () => {
-    setttingInterval(clearInterval(interval));
-  };
+  const startAutoSave = () => settingInterval(setInterval(autoSaveTempPost, FIVE_MIN));
+  const stopAutoSave = () => settingInterval(clearInterval(interval));
 
   const isLoadTempPost = () => {
     const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
