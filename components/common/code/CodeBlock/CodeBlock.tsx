@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import hljs from 'highlight.js';
 
-
 interface CodeBlockProps {
   value: string;
   language: string;
