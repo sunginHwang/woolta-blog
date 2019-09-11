@@ -9,6 +9,7 @@ import LayoutContainer from '../containers/LayoutContainer/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import UserInfoLoadContainer from '../containers/UserInfoLoadContainer/UserInfoLoadContainer';
+import '../style/scss/style.scss';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 

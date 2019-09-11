@@ -5,7 +5,7 @@
   display: inline-block;
   outline-style: none;
   height: 75%;
-  font-size: 16px;
+  font-size: 1.6rem;
   border: none;
   resize: none;
   overflow-y: scroll;
@@ -13,8 +13,8 @@
 }
 .writeTitleArea{
   display: flex;
-  height: 60px;
-  margin-bottom: 20px;
+  height: 6rem;
+  margin-bottom: 2rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -22,7 +22,7 @@
   width: 75%;
   border: none;
   outline-style: none;
-  font-size: 24px;
+  font-size: 2.4rem;
 }
 
 .imageInsertBtn{
@@ -33,14 +33,14 @@
 
 .writeTopArea{
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .author{
   border-radius: 50%;
-  margin-right: 10px;
-  width: 30px;
-  height: 30px;
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
   vertical-align: middle;
 }
 

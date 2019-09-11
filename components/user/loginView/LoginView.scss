@@ -4,7 +4,7 @@
 
 .loginWrapper{
   width: 100%;
-  max-width: 450px;
+  max-width: 45rem;
   margin: 0 auto;
 
   @media screen and (max-width: $mobile-width){
@@ -13,60 +13,60 @@
 }
 .loginArea{
   width: 100%;
-  margin-top: 6rem;
-  margin-bottom: 30rem;
+  margin-top: 9.6rem;
+  margin-bottom: 48rem;
 
   @media screen and (max-width: $mobile-width){
-    margin-top: 2rem;
+    margin-top: 3.2rem;
   }
 
   .loginDescription{
     color: $main-theme-color;
-    font-size: 25px;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 3.2rem;
 
     @media screen and (max-width: $mobile-width){
-      font-size: 20px;
+      font-size: 2rem;
     }
   }
   .inputArea{
 
     input{
-      font-size:20px;
+      font-size:2rem;
       width: 100%;
-      height: 3rem;
-      margin-bottom: 1rem;
+      height: 4.8rem;
+      margin-bottom: 1.6rem;
       outline-style: none;
       color: $main-theme-color;
       border: none;
-      border-bottom: 2px solid $bottom-line-color;
+      border-bottom: .2rem solid $bottom-line-color;
     }
 
     @media screen and (max-width: $mobile-width){
-      font-size:15px;
-      padding-left: 3rem;
-      padding-right: 3rem;
+      font-size:1.5rem;
+      padding-left: 4.8rem;
+      padding-right: 4.8rem;
     }
 
   }
 
   .loginSubArea{
     @media screen and (max-width: $mobile-width){
-      padding-left: 3rem;
-      padding-right: 3rem;
+      padding-left: 4.8rem;
+      padding-right: 4.8rem;
     }
   }
 
   .loginButton{
-    margin-top:2rem;
-    font-size:20px;
+    margin-top:3.2rem;
+    font-size:2rem;
     outline-style: none;
     width: 100%;
-    border-radius : 30px;
-    height: 3rem;
+    border-radius : 3rem;
+    height: 4.8rem;
     color: $main-theme-color;
-    border: 1px solid $main-theme-color;
+    border: .1rem solid $main-theme-color;
     text-align: center;
     font-weight: bold;
     background-color: #fff !important;

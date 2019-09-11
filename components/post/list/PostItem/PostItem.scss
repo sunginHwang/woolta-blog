@@ -1,65 +1,65 @@
 @import '../../../../style/scss/CommonUtil';
 @import '../../../../style/scss/CommonLayout';
 
-$margin-bottom: 10px;
+$margin-bottom: 1rem;
 
 .postItem{
   text-align: left;
-  padding-bottom: 1em;
-  padding-top: 1.7em;
-  border-bottom: 2px solid $bottom-line-color;
+  padding-bottom: 1.6rem;
+  padding-top: 2.72rem;
+  border-bottom: .2rem solid $bottom-line-color;
 
   @media screen and (max-width: $phone-width){
-    padding-bottom: 0.5em;
-    padding-top: 1.2em;
+    padding-bottom: 0.8rem;
+    padding-top: 1.92rem;
   }
 }
 
 .title{
   color: $main-theme-color;
-  font-size: 1.8em;
+  font-size: 2.88rem;
   font-weight: 700;
   margin-bottom: $margin-bottom;
   cursor: pointer;
 
   @media screen and (max-width: $phone-width){
-    font-size: 1.5em;
+    font-size: 2.4rem;
   }
 }
 
 .content{
   margin-bottom: $margin-bottom;
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: 1.76em;
   color: $main-theme-color;
   max-width: 80%;
-  line-height: 1.5;
+  line-height: 2.64rem;
   @media screen and (max-width: $phone-width){
-    font-size: 0.8em;
+    font-size: 1.28rem;
     max-width: 100%;
   }
 }
 
 .meta{
   color: $side-font-gray-color;
-  font-size: 0.8em;
-  margin-right: 5px;
+  font-size: 1.28rem;
+  margin-right: .5rem;
 
   @media screen and (max-width: $phone-width){
-    font-size: 0.6em;
+    font-size: 1rem;
   }
 }
 
 .separator{
-  font-size: 0.8em;
+  font-size: 1.28rem;
   color: #ebebeb;
-  margin-right: 5px;
+  margin-right: .5rem;
   @media screen and (max-width: $phone-width){
-    font-size: 0.6em;
+    font-size: 1rem;
   }
 }
 
 .categoryLabel{
   color:#9ba5a0 !important;
-  margin-right: 10px !important;
+  margin-right: 1rem !important;
 }

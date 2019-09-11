@@ -160,7 +160,7 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
   const onClickShowOriginPreview = () => dispatch(toggleOriginPreviewModal(!previewModal));
 
   return (
-    <div>
+    <>
       <WriteView
         title={title}
         content={content}
@@ -177,7 +177,7 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
         content={content}
         onToggleView={onClickShowOriginPreview}
         visible={previewModal}/>
-    </div>
+    </>
   );
 };
 

@@ -16,10 +16,10 @@
   background-color: $white-color;
   color: $main-theme-color;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-bottom-width: .1rem;
   height: $main-header-height;
   border-color: $custom-gray-color;
-  border-width: 2px;
+  border-width: .2rem;
 
   @media screen and (max-width: $mobile-width){
     transition: all .2s ease-in-out;
@@ -51,17 +51,13 @@
 
 .headerLogo{
   font-weight: bolder;
-  font-size: 20px;
-  padding: 1rem;
+  font-size: 2rem;
+  padding: 1.6rem;
   cursor: pointer;
 }
 
 .headerMenu{
   cursor: pointer;
-  font-size: 30px;
-  margin: 1rem;
-}
-
-.headerMobileSideBarMenu{
-
+  font-size: 3rem;
+  margin: 1.6rem;
 }

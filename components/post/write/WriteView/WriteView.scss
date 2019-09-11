@@ -1,16 +1,16 @@
 @import '../../../../style/scss/CommonUtil';
 @import '../../../../style/scss/CommonLayout';
 
-$wrapper-height:700px;
-$wrapper-title-height:60px;
+$wrapper-height:70rem;
+$wrapper-title-height:6rem;
 
 .write{
-  padding-top: 1.5em;
+  padding-top: 2.4rem;
 }
 
 .markDownWrapper {
   background-color: #fff;
-  padding: 1em;
+  padding: 1.6rem;
   width: 44%;
   display: inline-block;
   height: $wrapper-height;
@@ -18,8 +18,8 @@ $wrapper-title-height:60px;
 
   @media screen and (max-width: $mobile-width){
     width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
   }
   .titleArea{
     height: $wrapper-title-height;
@@ -36,14 +36,14 @@ $wrapper-title-height:60px;
 .saveBtn{
   float: right;
   text-align: center;
-  width: 5em;
+  width: 8rem;
   @extend .main-button;
 }
 
 
 .previewTitle{
   color: $main-theme-color;
-  font-size: 30px;
+  font-size: 4.8rem;
   font-weight: bold;
 }
 
@@ -55,7 +55,7 @@ $wrapper-title-height:60px;
   text-align: left;
 }
 .edit{
-  margin-right: 3em;
+  margin-right: 4.8rem;
 
   @media screen and (max-width: $mobile-width){
     margin-right: 0;

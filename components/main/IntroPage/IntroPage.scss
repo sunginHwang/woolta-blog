@@ -1,28 +1,29 @@
 @import '../../../style/scss/CommonUtil';
 @import '../../../style/scss/CommonLayout';
 
-.introPage{
+.introPage {
   max-width: $content-max-width;
   margin: 0 auto;
 
-  @media screen and (max-width: $mobile-width){
+  @media screen and (max-width: $mobile-width) {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .introList{
-    font-size: 1.3em;
+
+  .introList {
+    font-size: 2.08em;
     width: 100%;
     color: $white-color;
     background-color: $main-theme-color;
-    line-height:1.5em;
+    line-height: 3.12rem;
     font-weight: bold;
     text-align: left;
     border: 1px solid #6e827f;
-    padding: 1.3em;
-    border-radius: 8px;
-    margin-bottom: 2em;
-    @media screen and (max-width: $mobile-width){
-      display:none;
+    padding: 2.7rem;
+    border-radius: .8rem;
+    margin-bottom: 4.16rem;
+    @media screen and (max-width: $mobile-width) {
+      display: none;
     }
   }
 }
