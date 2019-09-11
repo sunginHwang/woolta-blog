@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import Nano from 'nanobar';
-
-// @ts-ignore
 import cn from './NanoBarLoading.scss';
 
 const NanoBarLoading: React.FC<any> = ({}) => {

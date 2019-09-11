@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { MdAddToPhotos } from 'react-icons/md';
 import Select from 'react-select';
-// @ts-ignore
 import cn from './WriteEditor.scss';
 import { ICategory } from '../../../../types/post/ICategory';
 import { IUserInfo } from '../../../../types/user/IUserInfo';
@@ -17,7 +16,6 @@ interface WriteEditorProps {
   onChangeTitle: (title: string) => void;
   uploadImage: any;
   onChangeCategories: any;
-
 }
 
 const WriteEditor: React.FC<WriteEditorProps> = ({

@@ -1,6 +1,7 @@
 import apiCall from '../utils/apiCall';
-import { BLOG_API, IMAGE_API } from '../constants';
+import { IMAGE_API } from '../constants';
 
+const BLOG_API = 'https://api-blog.woolta.com';
 export const saveImageAndGetImageUrl = async (imageFile) => {
   let data = await new FormData();
   await data.append('imageFile', imageFile);

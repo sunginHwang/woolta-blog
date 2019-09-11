@@ -1,11 +1,9 @@
 import { HashLoader } from 'react-spinners';
 import React from 'react';
 import classNames from 'classnames/bind';
+import cn from './SpinnerLoading.scss';
 
 const cx = classNames.bind(cn);
-
-// @ts-ignore
-import cn from './SpinnerLoading.scss';
 
 interface ISpinnerLoadingProps {
   loading: boolean

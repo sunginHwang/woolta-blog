@@ -1,11 +1,7 @@
 import * as React from 'react';
-// @ts-ignore
 import cn from './IntroPage.scss';
 
-interface IntroPageProps {
-}
-
-const IntroPage: React.FC<IntroPageProps> = () => (
+const IntroPage: React.FC<{}> = () => (
   <div className={cn.introPage}>
     <div className={cn.introList}>
       방문해주셔서 감사합니다.<br/>

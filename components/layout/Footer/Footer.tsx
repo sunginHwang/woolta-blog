@@ -1,15 +1,11 @@
-// @ts-ignore
-import cn from './Footer.scss';
 import { FC } from 'react';
+import cn from './Footer.scss';
 
-interface FooterProps {
-}
-
-const Footer: FC<FooterProps> = () => {
-
-  return <div className={cn.footer}>
+const Footer: FC<{}> = () => (
+  <div className={cn.footer}>
     <p className={cn.text}>Copyright © 2018 woolta.com</p>
     <p className={cn.text}>gommpo111@gmail.com</p>
-  </div>;
-};
+  </div>
+);
+
 export default Footer;

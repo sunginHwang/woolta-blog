@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import WriteEditor from '../WriteEditor/WriteEditor';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
-// @ts-ignore
 import cn from './WriteView.scss';
 import { IUserInfo } from '../../../../types/user/IUserInfo';
 import { ICategory } from '../../../../types/post/ICategory';

@@ -15,7 +15,6 @@ import * as authReducer from '../../store/reducers/authReducer';
 
 import { goLoginPage, goMainPage, goPostEditPage, goPostListPage } from '../../core/utils/routeUtil';
 import { nanoBarLoadingSetup } from '../../core/utils/apiCall';
-// @ts-ignore
 import cn from './LayoutContainer.scss';
 
 const cx = classNames.bind(cn);

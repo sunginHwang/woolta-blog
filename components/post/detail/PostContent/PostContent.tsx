@@ -1,10 +1,8 @@
-import PostSubTitle from '../PostSubTitle/PostSubTitle';
-// @ts-ignore
-import cn from './PostContent.scss';
 import React from 'react';
+import PostSubTitle from '../PostSubTitle/PostSubTitle';
+import cn from './PostContent.scss';
 import { IPost } from '../../../../types/post/IPost';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
-
 
 interface PostContentProps {
   post: IPost;

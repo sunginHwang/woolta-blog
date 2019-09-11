@@ -2,7 +2,6 @@ import React from 'react';
 
 import ModalWrapper from '../../../common/modal/ModalWrapper/ModalWrapper';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
-// @ts-ignore
 import cn from './OriginPreview.scss';
 
 interface OriginPreviewProps {

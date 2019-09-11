@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import * as cn from './LoginView.scss';
 
 interface LoginViewProps {

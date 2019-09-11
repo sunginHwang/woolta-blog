@@ -1,7 +1,5 @@
 import React from 'react';
-// @ts-ignore
 import cn from './ModalWrapper.scss';
-
 
 interface ModalWrapperProps {
   visible: boolean;

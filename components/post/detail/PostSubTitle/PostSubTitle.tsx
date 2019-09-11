@@ -1,6 +1,5 @@
-// @ts-ignore
-import cn from './PostSubTitle.scss';
 import React from 'react';
+import cn from './PostSubTitle.scss';
 
 interface PostSubTitleProps {
   writerName: string

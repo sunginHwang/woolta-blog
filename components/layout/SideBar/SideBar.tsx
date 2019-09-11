@@ -2,7 +2,6 @@ import * as React from 'react';
 import classNames from 'classnames/bind';
 import { IUserInfo } from '../../../types/user/IUserInfo';
 import { ICategory } from '../../../types/post/ICategory';
-// @ts-ignore
 import cn from './SideBar.scss';
 
 const cx = classNames.bind(cn);
@@ -26,9 +25,11 @@ const SideBar: React.FC<SideBarProps> = ({
                                          }) => {
 
   const renderCategories = categories.map((category) => {
-    return <li key={category.value}>
-      <a onClick={() => onClickCategoryPage(category.value)}>{category.label}</a>
-    </li>;
+    return (
+      <li key={category.value}>
+        <a onClick={() => onClickCategoryPage(category.value)}>{category.label}</a>
+      </li>
+    );
   });
 
   const userMenu =
@@ -55,16 +56,18 @@ const SideBar: React.FC<SideBarProps> = ({
       <a onClick={() => onClickSideBarPage('postEdit')}>글쓰기 페이지 이동</a>
     </li>;
 
-  return <div>
-    <div className={cx(cn.sideBar, { sideBarOpen: isOpen })}>
-      <ul>
-        {isLogin ? userMenu : nonUserMenu}
-        {renderPostWriteMenu}
-        {renderCategories}
-      </ul>
+  return (
+    <div>
+      <div className={cx(cn.sideBar, { sideBarOpen: isOpen })}>
+        <ul>
+          {isLogin ? userMenu : nonUserMenu}
+          {renderPostWriteMenu}
+          {renderCategories}
+        </ul>
+      </div>
+      <div className={cx({ sideBarWhiteSpace: isOpen })}/>
     </div>
-    <div className={cx({ sideBarWhiteSpace: isOpen })}/>
-  </div>;
+  );
 };
 
 export default SideBar;

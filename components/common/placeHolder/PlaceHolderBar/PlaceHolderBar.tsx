@@ -1,6 +1,5 @@
-// @ts-ignore
-import cn from './PlaceHolderBar.scss';
 import React from 'react';
+import cn from './PlaceHolderBar.scss';
 
 interface PlaceHolderBarProps {
   width?: string

@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
 import classNames from 'classnames/bind';
-// @ts-ignore
 import cn from './PostItem.scss';
 
 const cx = classNames.bind(cn);
@@ -16,7 +14,6 @@ interface PostItemProps {
   categoryNo: number,
   categoryLabel: string
 }
-
 
 const PostItem: React.FC<PostItemProps> = React.memo(({
                                                         title, postNo, contents, author, date,
