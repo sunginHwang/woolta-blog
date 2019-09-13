@@ -6,6 +6,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -16,48 +17,32 @@
   background-color: $white-color;
   color: $main-theme-color;
   border-bottom-style: solid;
-  border-bottom-width: .1rem;
   height: $main-header-height;
   border-color: $custom-gray-color;
-  border-width: .2rem;
+  border-width: .1rem .1rem .2rem .1rem;
 
   @media screen and (max-width: $mobile-width){
     transition: all .2s ease-in-out;
   }
+
+
+  .mainHeader__logo{
+    font-weight: bolder;
+    font-size: 2rem;
+    padding: 1.6rem;
+    cursor: pointer;
+  }
+
+  .mainHeader__menu{
+    cursor: pointer;
+    font-size: 3rem;
+    margin: 1.6rem;
+  }
 }
 
-.hideHeaderMobile{
+.mainHeader_hide{
   @media screen and (max-width: $mobile-width){
     top:-$main-header-height;
     border: none;
   }
-}
-
-.flexAuto {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 auto;
-  flex: 1 auto;
-}
-
-.headerLeftArea{
-  float: left;
-  display: flex;
-}
-
-.headerRightArea{
-  float: right;
-  display: flex;
-}
-
-.headerLogo{
-  font-weight: bolder;
-  font-size: 2rem;
-  padding: 1.6rem;
-  cursor: pointer;
-}
-
-.headerMenu{
-  cursor: pointer;
-  font-size: 3rem;
-  margin: 1.6rem;
 }

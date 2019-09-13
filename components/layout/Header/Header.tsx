@@ -17,17 +17,11 @@ const Header: React.FC<IHeaderProps> = ({
                                           onClickLogo,
                                           showMobileHeader,
                                         }) => (
-  <div className={cx(cn.mainHeader, { hideHeaderMobile: showMobileHeader })}>
-    <div className={cn.headerLeftArea}>
-      <span className={cn.headerLogo} onClick={onClickLogo}>woolta</span>
-    </div>
-    <span className={cn.flexAuto}/>
-    <div className={cn.headerRightArea}>
-      <span className={cx(cn.headerMenu, cn.headerMobileSideBarMenu)}
-            onClick={onClickSideBar}>
+  <div className={cx(cn.mainHeader, { mainHeader_hide: showMobileHeader })}>
+    <span className={cn.mainHeader__logo} onClick={onClickLogo}>woolta</span>
+    <span className={cx(cn.mainHeader__menu)} onClick={onClickSideBar}>
           <MdList/>
       </span>
-    </div>
   </div>
 
 );
