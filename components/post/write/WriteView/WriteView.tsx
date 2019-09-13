@@ -37,7 +37,7 @@ const WriteView: React.FC<WriteViewProps> = ({
                                              }) => {
   return (
     <div className={cn.write}>
-      <div className={cx(cn.markDownWrapper, cn.edit)}>
+      <div className={cx(cn.markDownWrapper)}>
         {/*writeEditorContainer*/}
         <WriteEditor
           title={title}

@@ -13,9 +13,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                                                language,
                                              }) => {
 
-  useEffect(() => {
-    highlightCode();
-  }, [value, codeEl, language]);
+  useEffect(() => highlightCode(), [value, codeEl, language]);
 
   const setRef = (el: HTMLElement) => codeEl = el;
 

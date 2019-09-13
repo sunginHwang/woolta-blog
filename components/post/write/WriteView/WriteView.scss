@@ -5,13 +5,14 @@ $wrapper-height:70rem;
 $wrapper-title-height:6rem;
 
 .write{
-  padding-top: 2.4rem;
+  padding: 2.4rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .markDownWrapper {
   background-color: #fff;
-  padding: 1.6rem;
-  width: 44%;
+  width: 47.5%;
   display: inline-block;
   height: $wrapper-height;
   word-break: break-word;
@@ -36,6 +37,7 @@ $wrapper-title-height:6rem;
 .saveBtn{
   float: right;
   text-align: center;
+  font-size: 1.6rem;
   width: 8rem;
   @extend .main-button;
 }
@@ -43,7 +45,7 @@ $wrapper-title-height:6rem;
 
 .previewTitle{
   color: $main-theme-color;
-  font-size: 4.8rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -53,11 +55,4 @@ $wrapper-title-height:6rem;
 
 .view{
   text-align: left;
-}
-.edit{
-  margin-right: 4.8rem;
-
-  @media screen and (max-width: $mobile-width){
-    margin-right: 0;
-  }
 }
