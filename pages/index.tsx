@@ -19,10 +19,10 @@ const Index: NextPageCustom<{}> = () => {
   const renderNewPosts = loading ? <PostsPlaceHolder/> : <PostLayout posts={posts}/>;
 
   return (
-    <div>
+    <>
       <IntroPage/>
       {renderNewPosts}
-    </div>
+    </>
   );
 };
 

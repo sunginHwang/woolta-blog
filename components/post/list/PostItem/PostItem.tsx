@@ -25,13 +25,13 @@ const PostItem: React.FC<PostItemProps> = React.memo(({
       <Link href={`/post?postNo=${postNo}&categoryNo=${categoryNo}`}
             as={`/categories/${categoryNo}/posts/${postNo}`}>
         <a>
-          <h2 className={cn.title}>{title}</h2>
+          <h2 className={cn.postItem__title}>{title}</h2>
         </a>
       </Link>
       <Link href={`/post?postNo=${postNo}&categoryNo=${categoryNo}`}
             as={`/categories/${categoryNo}/posts/${postNo}`}>
         <a>
-          <p className={cn.content}>{contents}</p>
+          <p className={cn.postItem__content}>{contents}</p>
         </a>
       </Link>
       <div>

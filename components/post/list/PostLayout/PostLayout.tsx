@@ -9,8 +9,8 @@ interface PostLayoutProps {
 
 const PostLayout: React.FC<PostLayoutProps> = React.memo(({ posts }) => {
 
-  const postItems = posts.map((post) => {
-    return <PostItem
+  const postItems = posts.map((post) => (
+    <PostItem
       postNo={post.postNo}
       key={post.postNo}
       title={post.title}
@@ -18,8 +18,8 @@ const PostLayout: React.FC<PostLayoutProps> = React.memo(({ posts }) => {
       categoryLabel={post.categoryLabel}
       categoryNo={post.categoryNo}
       author={post.author}
-      date={post.createdAt}/>;
-  });
+      date={post.createdAt}/>
+  ));
 
   return (
     <div className={cn.contentList}>

@@ -1,33 +1,29 @@
 @import '../../../../style/scss/CommonUtil';
 @import '../../../../style/scss/CommonLayout';
 
-$margin-bottom: 15px;
+$margin-bottom: 1.5rem;
 
-.postItemPlaceHolder{
+.postItemPlaceHolder {
 
-    text-align: left;
-    padding-bottom: 1em;
-    padding-top: 1.7em;
-    border-bottom: 2px solid $bottom-line-color;
+  text-align: left;
+  padding-bottom: 1em;
+  padding-top: 1.7em;
+  border-bottom: 2px solid $bottom-line-color;
 
-    @media screen and (max-width: $phone-width){
-      padding-bottom: 0.5em;
-      padding-top: 1.2em;
-    }
+  @media screen and (max-width: $phone-width) {
+    padding-bottom: 0.5em;
+    padding-top: 1.2em;
+  }
 
-  .title{
+  &__title {
     margin-bottom: $margin-bottom;
   }
 
-  .content{
-    margin-bottom: $margin-bottom;
-    >div{
-      margin-bottom: 5px;
-    }
-  }
-
-  .category{
+  &__content {
     margin-bottom: $margin-bottom;
   }
 
+  &__category {
+    margin-bottom: $margin-bottom;
+  }
 }

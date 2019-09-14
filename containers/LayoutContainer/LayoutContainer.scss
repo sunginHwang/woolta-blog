@@ -10,9 +10,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: $main-header-height+2rem 0;
-  @media screen and (max-width: $mobile-width){
-    margin-top: $main-header-height;
-  }
+
 }
 
 .contentWidth{

@@ -8,7 +8,7 @@ interface PlaceHolderBarProps {
 
 const PlaceHolderBar: React.FC<PlaceHolderBarProps> = ({
                                                          width = '20rem',
-                                                         height = '2rem',
+                                                         height = '3.2rem',
                                                        }) =>
   <div className={cn.placeHolderBar} style={{ width, height }}/>;
 

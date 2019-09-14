@@ -1,6 +1,7 @@
 .placeHolderBar{
   animation: loading-animation 1.3s infinite ease-in-out;
-  border-radius: 3px;
+  border-radius: .3rem;
+  margin-bottom: .5rem;
 }
 
 @keyframes loading-animation {
