@@ -14,7 +14,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
                                                    }) => {
   return (
     visible &&
-    <div className={cn.ModalWrapper} onClick={() => modalClick}>
+    <div className={cn.modalWrapper} onClick={() => modalClick}>
       {children}
     </div>
 

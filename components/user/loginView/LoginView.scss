@@ -1,39 +1,41 @@
-
 @import '../../../style/scss/CommonUtil';
 @import '../../../style/scss/CommonLayout';
 
-.loginWrapper{
+.login {
   width: 100%;
-  max-width: 45rem;
-  margin: 0 auto;
-
-  @media screen and (max-width: $mobile-width){
-    max-width: 100%;
-  }
-}
-.loginArea{
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-top: 9.6rem;
   margin-bottom: 48rem;
 
-  @media screen and (max-width: $mobile-width){
+  @media screen and (max-width: $mobile-width) {
     margin-top: 3.2rem;
   }
 
-  .loginDescription{
+  @media screen and (max-width: $mobile-width) {
+    max-width: 100%;
+  }
+
+  &__title {
     color: $main-theme-color;
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 3.2rem;
 
-    @media screen and (max-width: $mobile-width){
+    @media screen and (max-width: $mobile-width) {
       font-size: 2rem;
     }
   }
-  .inputArea{
 
-    input{
-      font-size:2rem;
+
+  &__input {
+    width: 100%;
+    max-width: 45rem;
+
+    input {
+      font-size: 2rem;
       width: 100%;
       height: 4.8rem;
       margin-bottom: 1.6rem;
@@ -41,29 +43,23 @@
       color: $main-theme-color;
       border: none;
       border-bottom: .2rem solid $bottom-line-color;
+
+      @media screen and (max-width: $mobile-width) {
+        font-size: 1.5rem;
+        width: 80%;
+      }
     }
 
-    @media screen and (max-width: $mobile-width){
-      font-size:1.5rem;
-      padding-left: 4.8rem;
-      padding-right: 4.8rem;
-    }
 
   }
 
-  .loginSubArea{
-    @media screen and (max-width: $mobile-width){
-      padding-left: 4.8rem;
-      padding-right: 4.8rem;
-    }
-  }
-
-  .loginButton{
-    margin-top:3.2rem;
-    font-size:2rem;
-    outline-style: none;
+  &__button {
     width: 100%;
-    border-radius : 3rem;
+    max-width: 45rem;
+    margin-top: 3.2rem;
+    font-size: 2rem;
+    outline-style: none;
+    border-radius: 3rem;
     height: 4.8rem;
     color: $main-theme-color;
     border: .1rem solid $main-theme-color;
@@ -71,5 +67,9 @@
     font-weight: bold;
     background-color: #fff !important;
 
+    @media screen and (max-width: $mobile-width) {
+      margin-top: 2rem;
+      width: 80%;
+    }
   }
 }

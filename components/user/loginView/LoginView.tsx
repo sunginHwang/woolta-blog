@@ -14,27 +14,23 @@ const LoginView: React.FC<LoginViewProps> = ({
                                                onLoginClick,
                                                onChangeLoginInfo,
                                              }) => (
-  <div className={cn.loginWrapper}>
-    <div className={cn.loginArea}>
-      <div className={cn.loginDescription}>
-        로그인 후 포스팅 해봐요!
-      </div>
-      <div className={cn.inputArea}>
-        <input placeholder='Id'
-               value={id}
-               onChange={(e) => onChangeLoginInfo('id', e.target.value)}/>
-        <input placeholder='Password'
-               value={password}
-               type='password'
-               onChange={(e) => onChangeLoginInfo('password', e.target.value)}/>
-      </div>
-      <div className={cn.loginSubArea}>
-        <button
-          className={cn.loginButton}
-          onClick={() => onLoginClick()}>Login
-        </button>
-      </div>
+  <div className={cn.login}>
+    <div className={cn.login__title}>
+      로그인 후 포스팅 해봐요!
     </div>
+    <div className={cn.login__input}>
+      <input placeholder='Id'
+             value={id}
+             onChange={(e) => onChangeLoginInfo('id', e.target.value)}/>
+      <input placeholder='Password'
+             value={password}
+             type='password'
+             onChange={(e) => onChangeLoginInfo('password', e.target.value)}/>
+    </div>
+    <button
+      className={cn.login__button}
+      onClick={() => onLoginClick()}>Login
+    </button>
   </div>
 );
 
