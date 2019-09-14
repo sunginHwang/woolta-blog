@@ -90,28 +90,26 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
   };
 
   return (
-    <div style={{ height: '100%' }}>
-      <div className={cn.writeTopArea}>
-        <img className={cn.author} src={authInfo.imageUrl}/>
-        <span className={cn.authorName}>{`작성자 : ${authInfo.userId}`}</span>
+    <div className={cn.writeEditor}>
+      <div className={cn.writeEditor__header}>
+        <img className={cn.writeEditor__header__author} src={authInfo.imageUrl}/>
+        <span className={cn.writeEditor__header__authorName}>{`작성자 : ${authInfo.userId}`}</span>
       </div>
-      <div className={cn.writeTopArea}>
+      <div className={cn.writeEditor__selector}>
         <Select
           value={selectedCategory}
           onChange={onChangeCategories}
           options={categories}/>
       </div>
-      <div className={cn.writeTitleArea}>
-        <input className={cn.writeTitle}
-               type='text'
+      <div className={cn.writeEditor__title}>
+        <input type='text'
                placeholder='제목을 입력해 주세요.'
                onChange={(e) => onChangeTitle(e.target.value)}
                value={title}/>
-        <div
-          className={cn.imageInsertBtn}
-          onClick={onClickUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
+        <div className={cn.writeEditor__title__imgInsertButton}
+             onClick={onClickUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
       </div>
-      <textarea className={cn.markDownEditor}
+      <textarea className={cn.writeEditor__markDownEditor}
                 ref={contentRef}
                 placeholder='작성할 내용을 입력해 주세요.'
                 onChange={(e) => onChangeContent(e.target.value)}

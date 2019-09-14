@@ -37,7 +37,7 @@ const WriteView: React.FC<WriteViewProps> = ({
                                              }) => {
   return (
     <div className={cn.write}>
-      <div className={cx(cn.markDownWrapper)}>
+      <div className={cx(cn.write__editor)}>
         {/*writeEditorContainer*/}
         <WriteEditor
           title={title}
@@ -51,14 +51,14 @@ const WriteView: React.FC<WriteViewProps> = ({
           uploadImage={uploadImage}/>
       </div>
       {/*writeViewContainer*/}
-      <div className={cx(cn.markDownWrapper, cn.view)}>
-        <div className={cn.titleArea}>
-          <span className={cn.previewTitle}>preview</span>
-          <div className={cn.saveBtn} onClick={() => upsertPost()}>
+      <div className={cx(cn.write__preview)}>
+        <div className={cn.write__preview__header}>
+          <span className={cn.write__preview__header__title}>preview</span>
+          <div className={cn.write__preview__header__saveButton} onClick={() => upsertPost()}>
             저장하기
           </div>
         </div>
-        <div className={cn.contentArea} onClick={() => onClickShowOriginPreview()}>
+        <div className={cn.write__preview__content} onClick={() => onClickShowOriginPreview()}>
           <MarkDownView content={content}
                         skipHtml={false}
                         escapeHtml={false}/>

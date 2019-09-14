@@ -1,58 +1,52 @@
 @import '../../../../style/scss/CommonUtil';
 @import '../../../../style/scss/CommonLayout';
 
-$wrapper-height:70rem;
-$wrapper-title-height:6rem;
+$wrapper-height: 70rem;
+$wrapper-title-height: 6rem;
 
-.write{
+.write {
   padding: 2.4rem;
   display: flex;
   justify-content: space-between;
+
+  &__editor {
+    @extend .viewer;
+  }
+
+  &__preview {
+    @extend .viewer;
+    text-align: left;
+
+    &__header {
+      height: $wrapper-title-height;
+
+      &__title {
+        color: $main-theme-color;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      &__saveButton {
+        float: right;
+        text-align: center;
+        font-size: 1.6rem;
+        width: 8rem;
+        @extend .main-button;
+      }
+    }
+  }
 }
 
-.markDownWrapper {
+.viewer {
   background-color: #fff;
   width: 47.5%;
   display: inline-block;
   height: $wrapper-height;
   word-break: break-word;
 
-  @media screen and (max-width: $mobile-width){
+  @media screen and (max-width: $mobile-width) {
     width: 100%;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
   }
-  .titleArea{
-    height: $wrapper-title-height;
-  }
-
-  .contentArea{
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    height: $wrapper-height -$wrapper-title-height;
-    cursor: pointer;
-  }
-
-}
-.saveBtn{
-  float: right;
-  text-align: center;
-  font-size: 1.6rem;
-  width: 8rem;
-  @extend .main-button;
-}
-
-
-.previewTitle{
-  color: $main-theme-color;
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.markDownWrapper img{
-  max-width: 100%;
-}
-
-.view{
-  text-align: left;
 }

@@ -18,7 +18,7 @@ const OriginPreview: React.FC<OriginPreviewProps> = ({
   return (
     <ModalWrapper visible={visible} modalClick={() => onToggleView()}>
       <div className={cn.originPreview}>
-        <div className={cn.content} onClick={() => onToggleView()}>
+        <div className={cn.originPreview__content} onClick={() => onToggleView()}>
           <MarkDownView content={content}
                         skipHtml={false}
                         escapeHtml={false}/>

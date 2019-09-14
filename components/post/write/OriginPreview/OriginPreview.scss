@@ -9,7 +9,8 @@
   cursor: pointer;
   z-index: 500;
   box-shadow: 1px 3px 10px 2px rgba(0,0,0,.2);
-  .content{
+
+  &__content{
     width: $content-max-width;
     margin-left: auto;
     margin-right: auto;
