@@ -10,12 +10,13 @@
   -webkit-box-pack: center;
   justify-content: center;
   background-color: $white-color;
-  border-top: 1px solid $custom-gray-color;
+  border-top: .1rem solid $custom-gray-color;
   color: $main-theme-color;
   text-align: center;
+  padding-top: 1.6rem;
 }
 
-.text {
-  font-size: 14px;
-  margin-bottom: 1rem;
+.footer__text {
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
 }

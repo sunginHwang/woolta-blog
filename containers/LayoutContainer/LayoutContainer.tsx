@@ -51,7 +51,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
 
 // 모바일 스크롤 헤더 이벤트
   const onDetectMobileScrollUpAndDown = () => {
-    let lastScroll:number = 0;
+    let lastScroll: number = 0;
 
     window.onscroll = throttle(() => {
       if (!sideBar) {
@@ -100,29 +100,25 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
 
 
   return (
-    <div>
+    <>
       <SideBar
         isOpen={sideBar}
         authInfo={authInfo}
         onClickCategoryPage={onClickCategoryPage}
         onClickSideBarPage={onClickSideBarPage}
         onClickLogout={onClickLogout}
-        categories={categories}
-      />
+        categories={categories}/>
       <Header
         showMobileHeader={mobileHeader}
         onClickLogo={() => onClickSideBarPage('main')}
-        onClickSideBar={() => onToggleSideBar(!sideBar)}
-      />
+        onClickSideBar={() => onToggleSideBar(!sideBar)}/>
       <SpinnerLoading loading={spinnerLoading}/>
       <NanoBarLoading/>
-      <div className={cx(cn.contentWrapper, !editMode && cn.contentWidth)}>
-        {
-          children
-        }
+      <div className={cx(cn.content, !editMode && cn.contentWidth)}>
+        {children}
       </div>
       <Footer/>
-    </div>
+    </>
   );
 };
 

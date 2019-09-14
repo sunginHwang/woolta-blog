@@ -1,4 +1,4 @@
-.SpinnerLoadingWrapper{
+.spinnerLoading{
   background-color: #e8e8e8;
   z-index: 1000;
   position: fixed;
@@ -11,7 +11,7 @@
 
 }
 
-.loadingPosition{
+.spinnerLoading__position{
   z-index: 1001;
 
   position: fixed;

@@ -11,12 +11,11 @@ interface ISpinnerLoadingProps {
 
 const SpinnerLoading: React.FC<ISpinnerLoadingProps> = ({ loading }) => (
   loading ?
-    <div className={cx(cn.SpinnerLoadingWrapper)}>
-      <div className={cx(cn.loadingPosition)}>
+    <div className={cx(cn.spinnerLoading)}>
+      <div className={cx(cn.spinnerLoading__position)}>
         <HashLoader
           color={'#6e827f'}
-          loading={loading}
-        />
+          loading={loading}/>
       </div>
     </div>
     : null

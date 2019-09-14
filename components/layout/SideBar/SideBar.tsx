@@ -35,12 +35,9 @@ const SideBar: React.FC<SideBarProps> = ({
   const userMenu =
     <li>
       <a>
-        <img className={cn.userImage}
-             src={authInfo.imageUrl}/>
+        <img className={cn.userImage} src={authInfo.imageUrl}/>
         <span>{authInfo.userId}</span>
-        <div className={cn.logoutArea}
-             onClick={() => onClickLogout()}>로그아웃
-        </div>
+        <p className={cn.logout} onClick={() => onClickLogout()}>로그아웃</p>
       </a>
     </li>;
 
@@ -57,7 +54,7 @@ const SideBar: React.FC<SideBarProps> = ({
     </li>;
 
   return (
-    <div>
+    <>
       <div className={cx(cn.sideBar, { sideBarOpen: isOpen })}>
         <ul>
           {isLogin ? userMenu : nonUserMenu}
@@ -66,7 +63,7 @@ const SideBar: React.FC<SideBarProps> = ({
         </ul>
       </div>
       <div className={cx({ sideBarWhiteSpace: isOpen })}/>
-    </div>
+    </>
   );
 };
 

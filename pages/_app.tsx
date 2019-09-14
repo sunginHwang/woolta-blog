@@ -20,12 +20,12 @@ const App = (props: Props) => {
   return (
     <Container>
       <Provider store={store}>
-        <div>
+        <>
           <UserInfoLoadContainer/>
           <LayoutContainer>
             <Component {...pageProps} />
           </LayoutContainer>
-        </div>
+        </>
       </Provider>
     </Container>
   );
