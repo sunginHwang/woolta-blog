@@ -1,19 +1,9 @@
 @import '../../../../style/scss/CommonLayout';
 @import '../../../../style/scss/CommonUtil';
 
-.separator {
-  color: #ebebeb !important;
-}
-
-.userImage {
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.subTitleArea {
-
+.postSubTitle {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 2rem;
 
   @media screen and (max-width: $phone-width) {
@@ -27,29 +17,31 @@
     display: inline-block;
   }
 
-  .leftArea {
-    float: left;
+  &__userImage {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
   }
 
+  &__author {
+    margin-right: .5rem;
+    width: 3rem;
+    height: 3rem;
+  }
 
-  .rightArea {
+  &__separator {
+    color: #ebebeb !important;
+  }
+
+  &__button {
+    text-align: center;
+    width: 6rem;
+    font-size: 1.6rem;
     float: right;
+    margin-left: 1rem;
+    padding: .5rem;
+    @extend .main-button;
   }
-}
-
-.eventButton {
-  text-align: center;
-  width: 6rem;
-  font-size: 1.6rem;
-  float: right;
-  margin-left: 1rem;
-  padding: .5rem;
-  @extend .main-button;
-}
-
-.author {
-  margin-right: .5rem;
-  width: 3rem;
-  height: 3rem;
 }
 

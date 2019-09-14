@@ -21,23 +21,25 @@ const PostSubTitle: React.FC<PostSubTitleProps> = ({
                                                      createdAt,
                                                    }) => {
   const renderEditPost = editAuth &&
-    <div className={cn.rightArea}>
-      <div className={cn.eventButton}
+    <div>
+      <div className={cn.postSubTitle__button}
            onClick={() => onClickPostModify()}>
         수정
       </div>
-      <div className={cn.eventButton}
+      <div className={cn.postSubTitle__button}
            onClick={() => onClickDeletePost()}>
         삭제
       </div>
     </div>;
 
   return (
-    <div className={cn.subTitleArea}>
-      <span className={cn.author}><img className={cn.userImage} src={writerImg}/></span>
-      <span>{writerName}</span><span className={cn.separator}> | </span>
-      <span>{categoryLabel}</span><span className={cn.separator}> | </span>
-      <span>{createdAt}</span>
+    <div className={cn.postSubTitle}>
+     <div>
+       <span className={cn.postSubTitle__author}><img className={cn.postSubTitle__userImage} src={writerImg}/></span>
+       <span>{writerName}</span><span className={cn.postSubTitle__separator}> | </span>
+       <span>{categoryLabel}</span><span className={cn.postSubTitle__separator}> | </span>
+       <span>{createdAt}</span>
+     </div>
       {renderEditPost}
     </div>
   );

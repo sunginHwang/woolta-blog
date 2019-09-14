@@ -13,35 +13,32 @@ interface PostContentProps {
   createdAt: string;
 }
 
- const PostContent: React.FC<PostContentProps> = ({
-                    post,
-                    categoryLabel,
-                    editAuth,
-                    onClickPostModify,
-                    onClickDeletePost,
-                    createdAt
-                }) =>
-    <div className={cn.contentWrapper}>
-        <div className={cn.titleArea}>
-            <h1 className={cn.title}>
-                {post.title}
-            </h1>
-            <PostSubTitle
-                writerName={post.writer.nickName}
-                writerImg={post.writer.imageUrl}
-                categoryLabel={categoryLabel}
-                createdAt={createdAt}
-                editAuth={editAuth}
-                onClickPostModify={onClickPostModify}
-                onClickDeletePost={onClickDeletePost}
-            />
-        </div>
-        <div className={cn.contentArea}>
-            <MarkDownView content={post.content}
-                          skipHtml={false}
-                          escapeHtml={false}/>
-        </div>
+const PostContent: React.FC<PostContentProps> = ({
+                                                   post,
+                                                   categoryLabel,
+                                                   editAuth,
+                                                   onClickPostModify,
+                                                   onClickDeletePost,
+                                                   createdAt,
+                                                 }) =>
+  <div className={cn.postContent}>
+    <div className={cn.postContent__header}>
+      <h1 className={cn.postContent__header__title}>{post.title}</h1>
+      <PostSubTitle
+        writerName={post.writer.nickName}
+        writerImg={post.writer.imageUrl}
+        categoryLabel={categoryLabel}
+        createdAt={createdAt}
+        editAuth={editAuth}
+        onClickPostModify={onClickPostModify}
+        onClickDeletePost={onClickDeletePost}/>
     </div>
+    <div className={cn.postContent__content}>
+      <MarkDownView content={post.content}
+                    skipHtml={false}
+                    escapeHtml={false}/>
+    </div>
+  </div>;
 
 export default PostContent;
 

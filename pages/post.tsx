@@ -56,7 +56,7 @@ const post: NextPageCustom<PostProps> = (props) => {
   if (post.postNo === 0) return null;
 
   return (
-    <div>
+    <>
       <PostSeoHeader
         title={post.title}
         content={post.content}
@@ -70,7 +70,7 @@ const post: NextPageCustom<PostProps> = (props) => {
         onClickPostModify={onClickPostModify}
         onClickDeletePost={onClickDeletePost}
         createdAt={post.createdAt}/>
-    </div>
+    </>
   );
 };
 
