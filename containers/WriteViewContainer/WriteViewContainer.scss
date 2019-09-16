@@ -1,0 +1,20 @@
+@import '../../style/scss/CommonUtil';
+@import '../../style/scss/CommonLayout';
+
+.writeView__header {
+  height: 6rem;
+
+  &__title {
+    color: $main-theme-color;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  &__saveButton {
+    float: right;
+    text-align: center;
+    font-size: 1.6rem;
+    width: 8rem;
+    @extend .main-button;
+  }
+}

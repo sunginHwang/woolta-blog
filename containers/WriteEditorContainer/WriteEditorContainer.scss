@@ -1,0 +1,15 @@
+.writeEditor{
+  height: 100%;
+
+  &__markDownEditor {
+    width: 100%;
+    display: inline-block;
+    outline-style: none;
+    height: 75%;
+    font-size: 1.6rem;
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+  }
+}
