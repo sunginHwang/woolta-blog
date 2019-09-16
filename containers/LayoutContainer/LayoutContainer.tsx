@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
@@ -12,8 +12,6 @@ import SideBar from '../../components/layout/SideBar/SideBar';
 
 import * as layoutReducer from '../../store/reducers/layoutReducer';
 import * as authReducer from '../../store/reducers/authReducer';
-
-import { goLoginPage, goMainPage, goPostEditPage, goPostListPage } from '../../core/utils/routeUtil';
 import { nanoBarLoadingSetup } from '../../core/utils/apiCall';
 import cn from './LayoutContainer.scss';
 
@@ -25,16 +23,17 @@ interface LayoutContainerProps {
 }
 
 const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
+  console.log('layout');
+
+  const [showSidebar, setShowSideBar] = useState(false);
 
   const {
-    sideBar,
     mobileHeader,
     categories,
     authInfo,
     editMode,
     spinnerLoading,
   } = useSelector((state: RootState) => ({
-    sideBar: state.layoutReducer.sideBar,
     mobileHeader: state.layoutReducer.mobileHeader,
     categories: state.categoryReducer.categories,
     authInfo: state.authReducer.authInfo,
@@ -50,68 +49,36 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   }, []);
 
 // 모바일 스크롤 헤더 이벤트
-  const onDetectMobileScrollUpAndDown = () => {
+  const onDetectMobileScrollUpAndDown = React.useCallback(() => {
     let lastScroll: number = 0;
-
+    console.log('onDetectMobileScrollUpAndDown');
     window.onscroll = throttle(() => {
-      if (!sideBar) {
+      if (!showSidebar) {
         const currentScroll: number = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
         let isScrollDown: boolean = lastScroll < currentScroll && currentScroll >= 0;
         lastScroll = currentScroll;
         dispatch(layoutReducer.showMobileHeader(isScrollDown));
       }
     }, 100);
-  };
+  }, [showSidebar]);
 
-// 사이드 메뉴 토글
-  const onToggleSideBar = (isShow: boolean) => {
-    dispatch(layoutReducer.toggleSideBar(isShow));
-  };
-
-// 카테고리 페이지 이동
-  const onClickCategoryPage = (categoryNo) => {
-    goPostListPage(categoryNo);
-    onToggleSideBar(false);
-  };
-
-// 로그아웃
-  const onClickLogout = () => {
-    dispatch(authReducer.logout());
-  };
-
-  const onClickSideBarPage = (type: string) => {
-
-    switch (type) {
-      case 'login':
-        goLoginPage();
-        break;
-      case 'postEdit':
-        goPostEditPage();
-        break;
-      case 'main':
-        goMainPage();
-        break;
-      default:
-        break;
-    }
-
-    onToggleSideBar(false);
-  };
-
+  // 로그아웃
+  const onClickLogout = () => dispatch(authReducer.logout());
 
   return (
     <>
       <SideBar
-        isOpen={sideBar}
+        isOpen={showSidebar}
         authInfo={authInfo}
-        onClickCategoryPage={onClickCategoryPage}
-        onClickSideBarPage={onClickSideBarPage}
+        categories={categories}
         onClickLogout={onClickLogout}
-        categories={categories}/>
+        toggleSideBar={setShowSideBar}
+      />
       <Header
+        showSideBar={showSidebar}
         showMobileHeader={mobileHeader}
-        onClickLogo={() => onClickSideBarPage('main')}
-        onClickSideBar={() => onToggleSideBar(!sideBar)}/>
+        toggleSideBar={setShowSideBar}
+      />
       <SpinnerLoading loading={spinnerLoading}/>
       <NanoBarLoading/>
       <div className={cx(cn.content, !editMode && cn.contentWidth)}>
