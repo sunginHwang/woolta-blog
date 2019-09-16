@@ -19,19 +19,13 @@ export const logout = createStandardAction(LOGOUT)<void>();
 export const LOAD_AUTH_INFO: IAsyncAction = asyncActionTypeCreator(`${prefix}LOAD_AUTH_INFO`);
 export const loadAuthInfo = createStandardAction(LOAD_AUTH_INFO.INDEX)<Promise<AxiosResponse<IUserInfo>>>();
 
-export const CHANGE_LOGIN_INPUT = `${prefix}CHANGE_LOGIN_INPUT`;
-export const changeLoginInput = createStandardAction(CHANGE_LOGIN_INPUT)<any>();
 
 
 export interface authInitType {
-  id: string,
-  password: string,
   authInfo: IUserInfo
 }
 
 const initialState: authInitType = {
-  id: '',
-  password: '',
   authInfo: {
     no: 0,
     userId: '',
@@ -41,11 +35,6 @@ const initialState: authInitType = {
 };
 
 export default createReducer(initialState, {
-  [CHANGE_LOGIN_INPUT]: (state, action) =>
-    produce<authInitType>(state, draft => {
-      const { type, value } = action.payload;
-      draft[type] = value;
-    }),
   [LOGIN.FULFILLED]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
       draft.authInfo = action.payload.data.data;
