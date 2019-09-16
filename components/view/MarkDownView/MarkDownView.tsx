@@ -9,17 +9,19 @@ interface MarkDownViewProps {
   escapeHtml: boolean;
 }
 
-const MarkDownView: React.FC<MarkDownViewProps> = ({
-                                                     content,
-                                                     skipHtml,
-                                                     escapeHtml,
-                                                   }) => (
+const MarkDownView: React.FC<MarkDownViewProps> = React.memo(({
+                                                                content,
+                                                                skipHtml,
+                                                                escapeHtml,
+                                                              }) =>  (
   <div className={cn.markDownView}>
     <ReactMarkdown source={content}
                    skipHtml={skipHtml}
                    escapeHtml={escapeHtml}
                    renderers={{ code: CodeBlock }}/>
   </div>
-);
+), ((prevProps, nextProps) => {
+  return prevProps.content === nextProps.content;
+}));
 
 export default MarkDownView;

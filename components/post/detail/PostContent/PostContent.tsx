@@ -6,39 +6,40 @@ import MarkDownView from '../../../view/MarkDownView/MarkDownView';
 
 interface PostContentProps {
   post: IPost;
-  categoryLabel: string;
   editAuth: boolean;
-  onClickPostModify: () => void;
-  onClickDeletePost: () => void;
-  createdAt: string;
+  onDeletePost: () => void;
+  onModifyPost: () => void;
 }
 
-const PostContent: React.FC<PostContentProps> = ({
+const PostContent: React.FC<PostContentProps> = React.memo(({
                                                    post,
-                                                   categoryLabel,
                                                    editAuth,
-                                                   onClickPostModify,
-                                                   onClickDeletePost,
-                                                   createdAt,
-                                                 }) =>
-  <div className={cn.postContent}>
+                                                   onDeletePost,
+                                                   onModifyPost,
+                                                 }) =>{
+
+  console.log('postContent');
+
+  return (<div className={cn.postContent}>
     <div className={cn.postContent__header}>
       <h1 className={cn.postContent__header__title}>{post.title}</h1>
       <PostSubTitle
-        writerName={post.writer.nickName}
-        writerImg={post.writer.imageUrl}
-        categoryLabel={categoryLabel}
-        createdAt={createdAt}
+        writer={post.writer}
+        categoryLabel={post.categoryLabel}
+        createdAt={post.createdAt}
         editAuth={editAuth}
-        onClickPostModify={onClickPostModify}
-        onClickDeletePost={onClickDeletePost}/>
+        onModifyPost={onModifyPost}
+        onDeletePost={onDeletePost}/>
     </div>
     <div className={cn.postContent__content}>
       <MarkDownView content={post.content}
                     skipHtml={false}
                     escapeHtml={false}/>
     </div>
-  </div>;
+  </div>)
+},(prevProps, nextProps) => {
+  return prevProps.post === nextProps.post && prevProps.editAuth === nextProps.editAuth;
+});
 
 export default PostContent;
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PostContent from '../components/post/detail/PostContent/PostContent';
@@ -17,9 +17,8 @@ interface PostProps {
   isServer: boolean;
 }
 
-const post: NextPageCustom<PostProps> = (props) => {
+const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
 
-  const { categoryNo, postNo, isServer } = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,21 +33,21 @@ const post: NextPageCustom<PostProps> = (props) => {
   }));
 
   /*게시글 수정*/
-  const onClickPostModify = async () => {
+  const onModifyPost = useCallback(async () => {
     const { postNo, title, content, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
     await dispatch(settingPostInfo({ postNo, title, content, category }));
     goPostEditPage();
-  };
+  },[post, categories]);
 
   /*게시글 삭제*/
-  const onClickDeletePost = () => {
+  const onDeletePost = useCallback( () => {
     const { postNo, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
     dispatch(deletePost(delPost(category.value, postNo)));
-  };
+  },[post, categories]);
 
   const isPostingUser = authInfo.no === post.writer.no;
 
@@ -58,18 +57,14 @@ const post: NextPageCustom<PostProps> = (props) => {
   return (
     <>
       <PostSeoHeader
-        title={post.title}
-        content={post.content}
+        post={post}
         postNo={postNo}
-        createdAt={post.createdAt}
         categoryNo={categoryNo}/>
       <PostContent
         post={post}
         editAuth={isPostingUser}
-        categoryLabel={post.categoryLabel}
-        onClickPostModify={onClickPostModify}
-        onClickDeletePost={onClickDeletePost}
-        createdAt={post.createdAt}/>
+        onModifyPost={onModifyPost}
+        onDeletePost={onDeletePost}/>
     </>
   );
 };

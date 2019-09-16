@@ -2,24 +2,23 @@ import React from 'react';
 import Head from 'next/head';
 import { BLOG_THUMBNAIL_IMAGE_URL, BLOG_URL } from '../../../../core/constants';
 import { convertToPlainText } from '../../../../core/utils/StringUtil';
+import { IPost } from '../../../../types/post/IPost';
 
 interface PostSeoHeaderProps {
-  title: string
+  post: IPost
   postNo: number
-  content: string
-  createdAt: string
   categoryNo: number
 }
 
-const PostSeoHeader: React.FC<PostSeoHeaderProps> = ({
-                                                       title,
+const PostSeoHeader: React.FC<PostSeoHeaderProps> = React.memo(({
+                                                       post,
                                                        postNo,
-                                                       content,
-                                                       createdAt,
                                                        categoryNo,
                                                      }) => {
 
   const isAllowUrl: boolean = categoryNo !== undefined && postNo !== undefined;
+  const { title, content, createdAt } = post;
+  console.log('PostSeoHeader');
 
   return (
     <Head>
@@ -41,7 +40,9 @@ const PostSeoHeader: React.FC<PostSeoHeaderProps> = ({
       <meta property="article:published_time" content={createdAt}/>
     </Head>
   );
-};
+},((prevProps, nextProps) => {
+  return prevProps.post === nextProps.post;
+}));
 
 export default PostSeoHeader;
 
