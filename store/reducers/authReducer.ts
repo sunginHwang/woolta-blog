@@ -44,14 +44,7 @@ export default createReducer(initialState, {
   [CHANGE_LOGIN_INPUT]: (state, action) =>
     produce<authInitType>(state, draft => {
       const { type, value } = action.payload;
-
-      if (type === 'id') {
-        draft.id = value;
-      }
-
-      if (type === 'password') {
-        draft.password = value;
-      }
+      draft[type] = value;
     }),
   [LOGIN.FULFILLED]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
