@@ -5,18 +5,18 @@ import { FluxStandardAction } from 'redux-promise-middleware';
 import { produce } from 'immer';
 import IAsyncAction from '../../types/redux/IAsyncAction';
 import { AxiosResponse } from 'axios';
-import IPosts from '../../types/post/IPosts';
+import { IPost } from '../../types/post/IPost';
 
 const prefix: string = 'POSTS_';
 
 const RECENT_POSTS: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_RECENT_POSTS`);
 const GET_POSTS: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_POSTS`);
 
-export const getPosts = createStandardAction(GET_POSTS.INDEX)<Promise<AxiosResponse<IPosts[]>>>();
-export const getRecentPosts = createStandardAction(RECENT_POSTS.INDEX)<Promise<AxiosResponse<IPosts[]>>>();
+export const getPosts = createStandardAction(GET_POSTS.INDEX)<Promise<AxiosResponse<IPost[]>>>();
+export const getRecentPosts = createStandardAction(RECENT_POSTS.INDEX)<Promise<AxiosResponse<IPost[]>>>();
 
 export interface postsInitType {
-  posts: IPosts[],
+  posts: IPost[],
   loading: boolean
 }
 

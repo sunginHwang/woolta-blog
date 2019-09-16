@@ -2,50 +2,40 @@ import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames/bind';
 import cn from './PostItem.scss';
+import { IPost } from '../../../../types/post/IPost';
 
 const cx = classNames.bind(cn);
 
 interface PostItemProps {
-  title: string,
-  postNo: number,
-  contents: string,
-  author: string,
-  date: string,
-  categoryNo: number,
-  categoryLabel: string
+  post: IPost;
 }
 
 const PostItem: React.FC<PostItemProps> = React.memo(({
-                                                        title, postNo, contents, author, date,
-                                                        categoryNo, categoryLabel,
-                                                      }) => {
-
-  return (
-    <div className={cn.postItem}>
-      <Link href={`/post?postNo=${postNo}&categoryNo=${categoryNo}`}
-            as={`/categories/${categoryNo}/posts/${postNo}`}>
-        <a>
-          <h2 className={cn.postItem__title}>{title}</h2>
-        </a>
-      </Link>
-      <Link href={`/post?postNo=${postNo}&categoryNo=${categoryNo}`}
-            as={`/categories/${categoryNo}/posts/${postNo}`}>
-        <a>
-          <p className={cn.postItem__content}>{contents}</p>
-        </a>
-      </Link>
-      <div>
-        <span className={cx(cn.meta, cn.categoryLabel)}>{categoryLabel}</span>
-        <span className={cn.separator}>|</span>
-        <span className={cn.meta}>{author}</span>
-        <span className={cn.separator}>|</span>
-        <span className={cn.meta}>{date}</span>
-      </div>
+                                                        post,
+                                                      }) => (
+  <div className={cn.postItem}>
+    <Link href={`/post?postNo=${post.postNo}&categoryNo=${post.categoryNo}`}
+          as={`/categories/${post.categoryNo}/posts/${post.postNo}`}>
+      <a>
+        <h2 className={cn.postItem__title}>{post.title}</h2>
+      </a>
+    </Link>
+    <Link href={`/post?postNo=${post.postNo}&categoryNo=${post.categoryNo}`}
+          as={`/categories/${post.categoryNo}/posts/${post.postNo}`}>
+      <a>
+        <p className={cn.postItem__content}>{post.subDescription}</p>
+      </a>
+    </Link>
+    <div>
+      <span className={cx(cn.meta, cn.categoryLabel)}>{post.categoryLabel}</span>
+      <span className={cn.separator}>|</span>
+      <span className={cn.meta}>{post.author}</span>
+      <span className={cn.separator}>|</span>
+      <span className={cn.meta}>{post.createdAt}</span>
     </div>
-  );
-
-}, ((prevProps, nextProps) => {
-  return prevProps.title !== nextProps.title;
+  </div>
+), ((prevProps, nextProps) => {
+  return prevProps.post.title !== nextProps.post.title;
 }));
 
 

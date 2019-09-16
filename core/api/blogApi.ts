@@ -1,7 +1,6 @@
 import apiCall from '../utils/apiCall';
 import { BLOG_API } from '../constants';
 import { ICategory } from '../../types/post/ICategory';
-import IPosts from '../../types/post/IPosts';
 import { IPost } from '../../types/post/IPost';
 
 
@@ -10,11 +9,11 @@ export const fetchCategories = () => {
 };
 
 export const fetchRecentPostList = () => {
-  return apiCall.get<IPosts[]>(`${BLOG_API}/post/categories/new/posts`);
+  return apiCall.get<IPost[]>(`${BLOG_API}/post/categories/new/posts`);
 };
 
 export const fetchPosts = (categoryNo) => {
-  return apiCall.get<IPosts[]>(`${BLOG_API}/post/categories/${categoryNo}/posts`);
+  return apiCall.get<IPost[]>(`${BLOG_API}/post/categories/${categoryNo}/posts`);
 };
 
 
