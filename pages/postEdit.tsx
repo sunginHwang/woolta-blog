@@ -4,7 +4,7 @@ import { FIVE_MIN, TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { confirm } from '../core/utils/dialogUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { toggleError } from '../store/reducers/postWriteReducer';
+import { settingPostInfo, toggleError } from '../store/reducers/postWriteReducer';
 import { toggleEditMode } from '../store/reducers/layoutReducer';
 import WriteView from '../components/post/write/WriteView/WriteView';
 import useTitle from '../core/hooks/useTitle';
@@ -52,7 +52,7 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
 
   const loadTempPost = () => {
     const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
-    confirm('임시저장된 정보를 불러오시겠습니까?').then(result => result && this.props.postUpsertAction.settingPostInfo(tempPost));
+    confirm('임시저장된 정보를 불러오시겠습니까?').then(result => result && dispatch(settingPostInfo(tempPost)));
   };
 
   const autoSaveTempPost = () => {
