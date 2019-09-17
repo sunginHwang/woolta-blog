@@ -1,5 +1,4 @@
-import React from 'react';
-import classNames from 'classnames/bind';
+import React, { useCallback } from 'react';
 import cn from './WriteViewContainer.scss';
 import MarkDownView from '../../components/view/MarkDownView/MarkDownView';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,8 +7,6 @@ import { toggleOriginPreviewModal } from '../../store/reducers/postWriteReducer'
 import { ICategory } from '../../types/post/ICategory';
 import { upsertPostApi } from '../../core/api/blogApi';
 import OriginPreview from '../../components/post/write/OriginPreview/OriginPreview';
-
-const cx = classNames.bind(cn);
 
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
@@ -24,7 +21,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   }));
 
   // 프리뷰 클릭
-  const onClickShowOriginPreview = () => dispatch(toggleOriginPreviewModal(!previewModal));
+  const onShowOriginPreview = () => useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
 
   // 글 생성 or 업데이트
   const upsertPost = () => {
@@ -42,7 +39,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   };
 
   // 글 작성 유효성 검사
-  const validateUpsertPost = (title: string, content: string, category: ICategory) => {
+  const validateUpsertPost = useCallback((title: string, content: string, category: ICategory) => {
 
     if (authInfo.no === 0) {
       alert('로그인이 필요해요 ㅠㅠ.');
@@ -75,23 +72,24 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
     }
 
     return true;
-  };
+  }, [authInfo]);
+
   return (
     <>
       <div className={cn.writeView__header}>
         <span className={cn.writeView__header__title}>preview</span>
-        <div className={cn.writeView__header__saveButton} onClick={() => upsertPost()}>
+        <div className={cn.writeView__header__saveButton} onClick={upsertPost}>
           저장하기
         </div>
       </div>
-      <div className={cn.writeView__content} onClick={() => onClickShowOriginPreview()}>
+      <div className={cn.writeView__content} onClick={onShowOriginPreview}>
         <MarkDownView content={content}
                       skipHtml={false}
                       escapeHtml={false}/>
       </div>
       <OriginPreview
         content={content}
-        onToggleView={onClickShowOriginPreview}
+        onToggleView={onShowOriginPreview}
         visible={previewModal}/>
     </>
   );
