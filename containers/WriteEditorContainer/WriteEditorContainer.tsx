@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import cn from './WriteEditorContainer.scss';
 import { ICategory } from '../../types/post/ICategory';
 import { addElement } from '../../core/utils/domUtil';
@@ -17,6 +17,7 @@ interface WriteEditorProps {
 const WriteEditorContainer: React.FC<WriteEditorProps> = ({}) => {
 
   const contentRef = useRef(null);
+  const dispatch = useDispatch();
   const { authInfo, title, content, category, categories } = useSelector((state: RootState) => ({
     authInfo: state.authReducer.authInfo,
     postNo: state.postWriteReducer.postNo,
@@ -25,7 +26,6 @@ const WriteEditorContainer: React.FC<WriteEditorProps> = ({}) => {
     category: state.postWriteReducer.category,
     categories: state.categoryReducer.categories,
   }));
-  const dispatch = useDispatch();
 
   useEffect(() => {
     window && window.addEventListener('drop', onDnd); //dnd Event
@@ -34,11 +34,38 @@ const WriteEditorContainer: React.FC<WriteEditorProps> = ({}) => {
       window && window.removeEventListener('drop', onDnd);
       (document && document.body) && document.body.removeEventListener('paste', onPaste);
     };
-  }, []);
+  }, [content]);
 
-  const onChangeCategories = (selectedCategory: ICategory) => dispatch(setCategory(selectedCategory));
-  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => dispatch(setContent(e.target.value));
-  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value));
+  const onPaste = async (e) => {
+    const { items } = e.clipboardData || e.originalEvent.clipboardData;
+    if (items.length !== 2) return;
+    if (items[1].kind !== 'file') return;
+    const contentStartIndex = contentRef.current.selectionStart;
+    const file = items[1].getAsFile();
+
+    dispatch(toggleSpinnerLoading(true));
+    const markdownImg = await uploadImage(file);
+
+    addImage(markdownImg, contentStartIndex);
+    dispatch(toggleSpinnerLoading(false));
+    e.preventDefault();
+  };
+
+  const onDnd = async (e) => {
+    e.preventDefault();
+
+    const { files } = e.dataTransfer;
+    dispatch(toggleSpinnerLoading(true));
+    const contentStartIndex = contentRef.current.selectionStart;
+    const imagePromises = [];
+    for (let i = 0; i < files.length; i++) {
+      imagePromises.push(uploadImage(files[i]));
+    }
+
+    const images = await Promise.all(imagePromises);
+    addImage(images.flat(), contentStartIndex);
+    dispatch(toggleSpinnerLoading(false));
+  };
 
   // 이미지 업로드
   const uploadImage = async (file) => {
@@ -46,38 +73,8 @@ const WriteEditorContainer: React.FC<WriteEditorProps> = ({}) => {
     return convertImageToCodeImage(savedImageUrl);
   };
 
-  const onPaste = useCallback(async (e) => {
-    const { items } = e.clipboardData || e.originalEvent.clipboardData;
-    if (items.length !== 2) return;
-    if (items[1].kind !== 'file') return;
-
-    const file = items[1].getAsFile();
-
-    dispatch(toggleSpinnerLoading(true));
-    const markdownImg = await uploadImage(file);
-    addImage(markdownImg, contentRef.current.selectionStart);
-    dispatch(toggleSpinnerLoading(false));
-    e.preventDefault();
-  }, []);
-
-  const onDnd = useCallback(async (e) => {
-    e.preventDefault();
-
-    const { files } = e.dataTransfer;
-    dispatch(toggleSpinnerLoading(true));
-
-    const imagePromises = [];
-    for (let i = 0; i < files.length; i++) {
-      imagePromises.push(uploadImage(files[i]));
-    }
-
-    const images = await Promise.all(imagePromises);
-    addImage(images.flat(), contentRef.current.selectionStart);
-    dispatch(toggleSpinnerLoading(false));
-  }, []);
-
   /*이미지 버튼 삽입*/
-  const onUploadImage = useCallback(() => {
+  const onUploadImage = () => {
     const fileInput = addElement('input');
     fileInput.type = 'file';
     fileInput.onchange = async () => {
@@ -88,9 +85,12 @@ const WriteEditorContainer: React.FC<WriteEditorProps> = ({}) => {
       dispatch(toggleSpinnerLoading(false));
     };
     fileInput.click();
-  }, []);
+  };
 
   const addImage = (image, addIndex) => dispatch(setContent(content.slice(0, addIndex) + image + content.slice(addIndex)));
+  const onChangeCategories = (selectedCategory: ICategory) => dispatch(setCategory(selectedCategory));
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => dispatch(setContent(e.target.value));
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value));
 
   return (
     <div className={cn.writeEditor}>

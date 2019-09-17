@@ -3,7 +3,7 @@ import cn from './WriteViewContainer.scss';
 import MarkDownView from '../../components/view/MarkDownView/MarkDownView';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../types/redux/RootState';
-import { toggleOriginPreviewModal } from '../../store/reducers/postWriteReducer';
+import { toggleOriginPreviewModal, upsertPost } from '../../store/reducers/postWriteReducer';
 import { ICategory } from '../../types/post/ICategory';
 import { upsertPostApi } from '../../core/api/blogApi';
 import OriginPreview from '../../components/post/write/OriginPreview/OriginPreview';
@@ -24,7 +24,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   const onShowOriginPreview = () => useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
 
   // 글 생성 or 업데이트
-  const upsertPost = () => {
+  const upsertPostContainer = () => {
 
     if (validateUpsertPost(title, content, category)) {
       const upsertData = {
@@ -34,12 +34,12 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
         categoryNo: category.value,
       };
 
-      dispatch(upsertPostApi(upsertData));
+      dispatch(upsertPost(upsertPostApi(upsertData)));
     }
   };
 
   // 글 작성 유효성 검사
-  const validateUpsertPost = useCallback((title: string, content: string, category: ICategory) => {
+  const validateUpsertPost = (title: string, content: string, category: ICategory) => {
 
     if (authInfo.no === 0) {
       alert('로그인이 필요해요 ㅠㅠ.');
@@ -72,13 +72,13 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
     }
 
     return true;
-  }, [authInfo]);
+  };
 
   return (
     <>
       <div className={cn.writeView__header}>
         <span className={cn.writeView__header__title}>preview</span>
-        <div className={cn.writeView__header__saveButton} onClick={upsertPost}>
+        <div className={cn.writeView__header__saveButton} onClick={upsertPostContainer}>
           저장하기
         </div>
       </div>
