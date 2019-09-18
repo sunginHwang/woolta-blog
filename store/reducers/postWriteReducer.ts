@@ -1,10 +1,6 @@
 import { produce } from 'immer';
-import { createAsyncAction, createReducer, createStandardAction } from 'typesafe-actions';
+import { createReducer, createStandardAction } from 'typesafe-actions';
 import { FluxStandardAction } from 'redux-promise-middleware';
-import IAsyncAction from '../../types/redux/IAsyncAction';
-import { asyncActionTypeCreator } from '../../core/utils/reduxUtil';
-import { AxiosResponse } from 'axios';
-import { IApiRes } from '../../types/IApiRes';
 import { ICategory } from '../../types/post/ICategory';
 
 const prefix: string = 'POST_WRITE_';
@@ -16,7 +12,7 @@ const SET_CONTENT: string = `${prefix}SET_CONTENT`;
 const SET_CATEGORY: string = `${prefix}SET_CATEGORY`;
 const TOGGLE_ORIGIN_PREVIEW_MODAL: string = `${prefix}TOGGLE_ORIGIN_PREVIEW_MODAL`;
 const TOGGLE_ERROR: string = `${prefix}TOGGLE_ERROR`;
-const UPSERT_POST: IAsyncAction = asyncActionTypeCreator(`${prefix}UPSERT_POST`);
+const INIT_POST_WRITE: string = `${prefix}INIT_POST_WRITE`;
 
 interface settingPostInfoFn {
   postNo: number;
@@ -29,8 +25,8 @@ export const settingPostInfo = createStandardAction(SETTING_POST_INFO)<settingPo
 export const setTitle = createStandardAction(SET_TITLE)<string>();
 export const setContent = createStandardAction(SET_CONTENT)<string>();
 export const setCategory = createStandardAction(SET_CATEGORY)<ICategory>();
+export const initPostWrite = createStandardAction(INIT_POST_WRITE)<void>();
 export const toggleOriginPreviewModal = createStandardAction(TOGGLE_ORIGIN_PREVIEW_MODAL)<boolean>();
-export const upsertPost = createStandardAction(UPSERT_POST.INDEX)<Promise<AxiosResponse<IApiRes>>>();
 // 임시 에러 처리 방법
 export const toggleError = createStandardAction(TOGGLE_ERROR)<boolean>();
 
@@ -63,36 +59,31 @@ export default createReducer(initialState, {
       draft.title = action.payload.title;
       draft.content = action.payload.content;
     }),
-  [UPSERT_POST.FULFILLED]: state =>
+  [INIT_POST_WRITE]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
       draft.postNo = initialState.postNo;
       draft.category = initialState.category;
       draft.title = initialState.title;
       draft.content = initialState.content;
     }),
-  [UPSERT_POST.REJECTED]: (state, action: FluxStandardAction) =>
-    produce<PostWriteInitType>(state, draft => {
-      draft.error = true;
-      draft.errorMsg = action.payload.message;
-    }),
   [SET_CATEGORY]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.category = action.payload
+      draft.category = action.payload;
     }),
   [SET_TITLE]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.title = action.payload
+      draft.title = action.payload;
     }),
   [SET_CONTENT]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.content = action.payload
+      draft.content = action.payload;
     }),
   [TOGGLE_ERROR]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.error = action.payload
+      draft.error = action.payload;
     }),
   [TOGGLE_ORIGIN_PREVIEW_MODAL]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.previewModal = action.payload
+      draft.previewModal = action.payload;
     }),
 });

@@ -1,5 +1,5 @@
-export interface IApiRes {
+export interface IApiRes<T> {
   code: number;
   message: string;
-  resData: any;
+  data: T;
 }

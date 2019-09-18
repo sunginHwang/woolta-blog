@@ -3,10 +3,16 @@ import cn from './WriteViewContainer.scss';
 import MarkDownView from '../../components/view/MarkDownView/MarkDownView';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../types/redux/RootState';
-import { toggleOriginPreviewModal, upsertPost } from '../../store/reducers/postWriteReducer';
+import { initPostWrite, toggleOriginPreviewModal } from '../../store/reducers/postWriteReducer';
 import { ICategory } from '../../types/post/ICategory';
-import { upsertPostApi } from '../../core/api/blogApi';
+import { fetchPosts, upsertPostApi } from '../../core/api/blogApi';
 import OriginPreview from '../../components/post/write/OriginPreview/OriginPreview';
+import { TEMP_POST_AUTO_SAVE } from '../../core/constants';
+import { AxiosResponse } from 'axios';
+import { IApiRes } from '../../types/IApiRes';
+import { IUpsertPostRes } from '../../types/post/IUpsertPostRes';
+import { getPosts } from '../../store/reducers/postsReducer';
+import { goPostDetailPage } from '../../core/utils/routeUtil';
 
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
@@ -24,17 +30,27 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   const onShowOriginPreview = () => useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
 
   // 글 생성 or 업데이트
-  const upsertPostContainer = () => {
+  const upsertPost = async () => {
 
-    if (validateUpsertPost(title, content, category)) {
-      const upsertData = {
-        id: postNo,
-        title: title,
-        contents: content,
-        categoryNo: category.value,
-      };
+    if (!validateUpsertPost(title, content, category)) {
+      return;
+    }
 
-      dispatch(upsertPost(upsertPostApi(upsertData)));
+    const upsertData = {
+      id: postNo,
+      title: title,
+      contents: content,
+      categoryNo: category.value,
+    };
+
+    try {
+      const res: AxiosResponse<IApiRes<IUpsertPostRes>> = await upsertPostApi(upsertData);
+      localStorage.removeItem(TEMP_POST_AUTO_SAVE);
+      await dispatch(initPostWrite());
+      await dispatch(getPosts(fetchPosts(res.data.data.categoryNo)));
+      goPostDetailPage(res.data.data.categoryNo, res.data.data.postNo);
+    } catch (e) {
+      alert(e);
     }
   };
 
@@ -78,7 +94,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
     <>
       <div className={cn.writeView__header}>
         <span className={cn.writeView__header__title}>preview</span>
-        <div className={cn.writeView__header__saveButton} onClick={upsertPostContainer}>
+        <div className={cn.writeView__header__saveButton} onClick={upsertPost}>
           저장하기
         </div>
       </div>
