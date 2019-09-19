@@ -27,7 +27,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   }));
 
   // 프리뷰 클릭
-  const onShowOriginPreview = () => useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
+  const onShowOriginPreview = useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
 
   // 글 생성 or 업데이트
   const upsertPost = async () => {
