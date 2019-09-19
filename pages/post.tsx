@@ -5,11 +5,12 @@ import PostContent from '../components/post/detail/PostContent/PostContent';
 import PostSeoHeader from '../components/post/detail/PostSeoHeader/PostSeoHeader';
 import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlaceHolder';
 import { deletePost, getPost } from '../store/reducers/postReducer';
-import { delPost, fetchPostInfo } from '../core/api/blogApi';
+import { delPost, fetchPostInfo, fetchPosts } from '../core/api/blogApi';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
-import { goPostEditPage } from '../core/utils/routeUtil';
+import { goPostEditPage, goPostListPage } from '../core/utils/routeUtil';
 import { RootState } from '../types/redux/RootState';
 import { NextPageCustom } from '../types/next/NextPageCustom';
+import { getPosts } from '../store/reducers/postsReducer';
 
 interface PostProps {
   categoryNo: number;
@@ -42,11 +43,17 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
   },[post, categories]);
 
   /*게시글 삭제*/
-  const onDeletePost = useCallback( () => {
+  const onDeletePost = useCallback( async () => {
     const { postNo, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
-    dispatch(deletePost(delPost(category.value, postNo)));
+    try {
+      await dispatch(deletePost(delPost(category.value, postNo)));
+      await dispatch(getPosts(fetchPosts(category.value)));
+      goPostListPage(category.value);
+    }catch (e) {
+      alert('삭제 실패');
+    }
   },[post, categories]);
 
   const isPostingUser = authInfo.no === post.writer.no;
