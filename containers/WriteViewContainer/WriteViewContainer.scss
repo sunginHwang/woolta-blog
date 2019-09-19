@@ -1,8 +1,10 @@
 @import '../../style/scss/CommonUtil';
 @import '../../style/scss/CommonLayout';
 
+$header-height: 6rem;
+
 .writeView__header {
-  height: 6rem;
+  height: $header-height;
 
   &__title {
     color: $main-theme-color;
@@ -17,4 +19,15 @@
     width: 8rem;
     @extend .main-button;
   }
+}
+
+.writeView__content{
+  width: 100%;
+  display: inline-block;
+  outline-style: none;
+  height: 77rem - $header-height;
+  border: none;
+  resize: none;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
 }

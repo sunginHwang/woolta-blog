@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import cn from './WriteViewContainer.scss';
 import MarkDownView from '../../components/view/MarkDownView/MarkDownView';
 import { useDispatch, useSelector } from 'react-redux';
@@ -90,12 +90,14 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
     return true;
   };
 
+  const isEditMode = useMemo(()=> postNo !== 0 ,[postNo]);
+
   return (
     <>
       <div className={cn.writeView__header}>
         <span className={cn.writeView__header__title}>preview</span>
         <div className={cn.writeView__header__saveButton} onClick={upsertPost}>
-          저장하기
+          <span>{isEditMode ? '수정하기' : '작성하기'}</span>
         </div>
       </div>
       <div className={cn.writeView__content} onClick={onShowOriginPreview}>
