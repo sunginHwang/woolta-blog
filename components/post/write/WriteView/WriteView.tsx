@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import cn from './WriteView.scss';
-import WriteEditorContainer from '../../../../containers/WriteEditorContainer/WriteEditorContainer';
+import WriteEditorContainer from '../../../../containers/WriteEditorContainer';
 import WriteViewContainer from '../../../../containers/WriteViewContainer/WriteViewContainer';
 
 const cx = classNames.bind(cn);

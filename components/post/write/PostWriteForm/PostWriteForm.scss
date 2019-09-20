@@ -1,11 +1,11 @@
 @import '../../../../style/scss/CommonUtil';
 
-.postWriteTitle__selector {
+.postWriteSelector {
   text-align: left;
   margin-bottom: 2rem;
 }
 
-.postWriteTitle__title {
+.postWriteTitle {
   display: flex;
   height: 6rem;
   margin-bottom: 2rem;
@@ -24,4 +24,16 @@
     float: right;
     @extend .main-button
   }
+}
+
+.postWriteContent {
+  width: 100%;
+  display: inline-block;
+  outline-style: none;
+  height: 77rem - 18.8rem;
+  font-size: 1.6rem;
+  border: none;
+  resize: none;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
 }
