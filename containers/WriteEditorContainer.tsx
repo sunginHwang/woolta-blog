@@ -31,12 +31,13 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
   }, [content, contentWriteIndex]);
 
   const onPaste = async (e) => {
-    e.preventDefault();
-
     const { items } = e.clipboardData || e.originalEvent.clipboardData;
 
     if (items.length !== 2) return;
     if (items[1].kind !== 'file') return;
+    //  file paste event prevent
+    e.preventDefault();
+
     const file = items[1].getAsFile();
 
     dispatch(toggleSpinnerLoading(true));

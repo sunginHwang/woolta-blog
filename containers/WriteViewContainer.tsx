@@ -1,28 +1,23 @@
 import React, { useCallback, useMemo } from 'react';
-import cn from './WriteViewContainer.scss';
-import MarkDownView from '../../components/view/MarkDownView/MarkDownView';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../types/redux/RootState';
-import { initPostWrite, toggleOriginPreviewModal } from '../../store/reducers/postWriteReducer';
-import { ICategory } from '../../types/post/ICategory';
-import { fetchPosts, upsertPostApi } from '../../core/api/blogApi';
-import OriginPreview from '../../components/post/write/OriginPreview/OriginPreview';
-import { TEMP_POST_AUTO_SAVE } from '../../core/constants';
+import { RootState } from '../types/redux/RootState';
+import { initPostWrite, toggleOriginPreviewModal } from '../store/reducers/postWriteReducer';
+import { ICategory } from '../types/post/ICategory';
+import { fetchPosts, upsertPostApi } from '../core/api/blogApi';
+import OriginPreview from '../components/post/write/OriginPreview/OriginPreview';
+import { TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { AxiosResponse } from 'axios';
-import { IApiRes } from '../../types/IApiRes';
-import { IUpsertPostRes } from '../../types/post/IUpsertPostRes';
-import { getPosts } from '../../store/reducers/postsReducer';
-import { goPostDetailPage } from '../../core/utils/routeUtil';
+import { IApiRes } from '../types/IApiRes';
+import { IUpsertPostRes } from '../types/post/IUpsertPostRes';
+import { getPosts } from '../store/reducers/postsReducer';
+import { goPostDetailPage } from '../core/utils/routeUtil';
+import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
 
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
   const dispatch = useDispatch();
-  const { content, postNo, title, category, authInfo, previewModal } = useSelector((state: RootState) => ({
-    content: state.postWriteReducer.content,
-    title: state.postWriteReducer.title,
-    category: state.postWriteReducer.category,
-    postNo: state.postWriteReducer.postNo,
-    previewModal: state.postWriteReducer.previewModal,
+  const { postWriteReducer: { content, postNo, title, category, previewModal }, authInfo } = useSelector((state: RootState) => ({
+    postWriteReducer: state.postWriteReducer,
     authInfo: state.authReducer.authInfo,
   }));
 
@@ -90,25 +85,20 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
     return true;
   };
 
-  const isEditMode = useMemo(()=> postNo !== 0 ,[postNo]);
+  const isEditMode = useMemo(() => postNo !== 0, [postNo]);
 
   return (
     <>
-      <div className={cn.writeView__header}>
-        <span className={cn.writeView__header__title}>preview</span>
-        <div className={cn.writeView__header__saveButton} onClick={upsertPost}>
-          <span>{isEditMode ? '수정하기' : '작성하기'}</span>
-        </div>
-      </div>
-      <div className={cn.writeView__content} onClick={onShowOriginPreview}>
-        <MarkDownView content={content}
-                      skipHtml={false}
-                      escapeHtml={false}/>
-      </div>
+      <WriteViewer isEditMode={isEditMode}
+                   content={content}
+                   onUpsertPost={upsertPost}
+                   onShowOriginPreview={onShowOriginPreview}
+      />
       <OriginPreview
         content={content}
         onToggleView={onShowOriginPreview}
-        visible={previewModal}/>
+        visible={previewModal}
+      />
     </>
   );
 };
