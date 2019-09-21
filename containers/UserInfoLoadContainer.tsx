@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { ACCESS_TOKEN } from '../../core/constants';
+import { ACCESS_TOKEN } from '../core/constants';
 import { useDispatch } from 'react-redux';
-import { loadAuthInfo } from '../../store/reducers/authReducer';
-import { fetchAuthInfo } from '../../core/api/AuthApi';
+import { loadAuthInfo } from '../store/reducers/authReducer';
+import { fetchAuthInfo } from '../core/api/AuthApi';
 
 const UserInfoLoadContainer: React.FC<{}> = () => {
 
@@ -18,4 +18,4 @@ const UserInfoLoadContainer: React.FC<{}> = () => {
  return null;
 };
 
-export default UserInfoLoadContainer;
+export default React.memo(UserInfoLoadContainer);

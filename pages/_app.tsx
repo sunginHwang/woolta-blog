@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import store from '../store';
 
-import LayoutContainer from '../containers/LayoutContainer/LayoutContainer';
+import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
-import UserInfoLoadContainer from '../containers/UserInfoLoadContainer/UserInfoLoadContainer';
+import UserInfoLoadContainer from '../containers/UserInfoLoadContainer';
 import '../style/scss/style.scss';
 
 type Props = { store: Store } & AppInitialProps & AppContext;

@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames';
 import throttle from 'lodash/throttle';
-import { RootState } from '../../types/redux/RootState';
-import NanoBarLoading from '../../components/common/loading/NanoBarLoading/NanoBarLoading';
-import SpinnerLoading from '../../components/common/loading/SpinnerLoading/SpinnerLoading';
+import { RootState } from '../types/redux/RootState';
+import NanoBarLoading from '../components/common/loading/NanoBarLoading/NanoBarLoading';
+import SpinnerLoading from '../components/common/loading/SpinnerLoading/SpinnerLoading';
 
-import Header from '../../components/layout/Header/Header';
-import Footer from '../../components/layout/Footer/Footer';
-import SideBar from '../../components/layout/SideBar/SideBar';
+import Header from '../components/layout/Header/Header';
+import Footer from '../components/layout/Footer/Footer';
+import SideBar from '../components/layout/SideBar/SideBar';
 
-import * as layoutReducer from '../../store/reducers/layoutReducer';
-import * as authReducer from '../../store/reducers/authReducer';
-import { nanoBarLoadingSetup } from '../../core/utils/apiCall';
-import cn from './LayoutContainer.scss';
+import * as layoutReducer from '../store/reducers/layoutReducer';
+import * as authReducer from '../store/reducers/authReducer';
+import { nanoBarLoadingSetup } from '../core/utils/apiCall';
+import Content from '../components/layout/Content/Content';
 
-const cx = classNames.bind(cn);
 
 interface LayoutContainerProps {
   children?: React.ReactNode;
@@ -23,22 +21,17 @@ interface LayoutContainerProps {
 }
 
 const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
-  console.log('layout');
 
   const [showSidebar, setShowSideBar] = useState(false);
 
   const {
-    mobileHeader,
+    layoutReducer: { mobileHeader, editMode, spinnerLoading },
     categories,
     authInfo,
-    editMode,
-    spinnerLoading,
   } = useSelector((state: RootState) => ({
-    mobileHeader: state.layoutReducer.mobileHeader,
+    layoutReducer: state.layoutReducer,
     categories: state.categoryReducer.categories,
     authInfo: state.authReducer.authInfo,
-    editMode: state.layoutReducer.editMode,
-    spinnerLoading: state.layoutReducer.spinnerLoading,
   }));
 
   const dispatch = useDispatch();
@@ -81,12 +74,12 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
       />
       <SpinnerLoading loading={spinnerLoading}/>
       <NanoBarLoading/>
-      <div className={cx(cn.content, !editMode && cn.contentWidth)}>
+      <Content editMode={editMode}>
         {children}
-      </div>
+      </Content>
       <Footer/>
     </>
   );
 };
 
-export default LayoutContainer;
+export default React.memo(LayoutContainer);
