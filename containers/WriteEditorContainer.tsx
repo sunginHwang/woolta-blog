@@ -15,8 +15,8 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
   const [contentWriteIndex, setContentWriteIndex] = useState<number>(0);
 
   const dispatch = useDispatch();
-  const { authInfo, categories, postWriteReducer: { title, content, category } } = useSelector((state: RootState) => ({
-    authInfo: state.authReducer.authInfo,
+  const { userInfo, categories, postWriteReducer: { title, content, category } } = useSelector((state: RootState) => ({
+    userInfo: state.authReducer.userInfo,
     postWriteReducer: state.postWriteReducer,
     categories: state.categoryReducer.categories,
   }));
@@ -94,7 +94,7 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
 
   return (
     <>
-      <PostWriteHeader userInfo={authInfo}/>
+      <PostWriteHeader userInfo={userInfo}/>
       <PostWriteForm category={category}
                      categories={categories}
                      title={title}

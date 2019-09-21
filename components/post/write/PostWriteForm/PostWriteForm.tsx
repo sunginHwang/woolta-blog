@@ -47,7 +47,9 @@ const PostWriteForm: React.FC<PostWriteFormProps> = ({
                onChange={onChangeTitle}
         />
         <div className={cn.postWriteTitle__imgInsertButton}
-             onClick={onUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
+             onClick={onUploadImage}>
+          <span><MdAddToPhotos/>이미지 업로드</span>
+        </div>
       </div>
       <textarea className={cn.postWriteContent}
                 value={content}

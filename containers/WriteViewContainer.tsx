@@ -16,9 +16,9 @@ import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
   const dispatch = useDispatch();
-  const { postWriteReducer: { content, postNo, title, category, previewModal }, authInfo } = useSelector((state: RootState) => ({
+  const { postWriteReducer: { content, postNo, title, category, previewModal }, userInfo } = useSelector((state: RootState) => ({
     postWriteReducer: state.postWriteReducer,
-    authInfo: state.authReducer.authInfo,
+    userInfo: state.authReducer.userInfo,
   }));
 
   // 프리뷰 클릭
@@ -52,7 +52,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   // 글 작성 유효성 검사
   const validateUpsertPost = (title: string, content: string, category: ICategory) => {
 
-    if (authInfo.no === 0) {
+    if (userInfo.no === 0) {
       alert('로그인이 필요해요 ㅠㅠ.');
       return false;
     }

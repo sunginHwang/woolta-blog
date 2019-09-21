@@ -16,17 +16,17 @@ export const login = createStandardAction(LOGIN.INDEX)<Promise<AxiosResponse<any
 export const LOGOUT = `${prefix}LOGOUT`;
 export const logout = createStandardAction(LOGOUT)<void>();
 
-export const LOAD_AUTH_INFO: IAsyncAction = asyncActionTypeCreator(`${prefix}LOAD_AUTH_INFO`);
-export const loadAuthInfo = createStandardAction(LOAD_AUTH_INFO.INDEX)<Promise<AxiosResponse<IUserInfo>>>();
+export const LOAD_USER_INFO: IAsyncAction = asyncActionTypeCreator(`${prefix}LOAD_USER_INFO`);
+export const loaduserInfo = createStandardAction(LOAD_USER_INFO.INDEX)<Promise<AxiosResponse<IUserInfo>>>();
 
 
 
 export interface authInitType {
-  authInfo: IUserInfo
+  userInfo: IUserInfo
 }
 
 const initialState: authInitType = {
-  authInfo: {
+  userInfo: {
     no: 0,
     userId: '',
     imageUrl: '',
@@ -37,23 +37,23 @@ const initialState: authInitType = {
 export default createReducer(initialState, {
   [LOGIN.FULFILLED]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
-      draft.authInfo = action.payload.data.data;
+      draft.userInfo = action.payload.data.data;
     }),
   [LOGIN.REJECTED]: (state) =>
     produce<authInitType>(state, draft => {
-      draft.authInfo = initialState.authInfo;
+      draft.userInfo = initialState.userInfo;
     }),
   [LOGOUT]: (state) =>
     produce<authInitType>(state, draft => {
-      draft.authInfo = initialState.authInfo;
+      draft.userInfo = initialState.userInfo;
     }),
-  [LOAD_AUTH_INFO.FULFILLED]: (state, action: FluxStandardAction) =>
+  [LOAD_USER_INFO.FULFILLED]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
-      draft.authInfo = action.payload.data.data;
+      draft.userInfo = action.payload.data.data;
     }),
-  [LOAD_AUTH_INFO.REJECTED]: (state) =>
+  [LOAD_USER_INFO.REJECTED]: (state) =>
     produce<authInitType>(state, draft => {
-      draft.authInfo = initialState.authInfo;
+      draft.userInfo = initialState.userInfo;
     }),
 });
 

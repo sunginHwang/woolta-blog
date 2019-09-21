@@ -27,11 +27,11 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   const {
     layoutReducer: { mobileHeader, editMode, spinnerLoading },
     categories,
-    authInfo,
+    userInfo,
   } = useSelector((state: RootState) => ({
     layoutReducer: state.layoutReducer,
     categories: state.categoryReducer.categories,
-    authInfo: state.authReducer.authInfo,
+    userInfo: state.authReducer.userInfo,
   }));
 
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
     <>
       <SideBar
         isOpen={showSidebar}
-        authInfo={authInfo}
+        userInfo={userInfo}
         categories={categories}
         onClickLogout={onClickLogout}
         toggleSideBar={setShowSideBar}

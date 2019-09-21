@@ -10,7 +10,7 @@ interface WriteEditorProps {
   content: string;
   title: string;
   categories: ICategory[];
-  authInfo: IUserInfo;
+  userInfo: IUserInfo;
   selectedCategory: string;
   onChangeContent: (content: string) => void;
   onChangeTitle: (title: string) => void;
@@ -27,7 +27,7 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
                                                    onChangeCategories,
                                                    selectedCategory,
                                                    title,
-                                                   authInfo,
+                                                   userInfo,
                                                  }) => {
 
   const contentRef = useRef(null);
@@ -92,8 +92,8 @@ const WriteEditor: React.FC<WriteEditorProps> = ({
   return (
     <div className={cn.writeEditor}>
       <div className={cn.writeEditor__header}>
-        <img className={cn.writeEditor__header__author} src={authInfo.imageUrl}/>
-        <span className={cn.writeEditor__header__authorName}>{`작성자 : ${authInfo.userId}`}</span>
+        <img className={cn.writeEditor__header__author} src={userInfo.imageUrl}/>
+        <span className={cn.writeEditor__header__authorName}>{`작성자 : ${userInfo.userId}`}</span>
       </div>
       <div className={cn.writeEditor__selector}>
         <Select

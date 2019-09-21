@@ -26,10 +26,10 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
     !isServer && dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
   }, [categoryNo, postNo]);
 
-  const { post, loading, authInfo, categories } = useSelector((state: RootState) => ({
+  const { post, loading, userInfo, categories } = useSelector((state: RootState) => ({
     post: state.postReducer.post,
     loading: state.postReducer.loading,
-    authInfo: state.authReducer.authInfo,
+    userInfo: state.authReducer.userInfo,
     categories: state.categoryReducer.categories,
   }));
 
@@ -56,7 +56,7 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
     }
   },[post, categories]);
 
-  const isPostingUser = authInfo.no === post.writer.no;
+  const isPostingUser = userInfo.no === post.writer.no;
 
   if (loading) return <PostPlaceHolder/>;
   if (post.postNo === 0) return null;

@@ -9,7 +9,7 @@ const cx = classNames.bind(cn);
 
 interface SideBarProps {
   isOpen: boolean,
-  authInfo: IUserInfo,
+  userInfo: IUserInfo,
   categories?: ICategory[],
   onClickLogout: () => void,
   toggleSideBar: (toggle: boolean) => void;
@@ -17,7 +17,7 @@ interface SideBarProps {
 
 const SideBar: React.FC<SideBarProps> = ({
                                            isOpen,
-                                           authInfo,
+                                           userInfo,
                                            categories,
                                            onClickLogout,
                                            toggleSideBar,
@@ -49,22 +49,23 @@ const SideBar: React.FC<SideBarProps> = ({
   });
 
   const goLogout = React.useCallback(() => onClickLogout(), []);
-  const userMenu =
+
+  const renderUserMenu =
     <li>
       <a>
-        <img className={cn.userImage} src={authInfo.imageUrl}/>
-        <span>{authInfo.userId}</span>
+        <img className={cn.userImage} src={userInfo.imageUrl}/>
+        <span>{userInfo.userId}</span>
         <p className={cn.logout} onClick={goLogout}>로그아웃</p>
       </a>
     </li>;
 
 
-  const nonUserMenu =
+  const renderNonUserMenu =
     <li>
       <a onClick={onLoginClick}>로그인</a>
     </li>;
 
-  const isLogin: boolean = authInfo.userId !== '';
+  const isLogin: boolean = userInfo.userId !== '';
 
   const renderPostWriteMenu = isLogin === true &&
     <li>
@@ -75,7 +76,7 @@ const SideBar: React.FC<SideBarProps> = ({
     <>
       <div className={cx(cn.sideBar, { sideBarOpen: isOpen })}>
         <ul>
-          {isLogin ? userMenu : nonUserMenu}
+          {isLogin ? renderUserMenu : renderNonUserMenu}
           {renderPostWriteMenu}
           {renderCategories}
         </ul>

@@ -10,7 +10,7 @@ export const userLogin =  (id: string, password: string) => {
   return apiCall.post<void>(`${BLOG_API}/user/login`,data);
 };
 
-export const fetchAuthInfo =  () => {
+export const fetchUserInfo =  () => {
   return apiCall.get<IUserInfo>(`${BLOG_API}/user/check/jwt`);
 };
 
