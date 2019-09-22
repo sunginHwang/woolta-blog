@@ -39,4 +39,4 @@ Login.getInitialProps = async ({}) => {
   return {};
 };
 
-export default Login;
+export default React.memo(Login);

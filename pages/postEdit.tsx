@@ -9,10 +9,8 @@ import { toggleEditMode } from '../store/reducers/layoutReducer';
 import WriteView from '../components/post/write/WriteView/WriteView';
 import useTitle from '../core/hooks/useTitle';
 
-interface PostEditProps {
-}
 
-const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
+const PostEdit: NextPageCustom<{}> = ({}) => {
 
   const [interval, settingInterval] = useState(null);
 
@@ -53,7 +51,6 @@ const PostEdit: NextPageCustom<PostEditProps> = ({}) => {
     }
   };
 
-
   return (
     <WriteView/>
   );
@@ -63,4 +60,4 @@ PostEdit.getInitialProps = async ({}) => {
   return {};
 };
 
-export default PostEdit;
+export default React.memo(PostEdit);

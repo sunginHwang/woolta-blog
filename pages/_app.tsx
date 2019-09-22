@@ -33,7 +33,7 @@ const App = (props: Props) => {
 
 
 App.getInitialProps = async ({Component, ctx }) => {
-  const pageProps = await Component.getInitialProps(ctx);
+  const pageProps = await Component.type.getInitialProps(ctx);
   ctx.isServer && await ctx.store.dispatch(getCategories(fetchCategories()));
   return { pageProps };
 };

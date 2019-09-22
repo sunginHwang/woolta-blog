@@ -31,4 +31,4 @@ Index.getInitialProps = async ({ store }) => {
   return {};
 };
 
-export default Index;
+export default React.memo(Index);

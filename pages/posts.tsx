@@ -50,4 +50,4 @@ Posts.getInitialProps = async ({ store, query, isServer }) => {
   return { categoryNo, isServer };
 };
 
-export default Posts;
+export default React.memo(Posts);
