@@ -17,7 +17,7 @@ export const fetchPosts = (categoryNo) => {
 };
 
 
-export const fetchPostInfo = (categoryNo, postNo) => {
+export const fetchPostInfo = ({categoryNo, postNo}) => {
   return apiCall.get<IPost>(`${BLOG_API}/post/categories/${categoryNo}/posts/${postNo}`);
 };
 

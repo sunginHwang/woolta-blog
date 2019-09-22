@@ -5,7 +5,7 @@ import PostContent from '../components/post/detail/PostContent/PostContent';
 import PostSeoHeader from '../components/post/detail/PostSeoHeader/PostSeoHeader';
 import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlaceHolder';
 import { deletePost, getPost } from '../store/reducers/postReducer';
-import { delPost, fetchPostInfo, fetchPosts } from '../core/api/blogApi';
+import { delPost, fetchPosts } from '../core/api/blogApi';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
 import { goPostEditPage, goPostListPage } from '../core/utils/routeUtil';
 import { RootState } from '../types/redux/RootState';
@@ -23,8 +23,8 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    !isServer && dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
-  }, [categoryNo, postNo]);
+    !isServer && dispatch(getPost({ categoryNo, postNo }));
+  }, [getPost]);
 
   const { post, loading, userInfo, categories } = useSelector((state: RootState) => ({
     post: state.postReducer.post,
@@ -40,10 +40,10 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
 
     await dispatch(settingPostInfo({ postNo, title, content, category }));
     goPostEditPage();
-  },[post, categories]);
+  }, [post, categories]);
 
   /*게시글 삭제*/
-  const onDeletePost = useCallback( async () => {
+  const onDeletePost = useCallback(async () => {
     const { postNo, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
@@ -51,10 +51,10 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
       await dispatch(deletePost(delPost(category.value, postNo)));
       await dispatch(getPosts(fetchPosts(category.value)));
       goPostListPage(category.value);
-    }catch (e) {
+    } catch (e) {
       alert('삭제 실패');
     }
-  },[post, categories]);
+  }, [post, categories]);
 
   const isPostingUser = userInfo.no === post.writer.no;
 
@@ -80,7 +80,7 @@ post.getInitialProps = async ({ store, query, isServer }) => {
   const categoryNo = Number(query.categoryNo);
   const postNo = Number(query.postNo);
 
-  isServer && await store.dispatch(getPost(fetchPostInfo(categoryNo, postNo)));
+  isServer && await store.dispatch(getPost({ categoryNo, postNo }));
 
   return { categoryNo, postNo, isServer };
 };

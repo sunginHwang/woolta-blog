@@ -1,6 +1,8 @@
 export default interface IAsyncAction {
-    INDEX: string,
+    INDEX?: string,
     PENDING: string;
-    FULFILLED: string;
-    REJECTED: string;
+    FULFILLED?: string;
+    REJECTED?: string;
+    SUCCESS?: string;
+    FAILURE?: string;
 }
