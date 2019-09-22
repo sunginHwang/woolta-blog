@@ -5,7 +5,6 @@ import PostContent from '../components/post/detail/PostContent/PostContent';
 import PostSeoHeader from '../components/post/detail/PostSeoHeader/PostSeoHeader';
 import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlaceHolder';
 import { deletePost, getPost } from '../store/reducers/postReducer';
-import { delPost, fetchPosts } from '../core/api/blogApi';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
 import { goPostEditPage, goPostListPage } from '../core/utils/routeUtil';
 import { RootState } from '../types/redux/RootState';
@@ -48,8 +47,8 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
     const category = categories.find((c) => c.label === categoryLabel);
 
     try {
-      await dispatch(deletePost(delPost(category.value, postNo)));
-      await dispatch(getPosts(fetchPosts(category.value)));
+      await dispatch(deletePost({ categoryNo: category.value, postNo }));
+      await dispatch(getPosts(category.value));
       goPostListPage(category.value);
     } catch (e) {
       alert('삭제 실패');

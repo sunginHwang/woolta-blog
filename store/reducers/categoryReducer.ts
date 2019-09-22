@@ -1,17 +1,17 @@
-import { createReducer, createStandardAction } from 'typesafe-actions';
-import { asyncActionTypeCreator } from '../../core/utils/reduxUtil';
+import { createReducer } from 'typesafe-actions';
+import { apiRequestThunk, asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 
 import { produce } from 'immer';
 import { ICategory } from '../../types/post/ICategory';
 import IAsyncAction from '../../types/redux/IAsyncAction';
 import { FluxStandardAction } from 'redux-promise-middleware';
-import { AxiosResponse } from 'axios';
+import { fetchCategories } from '../../core/api/blogApi';
 
 const prefix: string = 'CATEGORY_';
 
 
 export const CATEGORIES: IAsyncAction = asyncActionTypeCreator(`${prefix}FETCH_CATEGORIES`);
-export const getCategories = createStandardAction(CATEGORIES.INDEX)<Promise<AxiosResponse<ICategory[]>>>();
+export const getCategories = apiRequestThunk(CATEGORIES, fetchCategories);
 
 export interface categoryInitType {
   categories: ICategory[]
@@ -22,11 +22,11 @@ const initialState: categoryInitType = {
 };
 
 export default createReducer(initialState, {
-  [CATEGORIES.FULFILLED]: (state, action: FluxStandardAction) =>
+  [CATEGORIES.SUCCESS]: (state, action: FluxStandardAction) =>
     produce<categoryInitType>(state, draft => {
-      draft.categories = action.payload.data.data;
+      draft.categories = action.payload;
     }),
-  [CATEGORIES.REJECTED]: (state) =>
+  [CATEGORIES.FAILURE]: (state) =>
     produce<categoryInitType>(state, draft => {
       draft.categories = initialState.categories;
     }),

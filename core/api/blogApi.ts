@@ -8,7 +8,7 @@ export const fetchCategories = () => {
   return apiCall.get<ICategory[]>(`${BLOG_API}/post/categories`);
 };
 
-export const fetchRecentPostList = () => {
+export const fetchRecentPosts = () => {
   return apiCall.get<IPost[]>(`${BLOG_API}/post/categories/new/posts`);
 };
 
@@ -21,7 +21,7 @@ export const fetchPostInfo = ({categoryNo, postNo}) => {
   return apiCall.get<IPost>(`${BLOG_API}/post/categories/${categoryNo}/posts/${postNo}`);
 };
 
-export const delPost = (categoryNo, postNo) => {
+export const delPost = ({categoryNo, postNo}) => {
   return apiCall.delete(`${BLOG_API}/post`, { data: { categoryNo, postNo } });
 };
 

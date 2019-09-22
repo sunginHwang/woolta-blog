@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { initPostWrite, toggleOriginPreviewModal } from '../store/reducers/postWriteReducer';
 import { ICategory } from '../types/post/ICategory';
-import { fetchPosts, upsertPostApi } from '../core/api/blogApi';
+import { upsertPostApi } from '../core/api/blogApi';
 import OriginPreview from '../components/post/write/OriginPreview/OriginPreview';
 import { TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { AxiosResponse } from 'axios';
@@ -42,7 +42,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
       const res: AxiosResponse<IApiRes<IUpsertPostRes>> = await upsertPostApi(upsertData);
       localStorage.removeItem(TEMP_POST_AUTO_SAVE);
       await dispatch(initPostWrite());
-      await dispatch(getPosts(fetchPosts(res.data.data.categoryNo)));
+      await dispatch(getPosts(res.data.data.categoryNo));
       goPostDetailPage(res.data.data.categoryNo, res.data.data.postNo);
     } catch (e) {
       alert(e);

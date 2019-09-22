@@ -3,7 +3,6 @@ import { NextPageCustom } from '../types/next/NextPageCustom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
-import { fetchPosts } from '../core/api/blogApi';
 import { getPosts } from '../store/reducers/postsReducer';
 import PostLayout from '../components/post/list/PostLayout/PostLayout';
 import useTitle from '../core/hooks/useTitle';
@@ -25,7 +24,7 @@ const Posts: NextPageCustom<PostsProps> = ({ categoryNo, isServer }) => {
   const setTitle = useTitle();
 
   useEffect(() => {
-    !isServer && dispatch(getPosts(fetchPosts(categoryNo)));
+    !isServer && dispatch(getPosts(categoryNo));
     changeHeaderTitle();
   }, [categoryNo]);
 
@@ -46,7 +45,7 @@ const Posts: NextPageCustom<PostsProps> = ({ categoryNo, isServer }) => {
 
 Posts.getInitialProps = async ({ store, query, isServer }) => {
   const categoryNo = Number(query.categoryNo);
-  isServer && await store.dispatch(getPosts(fetchPosts(categoryNo)));
+  isServer && await store.dispatch(getPosts(categoryNo));
   return { categoryNo, isServer };
 };
 

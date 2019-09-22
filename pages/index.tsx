@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getRecentPosts } from '../store/reducers/postsReducer';
-import { fetchRecentPostList } from '../core/api/blogApi';
 import IntroPage from '../components/main/IntroPage/IntroPage';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder/PostsPlaceHolder';
 import PostLayout from '../components/post/list/PostLayout/PostLayout';
@@ -27,7 +26,7 @@ const Index: NextPageCustom<{}> = () => {
 };
 
 Index.getInitialProps = async ({ store }) => {
-  await store.dispatch(getRecentPosts(fetchRecentPostList()));
+  await store.dispatch(getRecentPosts());
   return {};
 };
 

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { ACCESS_TOKEN } from '../core/constants';
 import { useDispatch } from 'react-redux';
-import { loaduserInfo } from '../store/reducers/authReducer';
-import { fetchUserInfo } from '../core/api/AuthApi';
+import { loadUserInfo } from '../store/reducers/authReducer';
 
 const UserInfoLoadContainer: React.FC<{}> = () => {
 
@@ -10,12 +9,12 @@ const UserInfoLoadContainer: React.FC<{}> = () => {
 
   const checkUserInfo = () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    accessToken && dispatch(loaduserInfo(fetchUserInfo()));
+    accessToken && dispatch(loadUserInfo());
   };
 
-  useEffect(checkUserInfo,[]);
+  useEffect(checkUserInfo, []);
 
- return null;
+  return null;
 };
 
 export default React.memo(UserInfoLoadContainer);

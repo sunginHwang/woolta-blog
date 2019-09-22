@@ -1,16 +1,15 @@
 import { createReducer, createStandardAction } from 'typesafe-actions';
-import { apiRequestThunk, asyncActionTypeCreator, asyncActionTypeCreator2 } from '../../core/utils/reduxUtil';
+import { apiRequestThunk, asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 
 import { produce } from 'immer';
 import IAsyncAction from '../../types/redux/IAsyncAction';
-import { AxiosResponse } from 'axios';
 import { IPost } from '../../types/post/IPost';
-import { fetchPostInfo } from '../../core/api/blogApi';
+import { delPost, fetchPostInfo } from '../../core/api/blogApi';
 
 const prefix: string = 'POST_';
 
-const GET_POST: IAsyncAction = asyncActionTypeCreator2(`${prefix}GET_POST`);
+const GET_POST: IAsyncAction = asyncActionTypeCreator(`${prefix}GET_POST`);
 const DELETE_POST: IAsyncAction = asyncActionTypeCreator(`${prefix}DELETE_POST`);
 const POST_INFO_INITIALIZE: string = `${prefix}POST_INFO_INITIALIZE`;
 const MODIFY_POST: string = `${prefix}MODIFY_POST`;
@@ -18,7 +17,7 @@ const MODIFY_POST: string = `${prefix}MODIFY_POST`;
 export const modifyPost = createStandardAction(MODIFY_POST)<void>();
 export const postInfoInitialize = createStandardAction(POST_INFO_INITIALIZE)<void>();
 export const getPost = apiRequestThunk(GET_POST, fetchPostInfo);
-export const deletePost = createStandardAction(DELETE_POST.INDEX)<Promise<AxiosResponse<void>>>();
+export const deletePost = apiRequestThunk(DELETE_POST, delPost);
 
 
 export interface postInitType {
@@ -62,12 +61,12 @@ export default createReducer(initialState, {
     produce<postInitType>(state, draft => {
       draft.loading = true;
     }),
-  [DELETE_POST.FULFILLED]: (state) =>
+  [DELETE_POST.SUCCESS]: (state) =>
     produce<postInitType>(state, draft => {
       draft.loading = false;
       draft.post = initialState.post;
     }),
-  [DELETE_POST.REJECTED]: (state) =>
+  [DELETE_POST.FAILURE]: (state) =>
     produce<postInitType>(state, draft => {
       draft.loading = false;
     }),
