@@ -1,0 +1,37 @@
+.notificationBar{
+  position: fixed;
+  bottom: .5rem;
+  right: .5rem;
+  color:#fff;
+  background-color: #6e827f;
+  padding: .5rem 1rem;
+  border-radius: .8rem;
+  font-size: 1.8rem;
+  opacity:.95;
+  min-height: 10rem;
+  min-width: 30rem;
+  display: flex;
+  align-items: center;
+
+  &__title{
+    margin-left: 1rem;
+    font-weight:bold;
+  }
+
+
+}
+
+.show{
+  animation: slide-in-from-right .5s forwards;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+
+  }
+  to {
+    transform: translateX(0);
+
+  }
+}
