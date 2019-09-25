@@ -10,9 +10,11 @@ import Footer from '../components/layout/Footer/Footer';
 import SideBar from '../components/layout/SideBar/SideBar';
 
 import * as layoutReducer from '../store/reducers/layoutReducer';
+import { closeToast } from '../store/reducers/layoutReducer';
 import * as authReducer from '../store/reducers/authReducer';
 import { nanoBarLoadingSetup } from '../core/utils/apiCall';
 import Content from '../components/layout/Content/Content';
+import NotificationBar from '../components/common/notification/NotificationBar/NotificationBar';
 
 
 interface LayoutContainerProps {
@@ -25,7 +27,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   const [showSidebar, setShowSideBar] = useState(false);
 
   const {
-    layoutReducer: { mobileHeader, editMode, spinnerLoading },
+    layoutReducer: { mobileHeader, editMode, spinnerLoading, toast },
     categories,
     userInfo,
   } = useSelector((state: RootState) => ({
@@ -41,10 +43,14 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
     onDetectMobileScrollUpAndDown();
   }, []);
 
+  useEffect(() => {
+    toast.isShow && setTimeout(() => dispatch(closeToast()), 2000);
+  }, [toast.isShow]);
+
 // 모바일 스크롤 헤더 이벤트
   const onDetectMobileScrollUpAndDown = React.useCallback(() => {
     let lastScroll: number = 0;
-    console.log('onDetectMobileScrollUpAndDown');
+
     window.onscroll = throttle(() => {
       if (!showSidebar) {
         const currentScroll: number = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
@@ -77,6 +83,9 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
       <Content editMode={editMode}>
         {children}
       </Content>
+      <NotificationBar isShow={toast.isShow}
+                       message={toast.message}
+      />
       <Footer/>
     </>
   );

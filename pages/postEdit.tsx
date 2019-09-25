@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NextPageCustom } from '../types/next/NextPageCustom';
 import { FIVE_MIN, TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { confirm } from '../core/utils/dialogUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
-import { toggleEditMode } from '../store/reducers/layoutReducer';
+import { showToast, toggleEditMode } from '../store/reducers/layoutReducer';
 import WriteView from '../components/post/write/WriteView/WriteView';
 import useTitle from '../core/hooks/useTitle';
 
 
 const PostEdit: NextPageCustom<{}> = ({}) => {
 
-  const [interval, settingInterval] = useState(null);
+  const intervalRef = React.useRef(null);
 
   const { postNo, title, content, category } = useSelector((state: RootState) => state.postWriteReducer);
 
@@ -21,18 +21,33 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
 
   useEffect(() => {
     dispatch(toggleEditMode(true));
-    startAutoSave();
-
     isLoadTempPost() && loadTempPost();
-
-    return () => {
-      dispatch(toggleEditMode(false));
-      stopAutoSave();
-    };
+    return () => dispatch(toggleEditMode(false));
   }, []);
 
-  const startAutoSave = () => settingInterval(setInterval(autoSaveTempPost, FIVE_MIN));
-  const stopAutoSave = () => settingInterval(clearInterval(interval));
+  useEffect(() => {
+    startAutoSave();
+    return () => stopAutoSave();
+  }, [title, content, category]);
+
+  const startAutoSave = () => {
+    if (intervalRef.current) {
+      return;
+    }
+
+    intervalRef.current = setInterval(() => {
+      if (content !== '') {
+        const tempPost = { postNo, category, title, content };
+        localStorage.setItem(TEMP_POST_AUTO_SAVE, JSON.stringify(tempPost));
+        dispatch(showToast('임시저장 되었습니다.'));
+      }
+    }, FIVE_MIN);
+  };
+
+  const stopAutoSave = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+  };
 
   const isLoadTempPost = () => {
     const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
@@ -42,13 +57,6 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   const loadTempPost = () => {
     const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
     confirm('임시저장된 정보를 불러오시겠습니까?').then(result => result && dispatch(settingPostInfo(tempPost)));
-  };
-
-  const autoSaveTempPost = () => {
-    if (content !== '') {
-      const tempPost = { postNo, category, title, content };
-      localStorage.setItem(TEMP_POST_AUTO_SAVE, JSON.stringify(tempPost));
-    }
   };
 
   return (
