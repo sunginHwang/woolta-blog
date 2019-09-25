@@ -12,6 +12,7 @@ import { IUpsertPostRes } from '../types/post/IUpsertPostRes';
 import { getPosts } from '../store/reducers/postsReducer';
 import { goPostDetailPage } from '../core/utils/routeUtil';
 import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
+import { showToast } from '../store/reducers/layoutReducer';
 
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
@@ -43,6 +44,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
       localStorage.removeItem(TEMP_POST_AUTO_SAVE);
       await dispatch(initPostWrite());
       await dispatch(getPosts(res.data.data.categoryNo));
+      await dispatch(showToast(`글 ${isEditMode ? '수정' : '생성'}이 완료되었습니다.`));
       goPostDetailPage(res.data.data.categoryNo, res.data.data.postNo);
     } catch (e) {
       alert(e);

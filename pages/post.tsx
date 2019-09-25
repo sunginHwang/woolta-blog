@@ -10,6 +10,7 @@ import { goPostEditPage, goPostListPage } from '../core/utils/routeUtil';
 import { RootState } from '../types/redux/RootState';
 import { NextPageCustom } from '../types/next/NextPageCustom';
 import { getPosts } from '../store/reducers/postsReducer';
+import { showToast } from '../store/reducers/layoutReducer';
 
 interface PostProps {
   categoryNo: number;
@@ -49,6 +50,7 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
     try {
       await dispatch(deletePost({ categoryNo: category.value, postNo }));
       await dispatch(getPosts(category.value));
+      await dispatch(showToast('글 삭제가 완료되었습니다.'));
       goPostListPage(category.value);
     } catch (e) {
       alert('삭제 실패');
