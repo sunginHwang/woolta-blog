@@ -8,14 +8,14 @@ interface PostContentProps {
   post: IPost;
   editAuth: boolean;
   onDeletePost: () => void;
-  onModifyPost: () => void;
+  goModifyPostPage: () => void;
 }
 
 const PostContent: React.FC<PostContentProps> = React.memo(({
                                                    post,
                                                    editAuth,
                                                    onDeletePost,
-                                                   onModifyPost,
+                                                              goModifyPostPage,
                                                  }) =>{
 
   console.log('postContent');
@@ -28,7 +28,7 @@ const PostContent: React.FC<PostContentProps> = React.memo(({
         categoryLabel={post.categoryLabel}
         createdAt={post.createdAt}
         editAuth={editAuth}
-        onModifyPost={onModifyPost}
+        goModifyPostPage={goModifyPostPage}
         onDeletePost={onDeletePost}/>
     </div>
     <div className={cn.postContent__content}>

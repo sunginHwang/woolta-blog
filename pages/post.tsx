@@ -34,7 +34,7 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
   }));
 
   /*게시글 수정*/
-  const onModifyPost = useCallback(async () => {
+  const goModifyPostPage = useCallback(async () => {
     const { postNo, title, content, categoryLabel } = post;
     const category = categories.find((c) => c.label === categoryLabel);
 
@@ -71,7 +71,7 @@ const post: NextPageCustom<PostProps> = ({ categoryNo, postNo, isServer }) => {
       <PostContent
         post={post}
         editAuth={isPostingUser}
-        onModifyPost={onModifyPost}
+        goModifyPostPage={goModifyPostPage}
         onDeletePost={onDeletePost}/>
     </>
   );

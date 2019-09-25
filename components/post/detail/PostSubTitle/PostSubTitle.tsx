@@ -6,7 +6,7 @@ interface PostSubTitleProps {
   writer: IWriter;
   categoryLabel: string
   editAuth: boolean
-  onModifyPost: () => void
+  goModifyPostPage: () => void
   onDeletePost: () => void
   createdAt: string
 }
@@ -15,14 +15,14 @@ const PostSubTitle: React.FC<PostSubTitleProps> = ({
                                                      writer,
                                                      categoryLabel,
                                                      editAuth,
-                                                     onModifyPost,
+                                                     goModifyPostPage,
                                                      onDeletePost,
                                                      createdAt,
                                                    }) => {
   const renderEditPost = editAuth &&
     <div>
       <div className={cn.postSubTitle__button}
-           onClick={onModifyPost}>수정
+           onClick={goModifyPostPage}>수정
       </div>
       <div className={cn.postSubTitle__button}
            onClick={onDeletePost}>삭제
