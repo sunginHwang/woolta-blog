@@ -30,7 +30,6 @@ class MyDocument extends Document {
             <meta name='viewport'
                   content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover'/>
             <meta name="google-site-verification" content="mHu43Zp59l_qzcOGtYILaM-tIH-mPKepPuYxRwbIqbs"/>
-            <title>woolta</title>
             <link rel="stylesheet"
                   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/atom-one-dark.min.css"/>
             <link
