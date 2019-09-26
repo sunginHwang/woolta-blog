@@ -14,7 +14,7 @@ const Content: React.FC<ContentProps> = ({
                                            children,
                                          }) => {
   return (
-    <div className={cx(cn.content, !editMode && cn.contentWidth)}>
+    <div className={cx(cn.content, editMode && cn.editMode)}>
       {children}
     </div>
   );

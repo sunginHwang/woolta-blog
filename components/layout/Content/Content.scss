@@ -4,15 +4,17 @@
 
 .content{
   background-color: $white-color !important;
-  width: 100%;
   height: $main-content-height;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100rem;
   padding: $main-header-height+2rem 0;
 
 }
 
-.contentWidth{
-  max-width: 100rem;
+.editMode{
+  min-width: 100%;
+  margin-top: 6rem;
+  padding: 0;
 }

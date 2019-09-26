@@ -86,7 +86,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
       <NotificationBar isShow={toast.isShow}
                        message={toast.message}
       />
-      <Footer/>
+      <Footer editMode={editMode}/>
     </>
   );
 };
