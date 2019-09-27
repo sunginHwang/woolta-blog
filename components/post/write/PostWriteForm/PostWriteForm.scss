@@ -5,7 +5,7 @@
   margin-bottom: 2rem;
 }
 
-.postWriteTitle {
+.PostWriteFormHeader {
   display: flex;
   height: 6rem;
   margin-bottom: 2rem;
@@ -13,16 +13,27 @@
   justify-content: space-between;
 
   input {
-    width: 75%;
+    width: 70%;
     border: none;
     outline-style: none;
     font-size: 2.4rem;
   }
 
-  &__imgInsertButton {
-    width: 20%;
-    float: right;
-    @extend .main-button
+  &__right{
+    display:flex;
+
+    &__selector{
+      width:15rem;
+    }
+
+    &__imgInsert {
+      margin-left: 2rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .main-button
+    }
   }
 }
 
@@ -30,7 +41,7 @@
   width: 100%;
   display: inline-block;
   outline-style: none;
-  height: 77rem - 18.8rem;
+  height: 100%;
   font-size: 1.6rem;
   border: none;
   resize: none;

@@ -34,21 +34,24 @@ const PostWriteForm: React.FC<PostWriteFormProps> = ({
 
   return (
     <>
-      <div className={cn.postWriteSelector}>
-        <Select
-          value={category}
-          onChange={onChangeCategories}
-          options={categories}/>
-      </div>
-      <div className={cn.postWriteTitle}>
+      <div className={cn.PostWriteFormHeader}>
         <input type='text'
                value={title}
                placeholder='제목을 입력해 주세요.'
                onChange={onChangeTitle}
         />
-        <div className={cn.postWriteTitle__imgInsertButton}
-             onClick={onUploadImage}>
-          <span><MdAddToPhotos/>이미지 업로드</span>
+        <div className={cn.PostWriteFormHeader__right}>
+          <div className={cn.PostWriteFormHeader__right__selector}>
+            <Select
+              value={category}
+              onChange={onChangeCategories}
+              options={categories}
+            />
+          </div>
+          <span className={cn.PostWriteFormHeader__right__imgInsert}
+                onClick={onUploadImage}>
+            <MdAddToPhotos/>
+          </span>
         </div>
       </div>
       <textarea className={cn.postWriteContent}

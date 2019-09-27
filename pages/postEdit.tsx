@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { NextPageCustom } from '../types/next/NextPageCustom';
 import { FIVE_MIN, TEMP_POST_AUTO_SAVE } from '../core/constants';
-import { confirm } from '../core/utils/dialogUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { settingPostInfo } from '../store/reducers/postWriteReducer';
 import { showToast, toggleEditMode } from '../store/reducers/layoutReducer';
 import WriteView from '../components/post/write/WriteView/WriteView';
 import useTitle from '../core/hooks/useTitle';
@@ -55,8 +53,8 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   };
 
   const loadTempPost = () => {
-    const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
-    confirm('임시저장된 정보를 불러오시겠습니까?').then(result => result && dispatch(settingPostInfo(tempPost)));
+   /* const tempPost = JSON.parse(localStorage.getItem(TEMP_POST_AUTO_SAVE));
+    confirm('임시저장된 정보를 불러오시겠습니까?').then(result => result && dispatch(settingPostInfo(tempPost)));*/
   };
 
   return (
