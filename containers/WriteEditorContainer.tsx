@@ -7,7 +7,6 @@ import { setCategory, setContent, setTitle } from '../store/reducers/postWriteRe
 import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
 import * as FileApi from '../core/api/FileApi';
 import { convertImageToCodeImage } from '../core/utils/imageUtil';
-import PostWriteHeader from '../components/post/write/PostWriteHeader/PostWriteHeader';
 import PostWriteForm from '../components/post/write/PostWriteForm/PostWriteForm';
 
 
@@ -94,7 +93,6 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
 
   return (
     <>
-      <PostWriteHeader userInfo={userInfo}/>
       <PostWriteForm category={category}
                      categories={categories}
                      title={title}
