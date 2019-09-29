@@ -3,31 +3,25 @@
 
 $header-height: 6rem;
 
-.writeView__header {
-  height: $header-height;
+.writeViewer{
 
-  &__title {
-    color: $main-theme-color;
-    font-size: 3rem;
+  &__title{
+    font-size: 3.2rem;
     font-weight: bold;
+    color: $main-theme-color;
+    padding-bottom: .5rem;
+    border-bottom: .2rem solid $custom-gray-color;
+    margin-bottom: 3rem;
   }
 
-  &__saveButton {
-    float: right;
-    text-align: center;
-    font-size: 1.6rem;
-    width: 8rem;
-    @extend .main-button;
+  &__content{
+    width: 100%;
+    display: inline-block;
+    outline-style: none;
+    height: 77rem - $header-height;
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
   }
-}
-
-.writeView__content{
-  width: 100%;
-  display: inline-block;
-  outline-style: none;
-  height: 77rem - $header-height;
-  border: none;
-  resize: none;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
 }

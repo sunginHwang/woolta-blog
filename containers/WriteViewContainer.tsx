@@ -8,7 +8,7 @@ import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
 const WriteViewContainer: React.FC<{}> = ({}) => {
 
   const dispatch = useDispatch();
-  const { postWriteReducer: { content, previewModal } } = useSelector((state: RootState) => ({
+  const { postWriteReducer: { content, title, previewModal } } = useSelector((state: RootState) => ({
     postWriteReducer: state.postWriteReducer,
     userInfo: state.authReducer.userInfo,
   }));
@@ -18,7 +18,8 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
 
   return (
     <>
-      <WriteViewer content={content}
+      <WriteViewer title={title}
+                   content={content}
                    onShowOriginPreview={onShowOriginPreview}
       />
       <OriginPreview

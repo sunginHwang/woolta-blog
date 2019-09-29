@@ -3,20 +3,27 @@ import cn from './WriteViewer.scss';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
 
 interface WriteViewerProps {
+  title: string;
   content: string;
   onShowOriginPreview: () => void;
 }
 
 const WriteViewer: React.FC<WriteViewerProps> = ({
-                                                   onShowOriginPreview,
+                                                   title,
                                                    content,
+                                                   onShowOriginPreview,
                                                  }) => {
   return (
     <>
-      <div className={cn.writeView__content} onClick={onShowOriginPreview}>
-        <MarkDownView content={content}
-                      skipHtml={false}
-                      escapeHtml={false}/>
+      <div className={cn.writeViewer} onClick={onShowOriginPreview}>
+        <h2 className={cn.writeViewer__title}>
+          {title}
+        </h2>
+        <div className={cn.writeViewer__content}>
+          <MarkDownView content={content}
+                        skipHtml={false}
+                        escapeHtml={false}/>
+        </div>
       </div>
     </>
   );
