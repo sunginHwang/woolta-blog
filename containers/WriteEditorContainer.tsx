@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ICategory } from '../types/post/ICategory';
 import { addElement } from '../core/utils/domUtil';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { setCategory, setContent, setTitle } from '../store/reducers/postWriteReducer';
+import { setContent } from '../store/reducers/postWriteReducer';
 import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
 import * as FileApi from '../core/api/FileApi';
 import { convertImageToCodeImage } from '../core/utils/imageUtil';
@@ -14,15 +13,12 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
   const [contentWriteIndex, setContentWriteIndex] = useState<number>(0);
 
   const dispatch = useDispatch();
-  const { userInfo, categories, postWriteReducer: { title, content, category } } = useSelector((state: RootState) => ({
-    userInfo: state.authReducer.userInfo,
-    postWriteReducer: state.postWriteReducer,
-    categories: state.categoryReducer.categories,
-  }));
+  const content = useSelector((state: RootState) => state.postWriteReducer.content);
 
   useEffect(() => {
     window && window.addEventListener('drop', onDnd); //dnd Event
     (document && document.body) && document.body.addEventListener('paste', onPaste);// paste Event
+
     return () => {
       window && window.removeEventListener('drop', onDnd);
       (document && document.body) && document.body.removeEventListener('paste', onPaste);
@@ -82,8 +78,6 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
   };
 
   const addImage = (image, addIndex) => dispatch(setContent(content.slice(0, addIndex) + image + content.slice(addIndex)));
-  const onChangeCategories = useCallback((selectedCategory: ICategory) => dispatch(setCategory(selectedCategory)), [dispatch]);
-  const onChangeTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value)), [dispatch]);
 
   const onChangeContent = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setContent(e.target.value));
@@ -92,18 +86,10 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
 
 
   return (
-    <>
-      <PostWriteForm category={category}
-                     categories={categories}
-                     title={title}
-                     content={content}
-                     onUploadImage={onUploadImage}
-                     onChangeTitle={onChangeTitle}
-                     onChangeContent={onChangeContent}
-                     onChangeCategories={onChangeCategories}
-                     onChangeContentIndex={setContentWriteIndex}
-      />
-    </>
+    <PostWriteForm content={content}
+                   onChangeContent={onChangeContent}
+                   onChangeContentIndex={setContentWriteIndex}
+    />
   );
 };
 

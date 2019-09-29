@@ -7,55 +7,12 @@ $wrapper-height: 77rem;
   display: flex;
   flex-direction: column;
 
-  &__header {
+  &__header{
     width: 100%;
     height: $main-header-height;
     border-bottom: .2rem solid $custom-gray-color;
     display: flex;
     justify-content: space-between;
-
-    &__left {
-      flex: 1 1;
-      background-color: #56b6c2;
-      margin: 1rem 0 1rem 2rem;
-
-      input {
-        width: 100%;
-        height: 100%;
-        border: none;
-        color: $main-theme-color;
-        outline-style: none;
-        font-size: 2.4rem;
-      }
-    }
-
-    &__right {
-      height: 100%;
-      display: flex;
-      margin-right: 2rem;
-
-      &__select {
-        display: flex;
-        align-items: center;
-        width: 15rem;
-      }
-
-      &__button {
-        display: flex;
-        font-size: 3rem;
-        font-weight: 600;
-        height: 100%;
-        width: 10rem;
-        cursor: pointer;
-        color: $main-theme-color;
-        align-items: center;
-
-        span {
-          font-size: 1.6rem;
-          margin: .15rem 0 0 .5rem;
-        }
-      }
-    }
   }
 
   &__content {
