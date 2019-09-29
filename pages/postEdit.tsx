@@ -12,7 +12,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
 
   const intervalRef = React.useRef(null);
 
-  const { postNo, title, content, category } = useSelector((state: RootState) => state.postWriteReducer);
+  const { postNo, title, content, category, previewModal } = useSelector((state: RootState) => state.postWriteReducer);
 
   const dispatch = useDispatch();
   useTitle('게시글 작성');
@@ -58,7 +58,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   };
 
   return (
-    <WriteView/>
+    <WriteView isPreview={previewModal}/>
   );
 };
 

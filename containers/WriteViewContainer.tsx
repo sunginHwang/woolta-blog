@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { toggleOriginPreviewModal } from '../store/reducers/postWriteReducer';
-import OriginPreview from '../components/post/write/OriginPreview/OriginPreview';
 import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
 
 const WriteViewContainer: React.FC<{}> = ({}) => {
@@ -17,17 +16,10 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   const onShowOriginPreview = useCallback(() => dispatch(toggleOriginPreviewModal(!previewModal)), [previewModal]);
 
   return (
-    <>
-      <WriteViewer title={title}
-                   content={content}
-                   onShowOriginPreview={onShowOriginPreview}
-      />
-      <OriginPreview
-        content={content}
-        onToggleView={onShowOriginPreview}
-        visible={previewModal}
-      />
-    </>
+    <WriteViewer title={title}
+                 content={content}
+                 onShowOriginPreview={onShowOriginPreview}
+    />
   );
 };
 
