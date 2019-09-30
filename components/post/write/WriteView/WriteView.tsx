@@ -21,11 +21,14 @@ const WriteView: React.FC<WriteViewProps> = ({
       <WriteEditorContainer/>
     </div>;
 
+  const renderHeader = !isPreview &&
+    <div className={cn.write__header}>
+      <WriteHeaderContainer/>
+    </div>;
+
   return (
     <div className={cn.write}>
-      <div className={cn.write__header}>
-        <WriteHeaderContainer/>
-      </div>
+      {renderHeader}
       <div className={cn.write__content}>
         {renderEditor}
         <div className={cx(cn.write__content__preview, isPreview && cn.fullSize)}>

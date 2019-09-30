@@ -49,6 +49,10 @@ $wrapper-height: 77rem;
 }
 
 .fullSize{
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
