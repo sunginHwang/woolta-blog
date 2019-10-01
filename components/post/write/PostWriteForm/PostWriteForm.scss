@@ -38,13 +38,12 @@
 }
 
 .postWriteContent {
-  width: 100%;
+  padding: 2rem;
+  width: calc(100% - 4rem);
   display: inline-block;
   outline-style: none;
-  height: 100%;
+  height: calc(100% - 4rem);
   font-size: 1.6rem;
   border: none;
   resize: none;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
 }

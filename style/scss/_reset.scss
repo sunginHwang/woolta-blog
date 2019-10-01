@@ -23,13 +23,15 @@ html {
 
 html,
 body {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
 }
 
 ol, ul, li {
@@ -37,6 +39,11 @@ ol, ul, li {
   margin: 0;
 }
 
-a{
+a {
   text-decoration: none;
+}
+
+body > div:first-child,
+#__next {
+  height: 100%;
 }

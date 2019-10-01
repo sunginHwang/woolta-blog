@@ -3,9 +3,12 @@
 
 $header-height: 6rem;
 
-.writeViewer{
+.writeViewer {
+  height: calc(100% - 4rem);
+  width: calc(100% - 4rem);
+  padding: 2rem;
 
-  &__title{
+  &__title {
     font-size: 3.2rem;
     font-weight: bold;
     color: $main-theme-color;
@@ -14,14 +17,11 @@ $header-height: 6rem;
     margin-bottom: 3rem;
   }
 
-  &__content{
+  &__content {
     width: 100%;
     display: inline-block;
     outline-style: none;
-    height: 77rem - $header-height;
     border: none;
     resize: none;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
   }
 }

@@ -2,9 +2,9 @@
 @import '../../../style/scss/CommonLayout';
 
 
-.content{
+.content {
   background-color: $white-color !important;
-  height: $main-content-height;
+  height: calc(100% - 6.2rem);
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -13,7 +13,7 @@
 
 }
 
-.editMode{
+.editMode {
   min-width: 100%;
   margin-top: 6rem;
   padding: 0;

@@ -1,10 +1,10 @@
 @import '../../../../style/scss/CommonUtil';
 @import '../../../../style/scss/CommonLayout';
 
-$wrapper-height: 77rem;
 
 .write {
   display: flex;
+  height:100%;
   flex-direction: column;
 
   &__header{
@@ -17,10 +17,10 @@ $wrapper-height: 77rem;
 
   &__content {
     display: flex;
-    justify-content: space-between;
+    height: calc(100% - $main-header-height);
 
     &__editor {
-      border-right: .2rem solid $custom-gray-color;
+      border-right: .1rem solid $custom-gray-color;
       @extend .viewer;
     }
 
@@ -34,12 +34,12 @@ $wrapper-height: 77rem;
 }
 
 .viewer {
-  padding: 2rem;
   background-color: #fff;
-  width: 50%;
+  flex: 0.5 1 0%;
   display: inline-block;
-  height: $wrapper-height;
   word-break: break-word;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
 
   @media screen and (max-width: $mobile-width) {
     width: 100%;

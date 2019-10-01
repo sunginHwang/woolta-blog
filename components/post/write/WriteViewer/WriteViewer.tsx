@@ -14,18 +14,16 @@ const WriteViewer: React.FC<WriteViewerProps> = ({
                                                    onShowOriginPreview,
                                                  }) => {
   return (
-    <>
-      <div className={cn.writeViewer} onClick={onShowOriginPreview}>
-        <h2 className={cn.writeViewer__title}>
-          {title}
-        </h2>
-        <div className={cn.writeViewer__content}>
-          <MarkDownView content={content}
-                        skipHtml={false}
-                        escapeHtml={false}/>
-        </div>
+    <div className={cn.writeViewer} onClick={onShowOriginPreview}>
+      <h2 className={cn.writeViewer__title}>
+        {title}
+      </h2>
+      <div className={cn.writeViewer__content}>
+        <MarkDownView content={content}
+                      skipHtml={false}
+                      escapeHtml={false}/>
       </div>
-    </>
+    </div>
   );
 };
 
