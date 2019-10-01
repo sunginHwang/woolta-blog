@@ -17,7 +17,7 @@
 
   &__content {
     display: flex;
-    height: calc(100% - $main-header-height);
+    height: calc(100% - #{$main-header-height});
 
     &__editor {
       border-right: .1rem solid $custom-gray-color;
