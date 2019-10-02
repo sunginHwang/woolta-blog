@@ -18,6 +18,7 @@ const WriteViewContainer: React.FC<{}> = ({}) => {
   return (
     <WriteViewer title={title}
                  content={content}
+                 previewMode={previewModal}
                  onShowOriginPreview={onShowOriginPreview}
     />
   );
