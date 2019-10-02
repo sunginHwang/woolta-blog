@@ -11,6 +11,7 @@ interface WriteHeaderProps {
   category: string;
   categories: ICategory[];
   upsertPost: () => void;
+  onImageUpload: () => void;
   onChangeTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeCategories: (selectedCategory: ICategory) => void;
 }
@@ -20,6 +21,7 @@ const WriteHeader: React.FC<WriteHeaderProps> = ({
                                                    category,
                                                    categories,
                                                    upsertPost,
+                                                   onImageUpload,
                                                    onChangeTitle,
                                                    onChangeCategories,
                                                  }) => (
@@ -39,7 +41,7 @@ const WriteHeader: React.FC<WriteHeaderProps> = ({
           options={categories}
         />
       </div>
-      <div className={cn.writeHeader__right__button}>
+      <div className={cn.writeHeader__right__button} onClick={onImageUpload}>
         <MdImage/>
         <span>업로드</span>
       </div>

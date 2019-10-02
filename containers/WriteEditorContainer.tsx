@@ -1,19 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { addElement } from '../core/utils/domUtil';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { setContent } from '../store/reducers/postWriteReducer';
+import { setContent, setContentWriteIndex } from '../store/reducers/postWriteReducer';
 import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
-import * as FileApi from '../core/api/FileApi';
-import { convertImageToCodeImage } from '../core/utils/imageUtil';
 import PostWriteForm from '../components/post/write/PostWriteForm/PostWriteForm';
+import useImageUpload from '../core/hooks/useImageUpload';
 
 
 const WriteEditorContainer: React.FC<{}> = ({}) => {
-  const [contentWriteIndex, setContentWriteIndex] = useState<number>(0);
 
   const dispatch = useDispatch();
-  const content = useSelector((state: RootState) => state.postWriteReducer.content);
+  const [onImageUpload, addImageTag] = useImageUpload();
+  const { content, contentWriteIndex } = useSelector((state: RootState) => state.postWriteReducer);
 
   useEffect(() => {
     window && window.addEventListener('drop', onDnd); //dnd Event
@@ -36,8 +34,7 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
     const file = items[1].getAsFile();
 
     dispatch(toggleSpinnerLoading(true));
-    const markdownImg = await uploadImage(file);
-
+    const markdownImg = await onImageUpload(file);
     addImage(markdownImg, contentWriteIndex);
     dispatch(toggleSpinnerLoading(false));
   };
@@ -49,7 +46,7 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
     dispatch(toggleSpinnerLoading(true));
     const imagePromises = [];
     for (let i = 0; i < files.length; i++) {
-      imagePromises.push(uploadImage(files[i]));
+      imagePromises.push(onImageUpload(files[i]));
     }
 
     const images = await Promise.all(imagePromises);
@@ -57,38 +54,25 @@ const WriteEditorContainer: React.FC<{}> = ({}) => {
     dispatch(toggleSpinnerLoading(false));
   };
 
-  // 이미지 업로드
-  const uploadImage = async (file) => {
-    const savedImageUrl = await FileApi.saveImageAndGetImageUrl(file);
-    return convertImageToCodeImage(savedImageUrl);
-  };
 
-  /*이미지 버튼 삽입*/
-  const onUploadImage = () => {
-    const fileInput = addElement('input');
-    fileInput.type = 'file';
-    fileInput.onchange = async () => {
-      if (!fileInput.files) return;
-      dispatch(toggleSpinnerLoading(true));
-      const markdownImg = await uploadImage(fileInput.files[0]);
-      addImage(markdownImg, contentWriteIndex);
-      dispatch(toggleSpinnerLoading(false));
-    };
-    fileInput.click();
-  };
-
-  const addImage = (image, addIndex) => dispatch(setContent(content.slice(0, addIndex) + image + content.slice(addIndex)));
+  const addImage = useCallback((image, addIndex) => {
+    dispatch(setContent(addImageTag(image, content, addIndex)));
+  }, [content, contentWriteIndex]);
 
   const onChangeContent = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setContent(e.target.value));
-    setContentWriteIndex(e.target.selectionStart);
+    dispatch(setContentWriteIndex(e.target.selectionStart));
   }, [content]);
+
+  const onChangeContentWriteIndex = useCallback((selectionStart: number) => {
+    dispatch(setContentWriteIndex(selectionStart));
+  }, []);
 
 
   return (
     <PostWriteForm content={content}
                    onChangeContent={onChangeContent}
-                   onChangeContentIndex={setContentWriteIndex}
+                   onChangeContentIndex={onChangeContentWriteIndex}
     />
   );
 };

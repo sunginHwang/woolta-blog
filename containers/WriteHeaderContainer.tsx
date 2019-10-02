@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import WriteHeader from '../components/post/write/WriteHeader/WriteHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { initPostWrite, setCategory, setTitle } from '../store/reducers/postWriteReducer';
+import { initPostWrite, setCategory, setContent, setTitle } from '../store/reducers/postWriteReducer';
 import { ICategory } from '../types/post/ICategory';
 import { AxiosResponse } from 'axios';
 import { IApiRes } from '../types/IApiRes';
@@ -10,19 +10,22 @@ import { IUpsertPostRes } from '../types/post/IUpsertPostRes';
 import { upsertPostApi } from '../core/api/blogApi';
 import { TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { getPosts } from '../store/reducers/postsReducer';
-import { showToast } from '../store/reducers/layoutReducer';
+import { showToast, toggleSpinnerLoading } from '../store/reducers/layoutReducer';
 import { goPostDetailPage } from '../core/utils/routeUtil';
+import { addElement } from '../core/utils/domUtil';
+import useImageUpload from '../core/hooks/useImageUpload';
 
 interface WriteHeaderContainerProps {
 }
 
 const WriteHeaderContainer: React.FC<WriteHeaderContainerProps> = ({}) => {
 
-  const { categories, postWriteReducer: { postNo, title, content, category } } = useSelector((state: RootState) => ({
+  const { categories, postWriteReducer: { postNo, title, content, category, contentWriteIndex } } = useSelector((state: RootState) => ({
     postWriteReducer: state.postWriteReducer,
     categories: state.categoryReducer.categories,
   }));
 
+  const [onImageUpload, addImageTag] = useImageUpload();
   const dispatch = useDispatch();
 
   const onChangeTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value)), [dispatch]);
@@ -86,11 +89,30 @@ const WriteHeaderContainer: React.FC<WriteHeaderContainerProps> = ({}) => {
     return true;
   };
 
+  /*이미지 버튼 삽입*/
+  const uploadImage = () => {
+    const fileInput = addElement('input');
+    fileInput.type = 'file';
+    fileInput.onchange = async () => {
+      if (!fileInput.files) return;
+      dispatch(toggleSpinnerLoading(true));
+      const markdownImg = await onImageUpload(fileInput.files[0]);
+      addImage(markdownImg, contentWriteIndex);
+      dispatch(toggleSpinnerLoading(false));
+    };
+    fileInput.click();
+  };
+
+  const addImage = useCallback((image, addIndex) => {
+    dispatch(setContent(addImageTag(image, content, addIndex)));
+  }, [content, contentWriteIndex]);
+
   return (
     <WriteHeader title={title}
                  categories={categories}
                  category={category}
                  upsertPost={upsertPost}
+                 onImageUpload={uploadImage}
                  onChangeTitle={onChangeTitle}
                  onChangeCategories={onChangeCategories}
     />

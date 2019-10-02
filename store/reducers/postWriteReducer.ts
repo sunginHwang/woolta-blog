@@ -10,6 +10,7 @@ const SETTING_POST_INFO: string = `${prefix}SETTING_POST_INFO`;
 const SET_TITLE: string = `${prefix}SET_TITLE`;
 const SET_CONTENT: string = `${prefix}SET_CONTENT`;
 const SET_CATEGORY: string = `${prefix}SET_CATEGORY`;
+const SET_CONTENT_WRITE_INDEX: string = `${prefix}SET_CONTENT_WRITE_INDEX`;
 const TOGGLE_ORIGIN_PREVIEW_MODAL: string = `${prefix}TOGGLE_ORIGIN_PREVIEW_MODAL`;
 const TOGGLE_ERROR: string = `${prefix}TOGGLE_ERROR`;
 const INIT_POST_WRITE: string = `${prefix}INIT_POST_WRITE`;
@@ -23,6 +24,7 @@ interface settingPostInfoFn {
 
 export const settingPostInfo = createStandardAction(SETTING_POST_INFO)<settingPostInfoFn>();
 export const setTitle = createStandardAction(SET_TITLE)<string>();
+export const setContentWriteIndex = createStandardAction(SET_CONTENT_WRITE_INDEX)<number>();
 export const setContent = createStandardAction(SET_CONTENT)<string>();
 export const setCategory = createStandardAction(SET_CATEGORY)<ICategory>();
 export const initPostWrite = createStandardAction(INIT_POST_WRITE)<void>();
@@ -31,13 +33,14 @@ export const toggleOriginPreviewModal = createStandardAction(TOGGLE_ORIGIN_PREVI
 export const toggleError = createStandardAction(TOGGLE_ERROR)<boolean>();
 
 export interface PostWriteInitType {
-  postNo: number
-  category: any,
-  title: string,
-  content: string,
-  error: boolean,
-  errorMsg: string,
-  previewModal: boolean
+  postNo: number;
+  category: any;
+  title: string;
+  content: string;
+  contentWriteIndex: number;
+  error: boolean;
+  errorMsg: string;
+  previewModal: boolean;
 }
 
 const initialState: PostWriteInitType = {
@@ -45,6 +48,7 @@ const initialState: PostWriteInitType = {
   category: null,
   title: '',
   content: '',
+  contentWriteIndex: 0,
   error: false,
   errorMsg: '',
   previewModal: false,
@@ -77,6 +81,10 @@ export default createReducer(initialState, {
   [SET_CONTENT]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
       draft.content = action.payload;
+    }),
+  [SET_CONTENT_WRITE_INDEX]: (state, action: FluxStandardAction) =>
+    produce<PostWriteInitType>(state, draft => {
+      draft.contentWriteIndex = action.payload;
     }),
   [TOGGLE_ERROR]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
