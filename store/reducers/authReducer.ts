@@ -5,6 +5,8 @@ import IAsyncAction from '../../types/redux/IAsyncAction';
 import { apiRequestThunk, asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 import { fetchUserInfo, userLogin } from '../../core/api/AuthApi';
+import { ACCESS_TOKEN } from '../../core/constants';
+import { settingAccessHeaderToken } from '../../core/utils/apiCall';
 
 const prefix: string = 'AUTH_';
 
@@ -18,7 +20,6 @@ export const logout = createStandardAction(LOGOUT)<void>();
 
 export const LOAD_USER_INFO: IAsyncAction = asyncActionTypeCreator(`${prefix}LOAD_USER_INFO`);
 export const loadUserInfo = apiRequestThunk(LOAD_USER_INFO, fetchUserInfo);
-
 
 
 export interface authInitType {
@@ -38,6 +39,8 @@ export default createReducer(initialState, {
   [LOGIN.SUCCESS]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = action.payload;
+      localStorage.setItem(ACCESS_TOKEN, action.payload.authToken);
+      settingAccessHeaderToken(action.payload.authToken);
     }),
   [LOGIN.FAILURE]: (state) =>
     produce<authInitType>(state, draft => {
@@ -46,6 +49,8 @@ export default createReducer(initialState, {
   [LOGOUT]: (state) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = initialState.userInfo;
+      localStorage.removeItem(ACCESS_TOKEN);
+      settingAccessHeaderToken('');
     }),
   [LOAD_USER_INFO.SUCCESS]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {

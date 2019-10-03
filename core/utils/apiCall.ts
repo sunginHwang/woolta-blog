@@ -79,6 +79,6 @@ export function nanoBarLoadingSetup() {
   apiCall.interceptors.response.use(responseHandler, errorHandler);
 }
 
-export function settingAccessHeaderToken(accessToken) {
+export function settingAccessHeaderToken(accessToken: string) {
   apiCall.defaults.headers.common[ACCESS_HEADER_TOKEN] = accessToken;
 }

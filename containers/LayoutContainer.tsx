@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { RootState } from '../types/redux/RootState';
@@ -62,7 +62,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   }, [showSidebar]);
 
   // 로그아웃
-  const onClickLogout = () => dispatch(authReducer.logout());
+  const onClickLogout = useCallback((() => dispatch(authReducer.logout())), [dispatch]);
 
   return (
     <>
