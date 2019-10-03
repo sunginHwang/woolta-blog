@@ -11,7 +11,7 @@ const SET_TITLE: string = `${prefix}SET_TITLE`;
 const SET_CONTENT: string = `${prefix}SET_CONTENT`;
 const SET_CATEGORY: string = `${prefix}SET_CATEGORY`;
 const SET_CONTENT_WRITE_INDEX: string = `${prefix}SET_CONTENT_WRITE_INDEX`;
-const TOGGLE_ORIGIN_PREVIEW_MODAL: string = `${prefix}TOGGLE_ORIGIN_PREVIEW_MODAL`;
+const TOGGLE_ORIGIN_PREVIEW_MODE: string = `${prefix}TOGGLE_ORIGIN_PREVIEW_MODE`;
 const TOGGLE_ERROR: string = `${prefix}TOGGLE_ERROR`;
 const INIT_POST_WRITE: string = `${prefix}INIT_POST_WRITE`;
 
@@ -28,7 +28,7 @@ export const setContentWriteIndex = createStandardAction(SET_CONTENT_WRITE_INDEX
 export const setContent = createStandardAction(SET_CONTENT)<string>();
 export const setCategory = createStandardAction(SET_CATEGORY)<ICategory>();
 export const initPostWrite = createStandardAction(INIT_POST_WRITE)<void>();
-export const toggleOriginPreviewModal = createStandardAction(TOGGLE_ORIGIN_PREVIEW_MODAL)<boolean>();
+export const toggleOriginPreviewMode = createStandardAction(TOGGLE_ORIGIN_PREVIEW_MODE)<boolean>();
 // 임시 에러 처리 방법
 export const toggleError = createStandardAction(TOGGLE_ERROR)<boolean>();
 
@@ -40,7 +40,7 @@ export interface PostWriteInitType {
   contentWriteIndex: number;
   error: boolean;
   errorMsg: string;
-  previewModal: boolean;
+  previewMode: boolean;
 }
 
 const initialState: PostWriteInitType = {
@@ -51,7 +51,7 @@ const initialState: PostWriteInitType = {
   contentWriteIndex: 0,
   error: false,
   errorMsg: '',
-  previewModal: false,
+  previewMode: false,
 };
 
 
@@ -90,8 +90,8 @@ export default createReducer(initialState, {
     produce<PostWriteInitType>(state, draft => {
       draft.error = action.payload;
     }),
-  [TOGGLE_ORIGIN_PREVIEW_MODAL]: (state, action: FluxStandardAction) =>
+  [TOGGLE_ORIGIN_PREVIEW_MODE]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
-      draft.previewModal = action.payload;
+      draft.previewMode = action.payload;
     }),
 });

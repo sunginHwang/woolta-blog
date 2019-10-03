@@ -9,19 +9,19 @@ import WriteHeaderContainer from '../../../../containers/WriteHeaderContainer';
 const cx = classNames.bind(cn);
 
 interface WriteViewProps {
-  isPreview: boolean;
+  previewMode: boolean;
 }
 
 const WriteView: React.FC<WriteViewProps> = ({
-                                               isPreview,
+                                               previewMode,
                                              }) => {
 
-  const renderEditor = !isPreview &&
+  const renderEditor = !previewMode &&
     <div className={cx(cn.write__content__editor)}>
       <WriteEditorContainer/>
     </div>;
 
-  const renderHeader = !isPreview &&
+  const renderHeader = !previewMode &&
     <div className={cn.write__header}>
       <WriteHeaderContainer/>
     </div>;
@@ -31,7 +31,7 @@ const WriteView: React.FC<WriteViewProps> = ({
       {renderHeader}
       <div className={cn.write__content}>
         {renderEditor}
-        <div className={cx(cn.write__content__preview, isPreview && cn.fullSize)}>
+        <div className={cx(cn.write__content__preview, previewMode && cn.fullSize)}>
           <WriteViewContainer/>
         </div>
       </div>
