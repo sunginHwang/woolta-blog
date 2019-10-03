@@ -15,6 +15,7 @@ import * as authReducer from '../store/reducers/authReducer';
 import { nanoBarLoadingSetup } from '../core/utils/apiCall';
 import Content from '../components/layout/Content/Content';
 import NotificationBar from '../components/common/notification/NotificationBar/NotificationBar';
+import useUser from '../core/hooks/useUser';
 
 
 interface LayoutContainerProps {
@@ -24,6 +25,7 @@ interface LayoutContainerProps {
 const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
 
   const [showSidebar, setShowSideBar] = useState(false);
+  const [checkUserInfo] = useUser();
 
   const {
     layoutReducer: { mobileHeader, editMode, spinnerLoading, toast },
@@ -38,6 +40,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    checkUserInfo();
     nanoBarLoadingSetup();
     onDetectMobileScrollUpAndDown();
   }, []);

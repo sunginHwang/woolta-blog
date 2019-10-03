@@ -8,7 +8,6 @@ import store from '../store';
 import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
-import UserInfoLoadContainer from '../containers/UserInfoLoadContainer';
 import '../style/scss/style.scss';
 import Head from 'next/head';
 
@@ -25,7 +24,6 @@ const App = (props: Props) => {
       </Head>
       <Provider store={store}>
         <>
-          <UserInfoLoadContainer/>
           <LayoutContainer>
             <Component {...pageProps} />
           </LayoutContainer>
