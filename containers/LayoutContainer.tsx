@@ -19,7 +19,6 @@ import NotificationBar from '../components/common/notification/NotificationBar/N
 
 interface LayoutContainerProps {
   children?: React.ReactNode;
-  getInitialProps?: any;
 }
 
 const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
@@ -62,7 +61,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
   }, [showSidebar]);
 
   // 로그아웃
-  const onClickLogout = useCallback((() => dispatch(authReducer.logout())), [dispatch]);
+  const onLogout = useCallback((() => dispatch(authReducer.logout())), [dispatch]);
 
   return (
     <>
@@ -70,7 +69,7 @@ const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
         isOpen={showSidebar}
         userInfo={userInfo}
         categories={categories}
-        onClickLogout={onClickLogout}
+        onLogout={onLogout}
         toggleSideBar={setShowSideBar}
       />
       <Header

@@ -2,8 +2,8 @@ import * as React from 'react';
 import classNames from 'classnames/bind';
 import { IUserInfo } from '../../../types/user/IUserInfo';
 import { ICategory } from '../../../types/post/ICategory';
-import cn from './SideBar.scss';
 import { goLoginPage, goPostEditPage, goPostListPage } from '../../../core/utils/routeUtil';
+import cn from './SideBar.scss';
 
 const cx = classNames.bind(cn);
 
@@ -11,7 +11,7 @@ interface SideBarProps {
   isOpen: boolean,
   userInfo: IUserInfo,
   categories?: ICategory[],
-  onClickLogout: () => void,
+  onLogout: () => void,
   toggleSideBar: (toggle: boolean) => void;
 }
 
@@ -19,7 +19,7 @@ const SideBar: React.FC<SideBarProps> = ({
                                            isOpen,
                                            userInfo,
                                            categories,
-                                           onClickLogout,
+                                           onLogout,
                                            toggleSideBar,
                                          }) => {
 
@@ -32,6 +32,8 @@ const SideBar: React.FC<SideBarProps> = ({
     goPostEditPage();
     toggleSideBar(false);
   }, []);
+
+  const isLogin: boolean = userInfo.userId !== '';
 
   const renderCategories = categories.map((category) => {
 
@@ -48,24 +50,19 @@ const SideBar: React.FC<SideBarProps> = ({
     );
   });
 
-  const goLogout = React.useCallback(() => onClickLogout(), []);
-
   const renderUserMenu =
     <li>
       <a>
         <img className={cn.userImage} src={userInfo.imageUrl}/>
         <span>{userInfo.userId}</span>
-        <p className={cn.logout} onClick={goLogout}>로그아웃</p>
+        <p className={cn.logout} onClick={onLogout}>로그아웃</p>
       </a>
     </li>;
-
 
   const renderNonUserMenu =
     <li>
       <a onClick={onLoginClick}>로그인</a>
     </li>;
-
-  const isLogin: boolean = userInfo.userId !== '';
 
   const renderPostWriteMenu = isLogin === true &&
     <li>
