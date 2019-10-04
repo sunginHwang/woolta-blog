@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
-import { getElement } from '../utils/domUtil';
+import { addElement, getElement } from '../utils/domUtil';
 
 const updateTitle = (title: string) => {
   const titleElement = getElement('title');
-  titleElement.innerText = title;
+  if (titleElement) {
+    titleElement.innerText = title;
+  } else {
+    const title = addElement('title');
+    title.innerText = title;
+    document.head.appendChild(title);
+  }
+
 };
 
 export default function useTitle(initTitle?: string) {
