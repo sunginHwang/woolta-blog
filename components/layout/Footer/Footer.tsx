@@ -1,11 +1,10 @@
-import { FC } from 'react';
 import cn from './Footer.scss';
 
 interface FooterProps {
   editMode: boolean;
 }
 
-const Footer: FC<FooterProps> = ({ editMode }) => {
+const Footer = ({ editMode }: FooterProps) => {
 
   if (editMode) return null;
 

@@ -8,12 +8,12 @@ interface LoginViewProps {
   onChangeLoginForm: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const LoginForm: React.FC<LoginViewProps> = ({
-                                               id,
-                                               password,
-                                               onLogin,
-                                               onChangeLoginForm,
-                                             }) => (
+const LoginForm = ({
+                     id,
+                     password,
+                     onLogin,
+                     onChangeLoginForm,
+                   }: LoginViewProps) => (
   <div className={cn.login}>
     <div className={cn.login__title}>
       로그인 후 포스팅 해봐요!

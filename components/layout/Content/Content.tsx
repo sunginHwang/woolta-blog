@@ -6,13 +6,13 @@ const cx = classNames.bind(cn);
 
 interface ContentProps {
   editMode: boolean;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const Content: React.FC<ContentProps> = ({
-                                           editMode,
-                                           children,
-                                         }) => {
+const Content = ({
+                   editMode,
+                   children,
+                 }: ContentProps) => {
   return (
     <div className={cx(cn.content, editMode && cn.editMode)}>
       {children}

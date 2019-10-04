@@ -10,15 +10,14 @@ interface PostSeoHeaderProps {
   categoryNo: number
 }
 
-const PostSeoHeader: React.FC<PostSeoHeaderProps> = React.memo(({
-                                                       post,
-                                                       postNo,
-                                                       categoryNo,
-                                                     }) => {
+const PostSeoHeader = ({
+                         post,
+                         postNo,
+                         categoryNo,
+                       }: PostSeoHeaderProps) => {
 
   const isAllowUrl: boolean = categoryNo !== undefined && postNo !== undefined;
   const { title, content, createdAt } = post;
-  console.log('PostSeoHeader');
 
   return (
     <Head>
@@ -40,9 +39,7 @@ const PostSeoHeader: React.FC<PostSeoHeaderProps> = React.memo(({
       <meta property="article:published_time" content={createdAt}/>
     </Head>
   );
-},((prevProps, nextProps) => {
-  return prevProps.post === nextProps.post;
-}));
+};
 
 export default PostSeoHeader;
 

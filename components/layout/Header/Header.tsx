@@ -14,18 +14,18 @@ interface IHeaderProps {
 
 }
 
-const Header: React.FC<IHeaderProps> = ({
-                                          showMobileHeader,
-                                          showSideBar,
-                                          toggleSideBar
-                                        }) => {
+const Header = ({
+                  showMobileHeader,
+                  showSideBar,
+                  toggleSideBar,
+                }: IHeaderProps) => {
 
-  const onMainPageClick = React.useCallback(()=> {
+  const onMainPageClick = React.useCallback(() => {
     goMainPage();
     toggleSideBar(false);
-  },[]);
+  }, []);
 
-  const onToggleSideBar = React.useCallback(()=> toggleSideBar(!showSideBar),[showSideBar]);
+  const onToggleSideBar = React.useCallback(() => toggleSideBar(!showSideBar), [showSideBar]);
 
   return (
     <div className={cx(cn.mainHeader, { mainHeader_hide: showMobileHeader })}>
@@ -34,6 +34,6 @@ const Header: React.FC<IHeaderProps> = ({
           <MdList/>
       </span>
     </div>
-  )
+  );
 };
 export default Header;

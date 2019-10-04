@@ -7,11 +7,11 @@ interface CodeBlockProps {
   codeEl: HTMLElement;
 }
 
-const CodeBlock: React.FC<CodeBlockProps> = ({
-                                               value,
-                                               codeEl,
-                                               language,
-                                             }) => {
+const CodeBlock = ({
+                     value,
+                     codeEl,
+                     language,
+                   }: CodeBlockProps) => {
 
   useEffect(() => highlightCode(), [value, codeEl, language]);
 

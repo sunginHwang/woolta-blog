@@ -19,10 +19,10 @@ import useUser from '../core/hooks/useUser';
 
 
 interface LayoutContainerProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const LayoutContainer: React.FC<LayoutContainerProps> = ({ children }) => {
+const LayoutContainer = ({ children }: LayoutContainerProps) => {
 
   const [showSidebar, setShowSideBar] = useState(false);
   const [checkUserInfo] = useUser();

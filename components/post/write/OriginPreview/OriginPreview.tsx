@@ -10,11 +10,11 @@ interface OriginPreviewProps {
   onToggleView: () => void;
 }
 
-const OriginPreview: React.FC<OriginPreviewProps> = ({
+const OriginPreview = ({
                          content,
                          visible,
                          onToggleView,
-                       }) => {
+                       }: OriginPreviewProps) => {
   return (
     <ModalWrapper visible={visible} modalClick={() => onToggleView()}>
       <div className={cn.originPreview}>

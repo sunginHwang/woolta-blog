@@ -11,14 +11,14 @@ interface PostSubTitleProps {
   createdAt: string
 }
 
-const PostSubTitle: React.FC<PostSubTitleProps> = ({
-                                                     writer,
-                                                     categoryLabel,
-                                                     editAuth,
-                                                     goModifyPostPage,
-                                                     onDeletePost,
-                                                     createdAt,
-                                                   }) => {
+const PostSubTitle = ({
+                        writer,
+                        categoryLabel,
+                        editAuth,
+                        goModifyPostPage,
+                        onDeletePost,
+                        createdAt,
+                      }: PostSubTitleProps) => {
   const renderEditPost = editAuth &&
     <div>
       <div className={cn.postSubTitle__button}

@@ -7,7 +7,7 @@ interface PostLayoutProps {
   posts: IPost[],
 }
 
-const PostLayout: React.FC<PostLayoutProps> = React.memo(({ posts }) => {
+const PostLayout = ({ posts }: PostLayoutProps) => {
 
   const renderPostItems = posts.map(post => <PostItem post={post} key={post.postNo}/>);
 
@@ -16,10 +16,10 @@ const PostLayout: React.FC<PostLayoutProps> = React.memo(({ posts }) => {
       {renderPostItems}
     </div>
   );
-}, (prevProps, nextProps) => {
+};
+
+export default React.memo(PostLayout, (prevProps, nextProps) => {
   return prevProps.posts !== nextProps.posts;
 });
-
-export default PostLayout;
 
 

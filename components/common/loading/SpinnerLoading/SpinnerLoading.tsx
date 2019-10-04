@@ -5,11 +5,11 @@ import cn from './SpinnerLoading.scss';
 
 const cx = classNames.bind(cn);
 
-interface ISpinnerLoadingProps {
+interface SpinnerLoadingProps {
   loading: boolean
 }
 
-const SpinnerLoading: React.FC<ISpinnerLoadingProps> = ({ loading }) => (
+const SpinnerLoading = ({ loading }: SpinnerLoadingProps) => (
   loading ?
     <div className={cx(cn.spinnerLoading)}>
       <div className={cx(cn.spinnerLoading__position)}>

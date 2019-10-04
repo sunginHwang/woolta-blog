@@ -11,12 +11,12 @@ interface PostContentProps {
   goModifyPostPage: () => void;
 }
 
-const PostContent: React.FC<PostContentProps> = React.memo(({
-                                                              post,
-                                                              editAuth,
-                                                              onDeletePost,
-                                                              goModifyPostPage,
-                                                            }) => {
+const PostContent = ({
+                       post,
+                       editAuth,
+                       onDeletePost,
+                       goModifyPostPage,
+                     }: PostContentProps) => {
 
   return (
     <div className={cn.postContent}>
@@ -37,9 +37,9 @@ const PostContent: React.FC<PostContentProps> = React.memo(({
       </div>
     </div>
   );
-}, (prevProps, nextProps) => {
+};
+
+export default React.memo(PostContent, (prevProps, nextProps) => {
   return prevProps.post === nextProps.post && prevProps.editAuth === nextProps.editAuth;
 });
-
-export default PostContent;
 

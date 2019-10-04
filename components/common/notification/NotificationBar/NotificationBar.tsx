@@ -10,9 +10,9 @@ interface NotificationBarProps {
   isShow: boolean;
 }
 
-const NotificationBar: React.FC<NotificationBarProps> = ({ message, isShow }) => {
+const NotificationBar = ({ message, isShow }: NotificationBarProps) => {
 
-  if(!isShow) return null;
+  if (!isShow) return null;
 
   return (
     <div className={cx(cn.notificationBar, isShow && cn.show)}>

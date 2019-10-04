@@ -12,9 +12,9 @@ interface WriteViewProps {
   previewMode: boolean;
 }
 
-const WriteView: React.FC<WriteViewProps> = ({
-                                               previewMode,
-                                             }) => {
+const WriteView = ({
+                     previewMode,
+                   }: WriteViewProps) => {
 
   const renderEditor = !previewMode &&
     <div className={cx(cn.write__content__editor)}>

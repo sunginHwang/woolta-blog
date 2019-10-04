@@ -4,14 +4,14 @@ import cn from './ModalWrapper.scss';
 interface ModalWrapperProps {
   visible: boolean;
   modalClick: () => void;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const ModalWrapper: React.FC<ModalWrapperProps> = ({
-                                                     visible,
-                                                     modalClick,
-                                                     children,
-                                                   }) => {
+const ModalWrapper = ({
+                        visible,
+                        modalClick,
+                        children,
+                      }: ModalWrapperProps) => {
   return (
     visible &&
     <div className={cn.modalWrapper} onClick={() => modalClick}>

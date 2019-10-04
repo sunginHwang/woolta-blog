@@ -18,17 +18,17 @@ interface WriteEditorProps {
   onChangeCategories: any;
 }
 
-const WriteEditor: React.FC<WriteEditorProps> = ({
-                                                   onChangeContent,
-                                                   onChangeTitle,
-                                                   content,
-                                                   categories,
-                                                   uploadImage,
-                                                   onChangeCategories,
-                                                   selectedCategory,
-                                                   title,
-                                                   userInfo,
-                                                 }) => {
+const WriteEditor = ({
+                       onChangeContent,
+                       onChangeTitle,
+                       content,
+                       categories,
+                       uploadImage,
+                       onChangeCategories,
+                       selectedCategory,
+                       title,
+                       userInfo,
+                     }: WriteEditorProps) => {
 
   const contentRef = useRef(null);
 

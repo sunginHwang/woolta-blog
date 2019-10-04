@@ -7,11 +7,11 @@ interface PostWriteFormProps {
   onChangeContentIndex: (index: number) => void;
 }
 
-const PostWriteForm: React.FC<PostWriteFormProps> = ({
-                                                       content,
-                                                       onChangeContent,
-                                                       onChangeContentIndex,
-                                                     }) => {
+const PostWriteForm = ({
+                         content,
+                         onChangeContent,
+                         onChangeContentIndex,
+                       }: PostWriteFormProps) => {
   const contentRef = useRef(null);
 
   const onFocusContent = useCallback(() => onChangeContentIndex(contentRef.current.selectionStart), []);

@@ -10,9 +10,7 @@ interface PostItemProps {
   post: IPost;
 }
 
-const PostItem: React.FC<PostItemProps> = React.memo(({
-                                                        post,
-                                                      }) => (
+const PostItem = ({ post }: PostItemProps) => (
   <div className={cn.postItem}>
     <Link href={`/post?postNo=${post.postNo}&categoryNo=${post.categoryNo}`}
           as={`/categories/${post.categoryNo}/posts/${post.postNo}`}>
@@ -34,10 +32,10 @@ const PostItem: React.FC<PostItemProps> = React.memo(({
       <span className={cn.meta}>{post.createdAt}</span>
     </div>
   </div>
-), ((prevProps, nextProps) => {
+);
+
+
+export default React.memo(PostItem, ((prevProps, nextProps) => {
   return prevProps.post.title !== nextProps.post.title;
 }));
-
-
-export default PostItem;
 

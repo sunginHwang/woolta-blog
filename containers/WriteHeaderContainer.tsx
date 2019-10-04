@@ -15,10 +15,7 @@ import { goPostDetailPage } from '../core/utils/routeUtil';
 import { addElement } from '../core/utils/domUtil';
 import useImageUpload from '../core/hooks/useImageUpload';
 
-interface WriteHeaderContainerProps {
-}
-
-const WriteHeaderContainer: React.FC<WriteHeaderContainerProps> = ({}) => {
+const WriteHeaderContainer = () => {
 
   const { categories, postWriteReducer: { postNo, title, content, category, contentWriteIndex } } = useSelector((state: RootState) => ({
     postWriteReducer: state.postWriteReducer,

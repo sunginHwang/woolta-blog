@@ -7,7 +7,7 @@ import PostWriteForm from '../components/post/write/PostWriteForm/PostWriteForm'
 import useImageUpload from '../core/hooks/useImageUpload';
 
 
-const WriteEditorContainer: React.FC<{}> = ({}) => {
+const WriteEditorContainer = () => {
 
   const dispatch = useDispatch();
   const [onImageUpload, addImageTag] = useImageUpload();

@@ -15,13 +15,13 @@ interface SideBarProps {
   toggleSideBar: (toggle: boolean) => void;
 }
 
-const SideBar: React.FC<SideBarProps> = ({
-                                           isOpen,
-                                           userInfo,
-                                           categories,
-                                           onLogout,
-                                           toggleSideBar,
-                                         }) => {
+const SideBar = ({
+                   isOpen,
+                   userInfo,
+                   categories,
+                   onLogout,
+                   toggleSideBar,
+                 }: SideBarProps) => {
 
   const onLoginClick = React.useCallback(() => {
     goLoginPage();

@@ -2,7 +2,7 @@ import React from 'react';
 import PlaceHolderBar from '../../../common/placeHolder/PlaceHolderBar/PlaceHolderBar';
 import cn from './PostItemPlaceHolder.scss';
 
-const PostItemPlaceHolder: React.FC<{}> = () => (
+const PostItemPlaceHolder = () => (
   <div className={cn.postItemPlaceHolder}>
     <div className={cn.postItemPlaceHolder__title}>
       <PlaceHolderBar width='65%' height='2.88rem'/>

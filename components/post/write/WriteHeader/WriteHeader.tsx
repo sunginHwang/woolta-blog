@@ -16,15 +16,16 @@ interface WriteHeaderProps {
   onChangeCategories: (selectedCategory: ICategory) => void;
 }
 
-const WriteHeader: React.FC<WriteHeaderProps> = ({
-                                                   title,
-                                                   category,
-                                                   categories,
-                                                   upsertPost,
-                                                   onImageUpload,
-                                                   onChangeTitle,
-                                                   onChangeCategories,
-                                                 }) => (
+const WriteHeader = ({
+                       title,
+                       category,
+                       categories,
+                       upsertPost,
+                       onImageUpload,
+                       onChangeTitle,
+                       onChangeCategories,
+                     }: WriteHeaderProps) => (
+
   <div className={cn.writeHeader}>
     <div className={cn.writeHeader__left}>
       <input type='text'

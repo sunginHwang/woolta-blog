@@ -9,12 +9,12 @@ interface WriteViewerProps {
   onShowOriginPreview: () => void;
 }
 
-const WriteViewer: React.FC<WriteViewerProps> = ({
-                                                   title,
-                                                   content,
-                                                   previewMode,
-                                                   onShowOriginPreview,
-                                                 }) => {
+const WriteViewer = ({
+                       title,
+                       content,
+                       previewMode,
+                       onShowOriginPreview,
+                     }: WriteViewerProps) => {
 
   const renderPreviewTitle = previewMode &&
     <h2 className={cn.writeViewer__title}>

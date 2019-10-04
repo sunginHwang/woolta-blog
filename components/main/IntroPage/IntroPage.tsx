@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cn from './IntroPage.scss';
 
-const IntroPage: React.FC<{}> = () => (
+const IntroPage = () => (
   <div className={cn.introPage}>
     <p className={cn.introPage__title}>
       방문해주셔서 감사합니다.<br/>
