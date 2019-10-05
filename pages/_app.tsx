@@ -9,7 +9,6 @@ import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import '../style/scss/style.scss';
-import Head from 'next/head';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 
@@ -19,9 +18,6 @@ const App = (props: Props) => {
 
   return (
     <Container>
-      <Head>
-        <title>woolta</title>
-      </Head>
       <Provider store={store}>
         <>
           <LayoutContainer>
