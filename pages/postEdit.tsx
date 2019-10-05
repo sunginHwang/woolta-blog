@@ -16,9 +16,11 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   const { postNo, title, content, category, previewMode } = useSelector((state: RootState) => state.postWriteReducer);
 
   const dispatch = useDispatch();
-  useTitle('게시글 작성');
   const [, , notifyToast] = useToast();
+  const setTitle = useTitle();
+
   useEffect(() => {
+    setTitle('게시글 작성');
     dispatch(toggleEditMode(true));
     isLoadTempPost() && loadTempPost();
     return () => dispatch(toggleEditMode(false));
@@ -28,6 +30,8 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
     startAutoSave();
     return () => stopAutoSave();
   }, [title, content, category]);
+
+  useEffect(() => setTitle(title), [title]);
 
   const startAutoSave = () => {
     if (intervalRef.current) {
