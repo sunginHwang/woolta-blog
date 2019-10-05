@@ -6,15 +6,15 @@ const prefix: string = 'CATEGORY_';
 const TOGGLE_SPINNER_LOADING: string = `${prefix}TOGGLE_SPINNER_LOADING`;
 const SHOW_MOBILE_HEADER: string = `${prefix}SHOW_MOBILE_HEADER`;
 const TOGGLE_EDIT_MODE: string = `${prefix}TOGGLE_EDIT_MODE`;
-const SHOW_TOAST: string = `${prefix}SHOW_TOAST`;
+const OPEN_TOAST: string = `${prefix}OPEN_TOAST`;
 const CLOSE_TOAST: string = `${prefix}CLOSE_TOAST`;
 
 
 export const toggleSpinnerLoading = createStandardAction(`${prefix}TOGGLE_SPINNER_LOADING`)<boolean>();
 export const showMobileHeader = createStandardAction(`${prefix}SHOW_MOBILE_HEADER`)<boolean>();
 export const toggleEditMode = createStandardAction(`${prefix}TOGGLE_EDIT_MODE`)<boolean>();
-export const showToast = createStandardAction(`${prefix}SHOW_TOAST`)<string>();
-export const closeToast = createStandardAction(`${prefix}CLOSE_TOAST`)();
+export const openToast = createStandardAction(OPEN_TOAST)<string>();
+export const closeToast = createStandardAction(CLOSE_TOAST)();
 
 export interface layoutInitType {
   spinnerLoading: boolean,
@@ -49,7 +49,7 @@ export default createReducer(initialState, {
     produce<layoutInitType>(state, draft => {
       draft.editMode = action.payload;
     }),
-  [SHOW_TOAST]: (state, action) =>
+  [OPEN_TOAST]: (state, action) =>
     produce<layoutInitType>(state, draft => {
       draft.toast.message = action.payload;
       draft.toast.isShow = true;

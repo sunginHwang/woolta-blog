@@ -10,10 +10,11 @@ import { IUpsertPostRes } from '../types/post/IUpsertPostRes';
 import { upsertPostApi } from '../core/api/blogApi';
 import { TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { getPosts } from '../store/reducers/postsReducer';
-import { showToast, toggleSpinnerLoading } from '../store/reducers/layoutReducer';
+import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
 import { goPostDetailPage } from '../core/utils/routeUtil';
 import { addElement } from '../core/utils/domUtil';
 import useImageUpload from '../core/hooks/useImageUpload';
+import useToast from '../core/hooks/useToast';
 
 const WriteHeaderContainer = () => {
 
@@ -23,6 +24,7 @@ const WriteHeaderContainer = () => {
   }));
 
   const [onImageUpload, addImageTag] = useImageUpload();
+  const [,,toastNotify] = useToast();
   const dispatch = useDispatch();
 
   const onChangeTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value)), [dispatch]);
@@ -48,7 +50,7 @@ const WriteHeaderContainer = () => {
       localStorage.removeItem(TEMP_POST_AUTO_SAVE);
       await dispatch(initPostWrite());
       await dispatch(getPosts(res.data.data.categoryNo));
-      await dispatch(showToast(`글 ${isEditMode ? '수정' : '생성'}이 완료되었습니다.`));
+      await toastNotify(`글 ${isEditMode ? '수정' : '생성'}이 완료되었습니다.`);
       goPostDetailPage(res.data.data.categoryNo, res.data.data.postNo);
     } catch (e) {
       alert(e);

@@ -3,9 +3,10 @@ import { NextPageCustom } from '../types/next/NextPageCustom';
 import { FIVE_MIN, TEMP_POST_AUTO_SAVE } from '../core/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { showToast, toggleEditMode } from '../store/reducers/layoutReducer';
+import { toggleEditMode } from '../store/reducers/layoutReducer';
 import WriteView from '../components/post/write/WriteView/WriteView';
 import useTitle from '../core/hooks/useTitle';
+import useToast from '../core/hooks/useToast';
 
 
 const PostEdit: NextPageCustom<{}> = ({}) => {
@@ -16,7 +17,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
 
   const dispatch = useDispatch();
   useTitle('게시글 작성');
-
+  const [, , notifyToast] = useToast();
   useEffect(() => {
     dispatch(toggleEditMode(true));
     isLoadTempPost() && loadTempPost();
@@ -37,7 +38,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
       if (content !== '') {
         const tempPost = { postNo, category, title, content };
         localStorage.setItem(TEMP_POST_AUTO_SAVE, JSON.stringify(tempPost));
-        dispatch(showToast('임시저장 되었습니다.'));
+        notifyToast('임시저장 되었습니다.');
       }
     }, FIVE_MIN);
   };

@@ -10,13 +10,11 @@ import Footer from '../components/layout/Footer/Footer';
 import SideBar from '../components/layout/SideBar/SideBar';
 
 import * as layoutReducer from '../store/reducers/layoutReducer';
-import { closeToast } from '../store/reducers/layoutReducer';
 import * as authReducer from '../store/reducers/authReducer';
 import { nanoBarLoadingSetup } from '../core/utils/apiCall';
 import Content from '../components/layout/Content/Content';
 import NotificationBar from '../components/common/notification/NotificationBar/NotificationBar';
 import useUser from '../core/hooks/useUser';
-
 
 interface LayoutContainerProps {
   children: React.ReactNode;
@@ -44,10 +42,6 @@ const LayoutContainer = ({ children }: LayoutContainerProps) => {
     nanoBarLoadingSetup();
     onDetectMobileScrollUpAndDown();
   }, []);
-
-  useEffect(() => {
-    toast.isShow && setTimeout(() => dispatch(closeToast()), 2000);
-  }, [toast.isShow]);
 
 // 모바일 스크롤 헤더 이벤트
   const onDetectMobileScrollUpAndDown = React.useCallback(() => {
