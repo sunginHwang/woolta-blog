@@ -4,6 +4,8 @@ import { IUserInfo } from '../../../types/user/IUserInfo';
 import { ICategory } from '../../../types/post/ICategory';
 import { goLoginPage, goPostEditPage, goPostListPage } from '../../../core/utils/routeUtil';
 import cn from './SideBar.scss';
+import useToast from '../../../core/hooks/useToast';
+import { useCallback } from 'react';
 
 const cx = classNames.bind(cn);
 
@@ -22,15 +24,21 @@ const SideBar = ({
                    onLogout,
                    toggleSideBar,
                  }: SideBarProps) => {
+  const [, hideToast] = useToast();
 
-  const onLoginClick = React.useCallback(() => {
-    goLoginPage();
+  const clearSideMenu = useCallback(() => {
     toggleSideBar(false);
+    hideToast();
   }, []);
 
-  const onPostEditClick = React.useCallback(() => {
+  const onLoginClick = useCallback(() => {
+    goLoginPage();
+    clearSideMenu();
+  }, []);
+
+  const onPostEditClick = useCallback(() => {
     goPostEditPage();
-    toggleSideBar(false);
+    clearSideMenu();
   }, []);
 
   const isLogin: boolean = userInfo.userId !== '';
@@ -38,9 +46,9 @@ const SideBar = ({
   const renderCategories = categories.map((category) => {
 
     // 카테고리 페이지 이동
-    const goCategoryPage = React.useCallback(() => {
+    const goCategoryPage = useCallback(() => {
       goPostListPage(category.value);
-      toggleSideBar(false);
+      clearSideMenu();
     }, [category.value]);
 
     return (

@@ -4,6 +4,7 @@ import { MdList } from 'react-icons/md';
 
 import cn from './Header.scss';
 import { goMainPage } from '../../../core/utils/routeUtil';
+import useToast from '../../../core/hooks/useToast';
 
 const cx = classNames.bind(cn);
 
@@ -19,10 +20,12 @@ const Header = ({
                   showSideBar,
                   toggleSideBar,
                 }: IHeaderProps) => {
+  const [,hideToast] = useToast();
 
   const onMainPageClick = React.useCallback(() => {
     goMainPage();
     toggleSideBar(false);
+    hideToast();
   }, []);
 
   const onToggleSideBar = React.useCallback(() => toggleSideBar(!showSideBar), [showSideBar]);
