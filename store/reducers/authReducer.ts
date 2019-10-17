@@ -59,6 +59,8 @@ export default createReducer(initialState, {
   [LOAD_USER_INFO.FAILURE]: (state) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = initialState.userInfo;
+      localStorage.removeItem(ACCESS_TOKEN);
+      settingAccessHeaderToken('');
     }),
 });
 
