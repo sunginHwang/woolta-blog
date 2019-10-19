@@ -3,12 +3,12 @@
   "short_name": "woolta",
   "icons": [
     {
-      "src": "/static/icon192x192.png",
+      "src": "/static/main-icon192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/static/icon512x512.png",
+      "src": "/static/main-icon512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
