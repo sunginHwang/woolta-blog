@@ -1,37 +1,39 @@
-const CACHE_NAME = 'woolta-blog-cache';
+const CACHE_NAME = 'woolta-blog-cache-v2';
 
 const FILES_TO_CACHE = [
     '/offline',
 ];
 
 self.addEventListener('install', function (event) {
-    console.log('[ServiceWorker] Install');
+    console.log('[wooltaBlogServiceWorker]  Install');
     // Perform install steps
     self.skipWaiting()
 
-
-    event.waitUntil(
+ /*   event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function (cache) {
+                console.log('caches');
                 return cache.addAll(FILES_TO_CACHE);
             })
-    );
+    );*/
 });
 
 self.addEventListener('activate', function (event) {
-    console.log('[ServiceWorker] activate');
-    event.waitUntil(
+    console.log('[wooltaBlogServiceWorker] activate');
+
+   /* event.waitUntil(
         caches.keys().then(function (cacheName) {
             return Promise.all(
                 cacheName.filter(n => FILES_TO_CACHE.indexOf(n) === -1)
                     .map(n => caches.delete(n))
             )
         })
-    )
+    )*/
 })
 
 
-self.addEventListener('fetch', (event) => {
+/*self.addEventListener('fetch', (event) => {
+    console.log('[wooltaBlogServiceWorker] fetch');
 
     if (event.request.method !== 'GET') { // GET 요청만 캐싱 지원 처리
         return;
@@ -58,15 +60,15 @@ self.addEventListener('fetch', (event) => {
                 })
         })
     );
-});
+});*/
 
 self.addEventListener('push', function (event) {
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+    console.log(`[wooltaBlogServiceWorker] Push had this data: "${event.data.text()}"`);
     const pushInfo = JSON.parse(event.data.text());
 
     const options = { // 푸쉬 알림창에 대한 각종 설정
         body: pushInfo.content,
-        icon: 'static/icon192x192.png',
+        icon: 'static/main-icon192x192.png',
         data: {
             url: pushInfo.url
         }
