@@ -19,6 +19,7 @@ const PostSubTitle = ({
                         onDeletePost,
                         createdAt,
                       }: PostSubTitleProps) => {
+
   const renderEditPost = editAuth &&
     <div>
       <div className={cn.postSubTitle__button}
