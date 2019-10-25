@@ -9,3 +9,11 @@ export const pushSubscription = (subscription: IPwaSubscription) => {
     endPoint: subscription.endpoint,
   });
 };
+
+export const pushUnsubscription = (pwaSubscriptionKey: String) => {
+  apiCall.delete(`${BLOG_API}/push/subscription`, {
+    data: {
+      key: pwaSubscriptionKey,
+    },
+  });
+};
