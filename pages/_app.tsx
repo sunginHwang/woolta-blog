@@ -8,7 +8,7 @@ import store from '../store';
 import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
-import { subscribeUser } from '../pwa/pushConfig';
+import { initSubscribe } from '../pwa/pushConfig';
 import '../style/scss/style.scss';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
@@ -26,7 +26,7 @@ const App = (props: Props) => {
         navigator.serviceWorker.register('/service-worker.js')
           .then((reg) => {
             console.log('[wooltaBlogServiceWorker] registered.', reg);
-            subscribeUser(reg);
+            initSubscribe(reg);
           })
           .catch(e => console.log(e));
       });
