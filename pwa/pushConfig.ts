@@ -1,18 +1,44 @@
-import { pushSubscription } from '../core/api/pushApi';
+import { pushSubscription, pushUnsubscription } from '../core/api/pushApi';
+import { IPwaSubscription } from '../types/pwa/IPwaSubscription';
+import { ACCESS_PUSH_TOKEN, PWA_LOG, PUSH_APPLICATION_SERVER_KEY, PWA_NOTIFICATION_PERMISSIONS } from '../core/constants';
 
-const applicationServerPublicKey = 'BBUmILImgSCb6wcUMIDPKj1B-kxu_x4VtHeQYVkLIRAlFCtTTFblcRsANxQCBfBYR8jOSx4OsvoFjObsyWc5p9Y';
+export const initSubscribe = (swRegistration) => {
+
+  // 사용자가 브라우저에서 강제로 알람 차단 할 경우 남아있는 키 제거
+  if (Notification.permission !== PWA_NOTIFICATION_PERMISSIONS.granted) {
+    removeAccessPushToken();
+  }
+
+  if (Notification.permission === PWA_NOTIFICATION_PERMISSIONS.default) {
+    subscribeUser(swRegistration);
+  }
+};
 
 export const subscribeUser = (swRegistration) => {
-  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  console.log(`${PWA_LOG} subscribe`);
+  const applicationServerKey = urlB64ToUint8Array(PUSH_APPLICATION_SERVER_KEY);
+
   swRegistration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: applicationServerKey,
   }).then((subscription) => {
-    console.log('has subscription ==========',subscription);
-    pushSubscription(JSON.parse(JSON.stringify(subscription)));
-  }).catch(e=>{
-    console.log(e);
-  });
+    const pwaSubscription: IPwaSubscription = JSON.parse(JSON.stringify(subscription));
+    localStorage.setItem(ACCESS_PUSH_TOKEN, pwaSubscription.keys.auth);
+    pushSubscription(pwaSubscription);
+  }).catch(e => console.log(`${PWA_LOG} subscribe error`, e));
+};
+
+export const unSubscribeUser = (swRegistration) => {
+  console.log(`${PWA_LOG} unsubscribe`);
+
+  swRegistration.pushManager.getSubscription()
+    .then((subscription) => {
+      if (subscription) {
+        return subscription.unsubscribe();
+      }
+    })
+    .catch((e) => console.log(`${PWA_LOG} unsubscribe error: `, e))
+    .then(() => removeAccessPushToken());
 };
 
 const urlB64ToUint8Array = (base64String: string) => {
@@ -28,6 +54,17 @@ const urlB64ToUint8Array = (base64String: string) => {
     outputArray[i] = rawData.charCodeAt(i);
   }
   return outputArray;
+};
+
+const removeAccessPushToken = () => {
+  console.log(`${PWA_LOG} removeAccessPushToken`);
+  const pwaSubscriptionKey = localStorage.getItem(ACCESS_PUSH_TOKEN);
+  if (!pwaSubscriptionKey) {
+    return;
+  }
+  console.log(`${PWA_LOG} removeAccessPushToken key`, pwaSubscriptionKey);
+  pushUnsubscription(pwaSubscriptionKey);
+  localStorage.removeItem(ACCESS_PUSH_TOKEN);
 };
 
 
