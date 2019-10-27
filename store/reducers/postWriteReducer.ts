@@ -11,6 +11,7 @@ const SET_TITLE: string = `${prefix}SET_TITLE`;
 const SET_CONTENT: string = `${prefix}SET_CONTENT`;
 const SET_CATEGORY: string = `${prefix}SET_CATEGORY`;
 const SET_CONTENT_WRITE_INDEX: string = `${prefix}SET_CONTENT_WRITE_INDEX`;
+const SET_CONTENT_POSITION: string = `${prefix}SET_CONTENT_POSITION`;
 const TOGGLE_ORIGIN_PREVIEW_MODE: string = `${prefix}TOGGLE_ORIGIN_PREVIEW_MODE`;
 const TOGGLE_ERROR: string = `${prefix}TOGGLE_ERROR`;
 const INIT_POST_WRITE: string = `${prefix}INIT_POST_WRITE`;
@@ -26,6 +27,7 @@ export const settingPostInfo = createStandardAction(SETTING_POST_INFO)<settingPo
 export const setTitle = createStandardAction(SET_TITLE)<string>();
 export const setContentWriteIndex = createStandardAction(SET_CONTENT_WRITE_INDEX)<number>();
 export const setContent = createStandardAction(SET_CONTENT)<string>();
+export const setContentPosition = createStandardAction(SET_CONTENT_POSITION)<number>();
 export const setCategory = createStandardAction(SET_CATEGORY)<ICategory>();
 export const initPostWrite = createStandardAction(INIT_POST_WRITE)<void>();
 export const toggleOriginPreviewMode = createStandardAction(TOGGLE_ORIGIN_PREVIEW_MODE)<boolean>();
@@ -41,6 +43,7 @@ export interface PostWriteInitType {
   error: boolean;
   errorMsg: string;
   previewMode: boolean;
+  contentPosition: number;
 }
 
 const initialState: PostWriteInitType = {
@@ -52,6 +55,7 @@ const initialState: PostWriteInitType = {
   error: false,
   errorMsg: '',
   previewMode: false,
+  contentPosition: 0,
 };
 
 
@@ -85,6 +89,10 @@ export default createReducer(initialState, {
   [SET_CONTENT_WRITE_INDEX]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {
       draft.contentWriteIndex = action.payload;
+    }),
+  [SET_CONTENT_POSITION]: (state, action: FluxStandardAction) =>
+    produce<PostWriteInitType>(state, draft => {
+      draft.contentPosition = action.payload;
     }),
   [TOGGLE_ERROR]: (state, action: FluxStandardAction) =>
     produce<PostWriteInitType>(state, draft => {

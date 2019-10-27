@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
-import { setContent, setContentWriteIndex } from '../store/reducers/postWriteReducer';
+import { setContent, setContentPosition, setContentWriteIndex } from '../store/reducers/postWriteReducer';
 import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
 import PostWriteForm from '../components/post/write/PostWriteForm/PostWriteForm';
 import useImageUpload from '../core/hooks/useImageUpload';
@@ -59,21 +59,19 @@ const WriteEditorContainer = () => {
     dispatch(setContent(addImageTag(image, content, addIndex)));
   }, [content, contentWriteIndex]);
 
-  const onChangeContent = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setContent(e.target.value));
-    dispatch(setContentWriteIndex(e.target.selectionStart));
-  }, [content]);
+  const changeContent = useCallback((content: string) => dispatch(setContent(content)), [content]);
 
-  const onChangeContentWriteIndex = useCallback((selectionStart: number) => {
+  const changeContentWriteIndex = useCallback((selectionStart: number) => {
     dispatch(setContentWriteIndex(selectionStart));
   }, []);
 
+  const changeScrollPosition = useCallback((scrollPosition) => dispatch(setContentPosition(scrollPosition)), [dispatch]);
 
   return (
     <PostWriteForm content={content}
-                   onChangeContent={onChangeContent}
-                   onChangeContentIndex={onChangeContentWriteIndex}
-    />
+                   changeContent={changeContent}
+                   changeContentWriteIndex={changeContentWriteIndex}
+                   changeScrollPosition={changeScrollPosition}/>
   );
 };
 

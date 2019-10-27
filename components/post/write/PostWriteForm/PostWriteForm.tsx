@@ -3,18 +3,32 @@ import cn from './PostWriteForm.scss';
 
 interface PostWriteFormProps {
   content: string;
-  onChangeContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onChangeContentIndex: (index: number) => void;
+  changeContent: (content: string) => void;
+  changeContentWriteIndex: (index: number) => void;
+  changeScrollPosition: (scrollTopPosition: number) => void;
 }
 
 const PostWriteForm = ({
                          content,
-                         onChangeContent,
-                         onChangeContentIndex,
+                         changeContent,
+                         changeContentWriteIndex,
+                         changeScrollPosition,
                        }: PostWriteFormProps) => {
   const contentRef = useRef(null);
 
-  const onFocusContent = useCallback(() => onChangeContentIndex(contentRef.current.selectionStart), []);
+  const onFocusContent = useCallback(() => {
+    console.log('무?');
+    console.log((contentRef.current.scrollTop + contentRef.current.offsetHeight) / contentRef.current.scrollHeight * 100);
+    console.log('초?');
+    const scrollTopPercent: number = (contentRef.current.scrollTop + contentRef.current.offsetHeight) / contentRef.current.scrollHeight * 100;
+    changeScrollPosition(scrollTopPercent);
+    changeContentWriteIndex(contentRef.current.selectionStart);
+  }, []);
+
+  const onChangeContent = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    changeContent(e.target.value);
+    onFocusContent();
+  }, []);
 
   return (
     <textarea className={cn.postWriteContent}
