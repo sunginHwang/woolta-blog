@@ -15,7 +15,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
 
   const intervalRef = React.useRef(null);
 
-  const { postNo, title, content, category, previewMode } = useSelector((state: RootState) => state.postWriteReducer);
+  const { postNo, title, content, category, previewMode, contentPosition } = useSelector((state: RootState) => state.postWriteReducer);
 
   const dispatch = useDispatch();
   const [, , notifyToast] = useToast();
@@ -65,7 +65,7 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   };
 
   return (
-    <WriteView previewMode={previewMode}/>
+    <WriteView previewMode={previewMode} contentPosition={contentPosition}/>
   );
 };
 
