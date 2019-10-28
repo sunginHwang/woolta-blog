@@ -17,9 +17,6 @@ const PostWriteForm = ({
   const contentRef = useRef(null);
 
   const onFocusContent = useCallback(() => {
-    console.log('무?');
-    console.log((contentRef.current.scrollTop + contentRef.current.offsetHeight) / contentRef.current.scrollHeight * 100);
-    console.log('초?');
     const scrollTopPercent: number = (contentRef.current.scrollTop + contentRef.current.offsetHeight) / contentRef.current.scrollHeight * 100;
     changeScrollPosition(scrollTopPercent);
     changeContentWriteIndex(contentRef.current.selectionStart);
