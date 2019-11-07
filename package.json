@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "local": "NODE_ENV=dev ENV=local node server.js"
+    "local": "NODE_ENV=dev ENV=local node server.js",
+    "production": "NODE_ENV=production ENV=production node server.js"
   },
   "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
@@ -17,6 +19,7 @@
     "immer": "^3.2.0",
     "nanobar": "^0.4.2",
     "next": "9.0.4",
+    "next-compose": "0.0.2",
     "next-redux-wrapper": "^3.0.0",
     "next-routes": "^1.4.2",
     "node-sass": "^4.12.0",
@@ -30,6 +33,7 @@
     "react-select": "^3.0.4",
     "react-spinners": "^0.6.1",
     "redux": "^4.0.4",
+    "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0",
     "typesafe-actions": "^4.4.2"
   },
