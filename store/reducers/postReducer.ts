@@ -19,6 +19,18 @@ export const postInfoInitialize = createStandardAction(POST_INFO_INITIALIZE)<voi
 export const getPost = apiRequestThunk(GET_POST, fetchPostInfo);
 export const deletePost = apiRequestThunk(DELETE_POST, delPost);
 
+export const getChaningActions = () => {
+  // Again, Redux Thunk will inject dispatch here.
+  // It also injects a second argument called getState() that lets us read the current state.
+  return (dispatch, getState) => {
+    // Remember I told you dispatch() can now handle thunks?
+    return dispatch(getPost(1)).then(() => {
+      console.log(getState);
+      return dispatch(getPost(getPost(2)));
+    });
+  };
+};
+
 
 export interface postInitType {
   post: IPost;
