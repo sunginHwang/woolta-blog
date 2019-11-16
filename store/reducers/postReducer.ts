@@ -23,10 +23,24 @@ export const getChaningActions = () => {
   // Again, Redux Thunk will inject dispatch here.
   // It also injects a second argument called getState() that lets us read the current state.
   return (dispatch, getState) => {
-    // Remember I told you dispatch() can now handle thunks?
-    return dispatch(getPost(1)).then(() => {
-      console.log(getState);
-      return dispatch(getPost(getPost(2)));
+
+    const params = {
+      categoryNo:9,
+      postNo: 192
+    }
+
+    const params2 = {
+      categoryNo:11,
+      postNo: 191
+    }
+    console.log('firstCall');
+    const { postReducer } = getState();
+    console.log(postReducer);
+    return dispatch(getPost(params)).then(() => {
+      console.log('SecondCall');
+      const { postReducer } = getState();
+      console.log(postReducer);
+      return dispatch(getPost(params2));
     });
   };
 };
