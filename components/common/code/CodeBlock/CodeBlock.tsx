@@ -1,30 +1,22 @@
-import React, { useEffect } from 'react';
-import hljs from 'highlight.js';
+import React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import AtomOneDark from './AtomOneDark';
 
 interface CodeBlockProps {
   value: string;
   language: string;
-  codeEl: HTMLElement;
+  codeEl?: HTMLElement;
 }
 
 const CodeBlock = ({
                      value,
-                     codeEl,
                      language,
                    }: CodeBlockProps) => {
 
-  useEffect(() => highlightCode(), [value, codeEl, language]);
-
-  const setRef = (el: HTMLElement) => codeEl = el;
-
-  const highlightCode = () => hljs.highlightBlock(codeEl);
-
   return (
-    <pre>
-          <code ref={setRef} className={`language-${language}`}>
-            {value}
-          </code>
-      </pre>
+    <SyntaxHighlighter language={language} style={AtomOneDark}>
+      {value === undefined ? '' : value}
+    </SyntaxHighlighter>
   );
 };
 

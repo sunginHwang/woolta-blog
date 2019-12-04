@@ -65,7 +65,8 @@ const PostEdit: NextPageCustom<{}> = ({}) => {
   };
 
   return (
-    <WriteView previewMode={previewMode} contentPosition={contentPosition}/>
+    <WriteView previewMode={previewMode}
+               contentPosition={contentPosition}/>
   );
 };
 
