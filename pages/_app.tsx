@@ -48,9 +48,14 @@ const App = (props: Props) => {
 
 
 App.getInitialProps = async ({ Component, ctx }) => {
-  const pageProps = await Component.type.getInitialProps(ctx);
-  ctx.isServer && await ctx.store.dispatch(getCategories(fetchCategories()));
-  return { pageProps };
+  if (Component.type) {
+    const pageProps = await Component.type.getInitialProps(ctx);
+    ctx.isServer && await ctx.store.dispatch(getCategories(fetchCategories()));
+    return { pageProps };
+  }
+
+  return {};
+
 };
 
 export default withRedux(store)(App);
