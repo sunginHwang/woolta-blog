@@ -10,6 +10,7 @@ import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import { initSubscribe } from '../pwa/pushConfig';
 import '../style/scss/style.scss';
+import { PWA_LOG } from '../core/constants';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 
@@ -25,7 +26,7 @@ const App = (props: Props) => {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
           .then((reg) => {
-            console.log('[wooltaBlogServiceWorker] registered.', reg);
+            console.log(`${PWA_LOG} registered`, reg);
             initSubscribe(reg);
           })
           .catch(e => console.log(e));
