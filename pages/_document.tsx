@@ -1,5 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-
+import { ServerStyleSheet } from 'styled-components';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
@@ -60,6 +60,30 @@ class MyDocument extends Document {
 
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
+
     return { ...initialProps };
   }
 
@@ -70,8 +94,8 @@ class MyDocument extends Document {
       <Head></Head>
       <NextHeadWithInlineCss/>
       <body>
-        <Main/>
-        <NextScript/>
+      <Main/>
+      <NextScript/>
       </body>
       </html>
     );

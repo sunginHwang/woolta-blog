@@ -1,9 +1,46 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 import { MdNotificationsActive } from 'react-icons/md';
-import cn from './NotificationBar.scss';
-import classNames from 'classnames/bind';
 
-const cx = classNames.bind(cn);
+const S: any = {};
+
+S.NotificationBar = styled.div`
+  position: fixed;
+  bottom: .5rem;
+  right: .5rem;
+  color:#fff;
+  background-color: #6e827f;
+  padding: .5rem 1rem;
+  border-radius: .8rem;
+  font-size: 1.8rem;
+  opacity:.95;
+  min-height: 10rem;
+  min-width: 30rem;
+  display: flex;
+  align-items: center;
+  
+  @keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+
+  }
+  to {
+    transform: translateX(0);
+
+  }
+}
+
+  ${props =>
+  props.isShow && css`
+    animation: slide-in-from-right .5s forwards;
+  `
+  }
+  `;
+
+S.NotificationBarTitle = styled.p`
+  margin-left: 1rem;
+  font-weight:bold;
+  `;
 
 interface NotificationBarProps {
   message: string;
@@ -15,10 +52,10 @@ const NotificationBar = ({ message, isShow }: NotificationBarProps) => {
   if (!isShow) return null;
 
   return (
-    <div className={cx(cn.notificationBar, isShow && cn.show)}>
+    <S.NotificationBar isShow>
       <MdNotificationsActive/>
-      <p className={cn.notificationBar__title}>{message}</p>
-    </div>
+      <S.NotificationBarTitle>{message}</S.NotificationBarTitle>
+    </S.NotificationBar>
   );
 };
 
