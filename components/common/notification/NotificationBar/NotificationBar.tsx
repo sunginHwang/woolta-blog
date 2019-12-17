@@ -2,6 +2,31 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { MdNotificationsActive } from 'react-icons/md';
 
+type NotificationBarProps = {
+  message: string;
+  isShow: boolean;
+}
+
+function NotificationBar({ message, isShow }: NotificationBarProps) {
+
+  if (!isShow) return null;
+
+  return (
+    <S.NotificationBar isShow>
+      <MdNotificationsActive/>
+      <S.NotificationBarTitle>{message}</S.NotificationBarTitle>
+    </S.NotificationBar>
+  );
+};
+
+NotificationBar.defaultProps = {
+  message: '',
+  isShow: false,
+};
+
+export default NotificationBar;
+
+
 const S: any = {};
 
 S.NotificationBar = styled.div`
@@ -41,22 +66,3 @@ S.NotificationBarTitle = styled.p`
   margin-left: 1rem;
   font-weight:bold;
   `;
-
-interface NotificationBarProps {
-  message: string;
-  isShow: boolean;
-}
-
-const NotificationBar = ({ message, isShow }: NotificationBarProps) => {
-
-  if (!isShow) return null;
-
-  return (
-    <S.NotificationBar isShow>
-      <MdNotificationsActive/>
-      <S.NotificationBarTitle>{message}</S.NotificationBarTitle>
-    </S.NotificationBar>
-  );
-};
-
-export default NotificationBar;
