@@ -2,6 +2,7 @@ import IAsyncAction from '../../types/redux/IAsyncAction';
 import { AxiosResponse } from 'axios';
 import { IApiRes } from '../../types/IApiRes';
 
+// saga 도입 변경 고려
 export const asyncActionTypeCreator = (actionName: string): IAsyncAction => {
   const asyncTypeAction: string[] = ['_PENDING', '_SUCCESS', '_FAILURE'];
 
