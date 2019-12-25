@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaceHolderBar from '../../../common/placeHolder/PlaceHolderBar/PlaceHolderBar';
+import PlaceHolderBar from '../../../common/placeHolder/PlaceHolderBar';
 import cn from './PostPlaceHolder.scss';
 
 const PostPlaceHolder = () => (

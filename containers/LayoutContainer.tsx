@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { RootState } from '../types/redux/RootState';
 import NanoBarLoading from '../components/common/loading/NanoBarLoading/NanoBarLoading';
-import SpinnerLoading from '../components/common/loading/SpinnerLoading/SpinnerLoading';
+import SpinnerLoading from '../components/common/loading/SpinnerLoading';
 
 import Header from '../components/layout/Header/Header';
 import Footer from '../components/layout/Footer/Footer';
@@ -13,7 +13,7 @@ import * as layoutReducer from '../store/reducers/layoutReducer';
 import * as authReducer from '../store/reducers/authReducer';
 import { nanoBarLoadingSetup } from '../core/utils/apiCall';
 import Content from '../components/layout/Content/Content';
-import NotificationBar from '../components/common/notification/NotificationBar/NotificationBar';
+import NotificationBar from '../components/common/notification/NotificationBar';
 import useUser from '../core/hooks/useUser';
 
 interface LayoutContainerProps {

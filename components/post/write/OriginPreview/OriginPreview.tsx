@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ModalWrapper from '../../../common/modal/ModalWrapper/ModalWrapper';
+import ModalWrapper from '../../../common/modal/ModalWrapper';
 import MarkDownView from '../../../view/MarkDownView/MarkDownView';
 import cn from './OriginPreview.scss';
 
