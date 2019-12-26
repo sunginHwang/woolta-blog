@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ModalWrapper from '../../../common/modal/ModalWrapper';
-import MarkDownView from '../../../view/MarkDownView/MarkDownView';
+import MarkDownView from '../../../view/MarkDownView';
 import cn from './OriginPreview.scss';
 
 interface OriginPreviewProps {

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { NextPageCustom } from '../types/next/NextPageCustom';
-import LoginForm from '../components/user/loginForm/LoginForm';
+import LoginForm from '../components/user/LoginForm';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/reducers/authReducer';
 import { goMainPage } from '../core/utils/routeUtil';

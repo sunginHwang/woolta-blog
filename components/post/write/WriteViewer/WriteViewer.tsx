@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from './WriteViewer.scss';
-import MarkDownView from '../../../view/MarkDownView/MarkDownView';
+import MarkDownView from '../../../view/MarkDownView';
 
 interface WriteViewerProps {
   title: string;

@@ -1,9 +1,44 @@
-@import '../../../style/scss/CommonLayout';
-@import '../../../style/scss/CommonUtil';
-@import '~open-color/open-color';
+import React from 'react';
+import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import CodeBlock from '../common/code/CodeBlock/CodeBlock';
+import layouts from '../../style/layouts';
+import colors from '../../style/colors';
 
+type MarkDownViewProps = {
+  content: string;
+  skipHtml: boolean;
+  escapeHtml: boolean;
+}
 
-.markDownView {
+function MarkDownView({
+                        content,
+                        skipHtml,
+                        escapeHtml,
+                      }: MarkDownViewProps) {
+  return (
+    <S.MarkDownView>
+      <ReactMarkdown source={content}
+                     skipHtml={skipHtml}
+                     escapeHtml={escapeHtml}
+                     renderers={{ code: CodeBlock }}/>
+    </S.MarkDownView>
+  );
+};
+
+MarkDownView.defaultProps = {
+  content: '',
+  skipHtml: false,
+  escapeHtml: false,
+};
+
+export default React.memo(MarkDownView, ((prevProps, nextProps) => {
+  return prevProps.content === nextProps.content;
+}));
+
+const S: any = {};
+
+S.MarkDownView = styled.div`
   line-height: 2.4rem;
 
   p, ol, ul, dl {
@@ -43,7 +78,7 @@
     margin-bottom: 3.2rem;
     padding: 1.6rem 1.5rem 1.6rem 1.5rem;
     border-left: 0.8rem #eee solid;
-    @media screen and (max-width: $phone-width) {
+    @media screen and (max-width: ${layouts.phoneWidth}) {
       font-size: 1.6rem;
     }
 
@@ -108,7 +143,7 @@
   }
 
   p, li {
-    @media screen and (max-width: $phone-width) {
+    @media screen and (max-width: ${layouts.phoneWidth}) {
       font-size: 1.6rem;
     }
   }
@@ -121,12 +156,12 @@
   }
 
   a {
-    color: $oc-gray-6;
+    color: #868e96;
     text-decoration: none
   }
 
   strong {
-    color:$custom-black-color;
+    color:${colors.customBlackColor};
   }
 
 
@@ -137,7 +172,7 @@
   h5,
   h6 {
     line-height: 2.43rem;
-    color:$custom-black-color;
+    color:${colors.customBlackColor};
     font-weight: 700;
     margin-top: 3.6rem;
     margin-bottom: 1.6rem;
@@ -169,8 +204,8 @@
       padding: .326rem .39rem;
       border-radius: .3rem;
       background-color: rgba(27, 31, 35, .05);
-      border: .1rem solid $main-theme-color;
-      color: $main-theme-color;
+      border: .1rem solid ${colors.mainThemeColor};
+      color: ${colors.mainThemeColor};
       margin: 0 .39rem;
     }
   }
@@ -202,4 +237,4 @@
   table tr:nth-child(2n) {
     background: #f6f8fa;
   }
-}
+`;
