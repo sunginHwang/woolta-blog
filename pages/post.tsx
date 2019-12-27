@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import PostContent from '../components/post/detail/PostContent/PostContent';
+import PostContent from '../components/post/detail/PostContent';
 import PostSeoHeader from '../components/post/detail/PostSeoHeader/PostSeoHeader';
 import PostPlaceHolder from '../components/post/detail/PostPlaceHolder/PostPlaceHolder';
 import { deletePost, getPost } from '../store/reducers/postReducer';
