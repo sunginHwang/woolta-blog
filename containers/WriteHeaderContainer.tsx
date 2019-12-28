@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import WriteHeader from '../components/post/write/WriteHeader/WriteHeader';
+import WriteHeader from '../components/post/write/WriteHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { initPostWrite, setCategory, setContent, setTitle } from '../store/reducers/postWriteReducer';

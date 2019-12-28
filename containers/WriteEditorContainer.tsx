@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { setContent, setContentPosition, setContentWriteIndex } from '../store/reducers/postWriteReducer';
 import { toggleSpinnerLoading } from '../store/reducers/layoutReducer';
-import PostWriteForm from '../components/post/write/PostWriteForm/PostWriteForm';
+import PostWriteForm from '../components/post/write/PostWriteForm';
 import useImageUpload from '../core/hooks/useImageUpload';
 
 

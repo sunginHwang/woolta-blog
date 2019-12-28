@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { toggleOriginPreviewMode } from '../store/reducers/postWriteReducer';
-import WriteViewer from '../components/post/write/WriteViewer/WriteViewer';
+import WriteViewer from '../components/post/write/WriteViewer';
 import useToast from '../core/hooks/useToast';
 
 const WriteViewContainer = () => {

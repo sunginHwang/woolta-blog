@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import { MdAddToPhotos } from 'react-icons/md';
 import Select from 'react-select';
-import cn from './WriteEditor.scss';
-import { ICategory } from '../../../../types/post/ICategory';
-import { IUserInfo } from '../../../../types/user/IUserInfo';
-import { addElement } from '../../../../core/utils/domUtil';
+import { ICategory } from '../../../types/post/ICategory';
+import { IUserInfo } from '../../../types/user/IUserInfo';
+import { addElement } from '../../../core/utils/domUtil';
+import colors from '../../../style/colors';
+import mixins from '../../../style/mixins';
 
-interface WriteEditorProps {
+type WriteEditorProps = {
   content: string;
   title: string;
   categories: ICategory[];
@@ -18,7 +20,7 @@ interface WriteEditorProps {
   onChangeCategories: any;
 }
 
-const WriteEditor = ({
+function WriteEditor({
                        onChangeContent,
                        onChangeTitle,
                        content,
@@ -28,7 +30,7 @@ const WriteEditor = ({
                        selectedCategory,
                        title,
                        userInfo,
-                     }: WriteEditorProps) => {
+                     }: WriteEditorProps) {
 
   const contentRef = useRef(null);
 
@@ -90,33 +92,103 @@ const WriteEditor = ({
   };
 
   return (
-    <div className={cn.writeEditor}>
-      <div className={cn.writeEditor__header}>
-        <img className={cn.writeEditor__header__author} src={userInfo.imageUrl}/>
-        <span className={cn.writeEditor__header__authorName}>{`작성자 : ${userInfo.userId}`}</span>
-      </div>
-      <div className={cn.writeEditor__selector}>
+    <S.WriteEditor>
+      <S.WriteEditorHeader>
+        <img src={userInfo.imageUrl} alt='writeEditorImg'/>
+        <span>{`작성자 : ${userInfo.userId}`}</span>
+      </S.WriteEditorHeader>
+      <S.WriteEditorSelect>
         <Select
           value={selectedCategory}
           onChange={onChangeCategories}
           options={categories}/>
-      </div>
-      <div className={cn.writeEditor__title}>
+      </S.WriteEditorSelect>
+      <S.WriteEditorTitle>
         <input type='text'
                placeholder='제목을 입력해 주세요.'
                onChange={(e) => onChangeTitle(e.target.value)}
                value={title}/>
-        <div className={cn.writeEditor__title__imgInsertButton}
-             onClick={onClickUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
-      </div>
-      <textarea className={cn.writeEditor__markDownEditor}
-                ref={contentRef}
+        <div onClick={onClickUploadImage}><span><MdAddToPhotos/>이미지 업로드</span></div>
+      </S.WriteEditorTitle>
+      <textarea ref={contentRef}
                 placeholder='작성할 내용을 입력해 주세요.'
                 onChange={(e) => onChangeContent(e.target.value)}
                 value={content}/>
-    </div>
+    </S.WriteEditor>
 
   );
 };
 
+WriteEditor.defaultProps = {
+  content: '',
+  title: '',
+  categories: [],
+  userInfo: {
+    no: 0,
+    userId: '',
+  },
+};
+
 export default WriteEditor;
+
+const S: any = {};
+
+S.WriteEditor = styled.div`
+  height: 100%;
+  
+  textarea{
+    width: 100%;
+    display: inline-block;
+    outline-style: none;
+    height: 75%;
+    font-size: 1.6rem;
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+  }
+`;
+
+S.WriteEditorTitle = styled.div`
+  display: flex;
+  height: 6rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  
+  input{
+    width: 75%;
+    border: none;
+    outline-style: none;
+    font-size: 2.4rem;
+  }
+  
+  div{
+    width: 20%;
+    float: right;
+    ${mixins.mainButton}
+  }
+`;
+
+S.WriteEditorHeader = styled.div`
+  text-align: left;
+  margin-bottom: 2rem;
+  
+  img{
+    border-radius: 50%;
+    margin-right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    vertical-align: middle;
+  }
+  
+  span{
+    color: ${colors.mainThemeColor};
+    font-weight: bold;
+  }
+`;
+
+S.WriteEditorSelect = styled.div`
+  text-align: left;
+  margin-bottom: 2rem;
+`;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PostSubTitle from './PostSubTitle/PostSubTitle';
+import PostSubTitle from './PostSubTitle';
 import styled from 'styled-components';
 import { IPost } from '../../../types/post/IPost';
 import MarkDownView from '../../view/MarkDownView';
@@ -20,7 +20,7 @@ function PostContent({
                        goModifyPostPage,
                      }: PostContentProps) {
 
-  return (/**/
+  return (
     <S.postContent>
       <S.postContentHeader>
         <h1>{post.title}</h1>

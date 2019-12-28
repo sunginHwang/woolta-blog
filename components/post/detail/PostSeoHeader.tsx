@@ -1,20 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
-import { BLOG_THUMBNAIL_IMAGE_URL, BLOG_URL } from '../../../../core/constants';
-import { convertToPlainText } from '../../../../core/utils/StringUtil';
-import { IPost } from '../../../../types/post/IPost';
+import { BLOG_THUMBNAIL_IMAGE_URL, BLOG_URL } from '../../../core/constants';
+import { convertToPlainText } from '../../../core/utils/StringUtil';
+import { IPost } from '../../../types/post/IPost';
 
-interface PostSeoHeaderProps {
+type PostSeoHeaderProps = {
   post: IPost
   postNo: number
   categoryNo: number
 }
 
-const PostSeoHeader = ({
+function PostSeoHeader({
                          post,
                          postNo,
                          categoryNo,
-                       }: PostSeoHeaderProps) => {
+                       }: PostSeoHeaderProps) {
 
   const isAllowUrl: boolean = categoryNo !== undefined && postNo !== undefined;
   const { title, content, createdAt } = post;

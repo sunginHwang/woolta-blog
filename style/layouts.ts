@@ -11,3 +11,4 @@ export default {
   phoneWidth: '450px',
 
 };
+

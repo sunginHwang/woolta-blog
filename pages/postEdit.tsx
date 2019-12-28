@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/redux/RootState';
 import { confirm } from '../core/utils/dialogUtil';
 import { toggleEditMode } from '../store/reducers/layoutReducer';
-import WriteView from '../components/post/write/WriteView/WriteView';
+import WriteView from '../components/post/write/WriteView';
 import useTitle from '../core/hooks/useTitle';
 import useToast from '../core/hooks/useToast';
 import { settingPostInfo } from '../store/reducers/postWriteReducer';
