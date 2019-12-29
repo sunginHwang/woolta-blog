@@ -61,7 +61,7 @@ function SideBar({
   const renderUserMenu =
     <li>
       <a>
-        <S.UserImg src={userInfo.imageUrl}/>
+        <S.UserImage src={userInfo.imageUrl}/>
         <span>{userInfo.userId}</span>
         <S.Logout onClick={onLogout}>로그아웃</S.Logout>
       </a>
@@ -86,7 +86,7 @@ function SideBar({
           {renderCategories}
         </ul>
       </S.SideBar>
-      <S.SideBarWhiteSpace/>
+      {isOpen && <S.SideBarWhiteSpace/>}
     </>
   );
 };
@@ -110,11 +110,11 @@ S.SideBar = styled.div`
   height: 100%;
   position: fixed;
   font-size: 1.6rem;
-  z-index: ${layouts.sideBarZIndex}*2;
+  z-index: ${layouts.sideBarZIndex * 2};
   background-color: ${colors.whiteColor};
   top: ${layouts.mainHeaderHeight};
 
-  right: ${props => props.isSideBarOpen ? 0 : -(layouts.mainRightWidth)};
+  right: ${props => props.isSideBarOpen ? 0 : `-${layouts.mainRightWidth}`};
   transition: all .1s ease;
 
   ul{

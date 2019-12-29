@@ -25,7 +25,7 @@ function PostSubTitle({
 
   const renderEditPost = editAuth &&
     <div>
-      <S.PostSubTitleButton onClick={goModifyPostPage}>수정></S.PostSubTitleButton>
+      <S.PostSubTitleButton onClick={goModifyPostPage}>수정</S.PostSubTitleButton>
       <S.PostSubTitleButton onClick={onDeletePost}>삭제</S.PostSubTitleButton>
     </div>;
 
@@ -76,13 +76,13 @@ S.PostSubTitle = styled.div`
 `;
 
 S.PostSubTitleButton = styled.div`
+  ${mixins.mainButton};
   text-align: center;
   width: 6rem;
   font-size: 1.6rem;
   float: right;
   margin-left: 1rem;
   padding: .5rem;
-  ${mixins.mainButton}
 `;
 
 

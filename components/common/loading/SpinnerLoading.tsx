@@ -9,13 +9,15 @@ type SpinnerLoadingProps = {
 function SpinnerLoading({ loading }: SpinnerLoadingProps) {
 
   return (
-    <S.SpinnerLoading>
-      <div>
-        <HashLoader
-          color={'#6e827f'}
-          loading={loading}/>
-      </div>
-    </S.SpinnerLoading>
+    <>
+      {loading && <S.SpinnerLoading>
+        <div>
+          <HashLoader
+            color={'#6e827f'}
+            loading={loading}/>
+        </div>
+      </S.SpinnerLoading>}
+    </>
   );
 };
 

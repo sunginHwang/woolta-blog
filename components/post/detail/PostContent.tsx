@@ -52,7 +52,7 @@ export default React.memo(PostContent, (prevProps, nextProps) => {
 
 const S: any = {};
 
-S.postContent = styled`
+S.postContent = styled.div`
   text-align: left;
   margin-top: 3.2rem;
 
@@ -65,7 +65,7 @@ S.postContent = styled`
   }
 `;
 
-S.postContentHeader = styled`
+S.postContentHeader = styled.div`
   padding: 0;
   margin-bottom: 4.5rem;
   border-bottom: .1rem solid #eee;
@@ -91,7 +91,7 @@ S.postContentHeader = styled`
   }
 `;
 
-S.postContentMarkdown = styled`
+S.postContentMarkdown = styled.div`
   color: ${colors.customBlackColor} !important;
   word-break: break-all;
 `;

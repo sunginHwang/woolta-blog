@@ -96,7 +96,7 @@ S.LoginInput = styled.div`
   }
 `;
 
-S.LoginButton = styled.div`
+S.LoginButton = styled.button`
   width: 100%;
   max-width: 45rem;
   margin-top: 3.2rem;
