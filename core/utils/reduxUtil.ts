@@ -1,6 +1,6 @@
 import IAsyncAction from '../../types/redux/IAsyncAction';
 import { AxiosResponse } from 'axios';
-import { IApiRes } from '../../types/IApiRes';
+import { IApiRes } from '../../types/api/IApiRes';
 
 // saga 도입 변경 고려
 export const asyncActionTypeCreator = (actionName: string): IAsyncAction => {

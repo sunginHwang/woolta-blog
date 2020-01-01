@@ -5,7 +5,7 @@ import { RootState } from '../types/redux/RootState';
 import { initPostWrite, setCategory, setContent, setTitle } from '../store/reducers/postWriteReducer';
 import { ICategory } from '../types/post/ICategory';
 import { AxiosResponse } from 'axios';
-import { IApiRes } from '../types/IApiRes';
+import { IApiRes } from '../types/api/IApiRes';
 import { IUpsertPostRes } from '../types/post/IUpsertPostRes';
 import { upsertPostApi } from '../core/api/blogApi';
 import { TEMP_POST_AUTO_SAVE } from '../core/constants';
