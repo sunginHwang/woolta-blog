@@ -21,7 +21,7 @@ function PostLayout({ posts }: PostLayoutProps) {
 
 PostLayout.defaultProps = {
   posts: [],
-};
+} as PostLayoutProps;
 
 export default React.memo(PostLayout, (prevProps, nextProps) => {
   return prevProps.posts !== nextProps.posts;

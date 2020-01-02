@@ -98,7 +98,7 @@ SideBar.defaultProps = {
     userId: '',
   },
   categories: [],
-};
+} as SideBarProps;
 
 export default SideBar;
 

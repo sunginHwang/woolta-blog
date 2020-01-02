@@ -58,9 +58,9 @@ function WriteHeader({
 
 WriteHeader.defaultProps = {
   title: '',
-  content: '',
+  category: '',
   categories: [],
-};
+} as WriteHeaderProps;
 
 export default WriteHeader;
 

@@ -30,7 +30,7 @@ MarkDownView.defaultProps = {
   content: '',
   skipHtml: false,
   escapeHtml: false,
-};
+} as MarkDownViewProps;
 
 export default React.memo(MarkDownView, ((prevProps, nextProps) => {
   return prevProps.content === nextProps.content;

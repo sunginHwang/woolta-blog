@@ -44,7 +44,7 @@ function PostContent({
 PostContent.defaultProps = {
   post: {},
   editAuth: false,
-};
+} as PostContentProps;
 
 export default React.memo(PostContent, (prevProps, nextProps) => {
   return prevProps.post === nextProps.post && prevProps.editAuth === nextProps.editAuth;

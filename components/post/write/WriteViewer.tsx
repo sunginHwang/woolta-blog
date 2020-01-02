@@ -34,7 +34,7 @@ WriteViewer.defaultProps = {
   title: '',
   content: '',
   previewMode: false,
-};
+} as WriteViewerProps;
 
 export default WriteViewer;
 

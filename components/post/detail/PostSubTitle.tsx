@@ -5,7 +5,7 @@ import layouts from '../../../style/layouts';
 import colors from '../../../style/colors';
 import mixins from '../../../style/mixins';
 
-type PostSubTitleProps  = {
+type PostSubTitleProps = {
   writer: IWriter;
   categoryLabel: string
   editAuth: boolean
@@ -52,7 +52,7 @@ PostSubTitle.defaultProps = {
   },
   categoryLabel: '',
   editAuth: false,
-};
+} as PostSubTitleProps;
 
 export default PostSubTitle;
 

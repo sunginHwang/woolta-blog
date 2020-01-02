@@ -29,18 +29,18 @@ function PostWriteForm({
 
   return (
     <S.PostWriteForm
-              value={content}
-              ref={contentRef}
-              placeholder='작성할 내용을 입력해 주세요.'
-              onClick={onFocusContent}
-              onChange={onChangeContent}
+      value={content}
+      ref={contentRef}
+      placeholder='작성할 내용을 입력해 주세요.'
+      onClick={onFocusContent}
+      onChange={onChangeContent}
     />
   );
 };
 
 PostWriteForm.defaultProps = {
   content: '',
-};
+} as PostWriteFormProps;
 
 export default PostWriteForm;
 

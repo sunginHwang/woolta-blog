@@ -40,7 +40,7 @@ function LoginForm({
 LoginForm.defaultProps = {
   id: '',
   password: '',
-};
+} as LoginViewProps;
 
 export default LoginForm;
 

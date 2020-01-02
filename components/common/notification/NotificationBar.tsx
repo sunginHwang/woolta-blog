@@ -22,7 +22,7 @@ function NotificationBar({ message, isShow }: NotificationBarProps) {
 NotificationBar.defaultProps = {
   message: '',
   isShow: false,
-};
+} as NotificationBarProps;
 
 export default NotificationBar;
 

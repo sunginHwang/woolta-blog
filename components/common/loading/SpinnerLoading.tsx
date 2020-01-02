@@ -21,6 +21,10 @@ function SpinnerLoading({ loading }: SpinnerLoadingProps) {
   );
 };
 
+SpinnerLoading.defaultProps = {
+  loading: false,
+} as SpinnerLoadingProps;
+
 export default SpinnerLoading;
 
 const S: any = {};

@@ -22,6 +22,10 @@ function ModalWrapper({
   );
 };
 
+ModalWrapper.defaultProps = {
+  visible: false,
+} as ModalWrapperProps;
+
 export default ModalWrapper;
 
 const S: any = {};

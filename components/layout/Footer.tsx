@@ -21,7 +21,7 @@ function Footer({ editMode }: FooterProps) {
 
 Footer.defaultProps = {
   editMode: false,
-};
+} as FooterProps;
 
 export default Footer;
 

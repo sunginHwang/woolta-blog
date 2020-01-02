@@ -53,7 +53,7 @@ function WriteView({
 WriteView.defaultProps = {
   previewMode: false,
   contentPosition: 0,
-};
+} as WriteViewProps;
 
 export default WriteView;
 

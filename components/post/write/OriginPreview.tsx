@@ -31,7 +31,7 @@ function OriginPreview({
 OriginPreview.defaultProps = {
   content: '',
   visible: false,
-};
+} as OriginPreviewProps;
 
 export default OriginPreview;
 

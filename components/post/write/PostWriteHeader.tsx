@@ -21,7 +21,7 @@ PostWriteHeader.defaultProps = {
     no: 0,
     userId: '',
   },
-};
+} as PostWriteHeaderProps;
 
 export default PostWriteHeader;
 

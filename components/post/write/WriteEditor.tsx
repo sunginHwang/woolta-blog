@@ -127,7 +127,7 @@ WriteEditor.defaultProps = {
     no: 0,
     userId: '',
   },
-};
+} as WriteEditorProps;
 
 export default WriteEditor;
 

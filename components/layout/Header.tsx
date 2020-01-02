@@ -7,7 +7,7 @@ import colors from '../../style/colors';
 import layouts from '../../style/layouts';
 
 
-interface IHeaderProps {
+type HeaderProps = {
   showMobileHeader: boolean;
   showSideBar: boolean;
   toggleSideBar: (toggle: boolean) => void;
@@ -18,7 +18,7 @@ function Header({
                   showMobileHeader,
                   showSideBar,
                   toggleSideBar,
-                }: IHeaderProps) {
+                }: HeaderProps) {
   const [, hideToast] = useToast();
 
   const onMainPageClick = React.useCallback(() => {
@@ -42,7 +42,7 @@ function Header({
 Header.defaultProps = {
   showMobileHeader: false,
   showSideBar: false,
-};
+} as HeaderProps;
 
 export default Header;
 

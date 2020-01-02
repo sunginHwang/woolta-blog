@@ -19,6 +19,10 @@ function Content({
   );
 };
 
+Content.defaultProps = {
+  editMode: false,
+} as ContentProps;
+
 export default Content;
 
 const S: any = {};

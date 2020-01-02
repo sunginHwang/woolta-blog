@@ -49,7 +49,7 @@ PostItem.defaultProps = {
       imageUrl: '',
     },
   },
-};
+} as PostItemProps;
 
 
 export default React.memo(PostItem, ((prevProps, nextProps) => {

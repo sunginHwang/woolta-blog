@@ -10,13 +10,13 @@ function PlaceHolderBar({ width, height }: PlaceHolderBarProps) {
 
   return (
     <S.PlaceHolderBar width={width} height={height}/>
-    );
+  );
 };
 
 PlaceHolderBar.defaultProps = {
   width: '20rem',
   height: '3.2rem',
-};
+} as PlaceHolderBarProps;
 
 export default PlaceHolderBar;
 
