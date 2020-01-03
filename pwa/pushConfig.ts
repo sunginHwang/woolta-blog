@@ -2,14 +2,14 @@ import { pushSubscription, pushUnsubscription } from '../core/api/pushApi';
 import { IPwaSubscription } from '../types/pwa/IPwaSubscription';
 import {
   ACCESS_PUSH_TOKEN,
-  PWA_LOG,
   PUSH_APPLICATION_SERVER_KEY,
+  PWA_LOG,
   PWA_NOTIFICATION_PERMISSIONS,
 } from '../core/constants';
 
 export const initSubscribe = async (swRegistration) => {
 
-  await navigator.serviceWorker.ready;  // <---------- WAIT
+  await navigator.serviceWorker.ready;  // <--- WAIT
   // 사용자가 브라우저에서 강제로 알람 차단 할 경우 남아있는 키 제거
   if (Notification.permission !== PWA_NOTIFICATION_PERMISSIONS.granted) {
     removeAccessPushToken();
