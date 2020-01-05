@@ -7,7 +7,7 @@ import {
   PWA_NOTIFICATION_PERMISSIONS,
 } from '../core/constants';
 
-export const initSubscribe = async (swRegistration) => {
+export const initSubscribe = async swRegistration => {
 
   await navigator.serviceWorker.ready;  // <--- WAIT
   // 사용자가 브라우저에서 강제로 알람 차단 할 경우 남아있는 키 제거
