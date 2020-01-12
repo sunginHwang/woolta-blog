@@ -9,8 +9,10 @@ import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import { initSubscribe } from '../pwa/pushConfig';
+import { ThemeProvider } from 'styled-components';
 import '../style/scss/style.scss';
 import { PWA_LOG } from '../core/constants';
+import darkTheme from '../style/theme/dark';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 
@@ -35,15 +37,18 @@ const App = (props: Props) => {
   }, []);
 
   return (
-    <Container>
-      <Provider store={store}>
-        <>
-          <LayoutContainer>
-            <Component {...pageProps} />
-          </LayoutContainer>
-        </>
-      </Provider>
-    </Container>
+    <ThemeProvider theme={darkTheme}>
+      <Container>
+        <Provider store={store}>
+          <>
+            <LayoutContainer>
+              <Component {...pageProps} />
+            </LayoutContainer>
+          </>
+        </Provider>
+      </Container>
+    </ThemeProvider>
+
   );
 };
 

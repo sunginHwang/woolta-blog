@@ -28,7 +28,7 @@ export default Content;
 const S: any = {};
 
 S.Content = styled.div`
-  background-color: ${colors.whiteColor} !important;
+  background-color: ${props => props.theme.colors.whiteColor} !important;
   min-height: 100%;
   text-align: center;
   margin-left: auto;
