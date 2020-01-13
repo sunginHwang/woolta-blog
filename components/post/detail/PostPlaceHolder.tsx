@@ -48,7 +48,7 @@ S.postPlaceHolderSub = styled.div`
   align-items: center;
   margin-bottom: 45px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${props => props.theme.colors.greyL2};
 `;
 
 S.circlePlaceHolder = styled.div`

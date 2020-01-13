@@ -57,5 +57,5 @@ S.Contnet = styled.div`
   max-height: 70rem;
   padding: 1.6rem;
   text-align: left;
-  background: #fff;
+  background: ${props => props.theme.colors.whiteColor};
 `;

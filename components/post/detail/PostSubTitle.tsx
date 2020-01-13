@@ -68,7 +68,7 @@ S.PostSubTitle = styled.div`
   }
 
   span {
-    color: ${colors.sideFontGrayColor};
+    color: ${props => props.theme.colors.sideFontGrayColor};
     margin-right: .5rem;
     font-size: 1.6rem;
     display: inline-block;
@@ -100,7 +100,7 @@ S.PostSubTitleAuthor = styled.span`
 `;
 
 S.PostSubTitleSeparator = styled.span`
-    color: #ebebeb !important;
+  color: ${props => props.theme.colors.greyL3} !important;
 `;
 
 

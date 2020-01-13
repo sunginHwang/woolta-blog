@@ -68,7 +68,7 @@ S.postContent = styled.div`
 S.postContentHeader = styled.div`
   padding: 0;
   margin-bottom: 4.5rem;
-  border-bottom: .1rem solid #eee;
+  border-bottom: .1rem solid ${props => props.theme.colors.greyL2};
     
   @media screen and (max-width: ${layouts.phoneWidth}) {
     font-size: 4rem;
@@ -83,7 +83,7 @@ S.postContentHeader = styled.div`
     font-size: 4.4rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
-    color: ${colors.titleFontColor};
+    color: ${props => props.theme.colors.titleFontColor};
 
     @media screen and (max-width: ${layouts.phoneWidth}) {
       font-size: 4rem;
@@ -92,6 +92,6 @@ S.postContentHeader = styled.div`
 `;
 
 S.postContentMarkdown = styled.div`
-  color: ${colors.customBlackColor} !important;
+  color: ${props => props.theme.colors.customBlackColor}; !important;
   word-break: break-all;
 `;

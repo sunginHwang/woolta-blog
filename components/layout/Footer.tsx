@@ -35,9 +35,9 @@ S.Footer = styled.div`
   -ms-flex-pack: center;
   -webkit-box-pack: center;
   justify-content: center;
-  background-color: ${colors.whiteColor};
-  border-top: .1rem solid ${colors.customGrayColor};
-  color: ${colors.mainThemeColor};
+  background-color: ${props => props.theme.colors.whiteColor};
+  border-top: .1rem solid ${props => props.theme.colors.customGrayColor};
+  color: ${props => props.theme.colors.mainThemeColor};
   text-align: center;
   padding-top: 1.6rem;
   

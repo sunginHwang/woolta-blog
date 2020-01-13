@@ -68,7 +68,7 @@ S.WriteView = styled.div`
 S.WriteViewHeader = styled.div`
   width: 100%;
   height: ${layouts.mainHeaderHeight};
-  border-bottom: .2rem solid ${colors.customGrayColor};
+  border-bottom: .2rem solid  ${props => props.theme.colors.customGrayColor};
   display: flex;
   justify-content: space-between;
 `;
@@ -80,7 +80,7 @@ S.WriteViewContent = styled.div`
 
 S.WriteViewEditor = styled.div`
   ${mixins.viewer};
-  border-right: .1rem solid ${colors.customGrayColor};
+  border-right: .1rem solid ${props => props.theme.colors.customGrayColor};
 `;
 
 S.WriteViewPreview = styled.div`

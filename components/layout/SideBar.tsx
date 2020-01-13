@@ -105,13 +105,13 @@ export default SideBar;
 const S: any = {};
 
 S.SideBar = styled.div`
-  border: .1rem solid ${colors.customGrayColor};
+  border: .1rem solid ${props => props.theme.colors.customGrayColor};
   width: ${layouts.mainRightWidth};
   height: 100%;
   position: fixed;
   font-size: 1.6rem;
   z-index: ${layouts.sideBarZIndex * 2};
-  background-color: ${colors.whiteColor};
+  background-color: ${props => props.theme.colors.whiteColor};
   top: ${layouts.mainHeaderHeight};
 
   right: ${props => props.isSideBarOpen ? 0 : `-${layouts.mainRightWidth}`};
@@ -128,13 +128,13 @@ S.SideBar = styled.div`
         padding: 1.6rem;
         border-left: .2px solid transparent;
         font-weight: 400;
-        color: ${colors.mainThemeColor};
+        color: ${props => props.theme.colors.mainThemeColor};
         cursor: pointer;
       }
 
       &:hover{
-        color: ${colors.mainThemeColor};
-        background-color: ${colors.customGrayColor};
+        color: ${props => props.theme.colors.mainThemeColor};
+        background-color: ${props => props.theme.colors.customGrayColor};
       }
     }
   }
@@ -155,7 +155,7 @@ S.UserImage = styled.img`
 `;
 
 S.SideBarWhiteSpace = styled.div`
-  background-color: rgba(0,0,0,.3);
+  background-color: ${props => props.theme.colors.SideBarSpaceColor};
   position: fixed;
   top: 0;
   bottom: 0;

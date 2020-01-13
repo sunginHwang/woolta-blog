@@ -30,7 +30,7 @@ S.PostItemPlaceHolder = styled.div`
   text-align: left;
   padding-bottom: 1em;
   padding-top: 1.7em;
-  border-bottom: 2px solid ${colors.bottomLineColor};
+  border-bottom: 2px solid ${props => props.theme.colors.bottomLineColor};
 
   @media screen and (max-width: ${layouts.phoneWidth}){
     padding-bottom: 0.5em;

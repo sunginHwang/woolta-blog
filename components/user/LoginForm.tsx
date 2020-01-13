@@ -65,7 +65,7 @@ S.LoginForm = styled.div`
 `;
 
 S.LoginTitle = styled.div`
-    color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.mainThemeColor};
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 3.2rem;
@@ -85,9 +85,9 @@ S.LoginInput = styled.div`
     height: 4.8rem;
     margin-bottom: 1.6rem;
     outline-style: none;
-    color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.mainThemeColor};
     border: none;
-    border-bottom: .2rem solid ${colors.bottomLineColor};
+    border-bottom: .2rem solid ${props => props.theme.colors.bottomLineColor};
 
     @media screen and (max-width: ${layouts.mobileWidth}) {
       font-size: 1.5rem;
@@ -104,11 +104,11 @@ S.LoginButton = styled.button`
   outline-style: none;
   border-radius: 3rem;
   height: 4.8rem;
-  color: ${colors.mainThemeColor};
-  border: .1rem solid ${colors.mainThemeColor};
+  color:  ${props => props.theme.colors.mainThemeColor};
+  border: .1rem solid  ${props => props.theme.colors.mainThemeColor};
   text-align: center;
   font-weight: bold;
-  background-color: #fff !important;
+  background-color:  ${props => props.theme.colors.whiteColor}; !important;
 
   @media screen and (max-width: ${layouts.mobileWidth}) {
     margin-top: 2rem;

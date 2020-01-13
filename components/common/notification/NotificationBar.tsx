@@ -33,8 +33,8 @@ S.NotificationBar = styled.div`
   position: fixed;
   bottom: .5rem;
   right: .5rem;
-  color:#fff;
-  background-color: #6e827f;
+  color: ${props => props.theme.colors.whiteColor};;
+  background-color: ${props => props.theme.colors.mainThemeColor};;
   padding: .5rem 1rem;
   border-radius: .8rem;
   font-size: 1.8rem;

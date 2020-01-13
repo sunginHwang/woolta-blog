@@ -48,9 +48,9 @@ S.writeViewer = styled.div`
   h2{
     font-size: 3.2rem;
     font-weight: bold;
-    color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.mainThemeColor};
     padding-bottom: .5rem;
-    border-bottom: .2rem solid ${colors.customGrayColor};
+    border-bottom: .2rem solid ${props => props.theme.colors.customGrayColor};
     margin-bottom: 3rem;
   }
   

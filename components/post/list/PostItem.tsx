@@ -62,7 +62,7 @@ S.PostItem = styled.div`
   text-align: left;
   padding-bottom: 1.6rem;
   padding-top: 2.72rem;
-  border-bottom: .2rem solid ${colors.bottomLineColor};
+  border-bottom: .2rem solid ${props => props.theme.colors.bottomLineColor};
 
   @media screen and (max-width: ${layouts.phoneWidth}){
     padding-bottom: 0.8rem;
@@ -71,7 +71,7 @@ S.PostItem = styled.div`
 `;
 
 S.PostItemTitle = styled.h2`
-  color: ${colors.mainThemeColor};
+  color: ${props => props.theme.colors.mainThemeColor};
   font-size: 2.88rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -86,7 +86,7 @@ S.PostItemContent = styled.h2`
   margin-bottom: 1rem;
   cursor: pointer;
   font-size: 1.76rem;
-  color: ${colors.mainThemeColor};
+  color: ${props => props.theme.colors.mainThemeColor};
   max-width: 80%;
   line-height: 2.64rem;
     
@@ -98,7 +98,7 @@ S.PostItemContent = styled.h2`
 
 
 S.Meta = styled.span`
-  color: ${colors.sideFontGrayColor};
+  color: ${props => props.theme.colors.sideFontGrayColor};
   font-size: 1.28rem;
   margin-right: .5rem;
 
@@ -109,7 +109,7 @@ S.Meta = styled.span`
 
 S.Separator = styled.span`
   font-size: 1.28rem;
-  color: #ebebeb;
+  color: ${props => props.theme.colors.greyL3}; 
   margin-right: .5rem;
   
   @media screen and (max-width: ${layouts.phoneWidth}){
@@ -119,6 +119,6 @@ S.Separator = styled.span`
 
 S.categoryLabel = styled.span`
   ${S.Meta};
-  color:#9ba5a0 !important;
+  color:${props => props.theme.colors.greyL1} !important;
   margin-right: 1rem !important;
 `;

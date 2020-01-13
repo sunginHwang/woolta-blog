@@ -73,14 +73,14 @@ S.WriteHeader = styled.div`
 
 S.WriteHeaderLeft = styled.div`
   flex: 1 1;
-  background-color: #56b6c2;
+  background-color: ${props => props.theme.colors.cyanL1};
   margin: 1rem 0 1rem 2rem;
 
   input {
     width: 100%;
     height: 100%;
     border: none;
-    color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.mainThemeColor};
     outline-style: none;
     font-size: 2.4rem;
   }
@@ -105,7 +105,7 @@ S.WriteHeaderButton = styled.div`
   height: 100%;
   width: 10rem;
   cursor: pointer;
-  color: ${colors.mainThemeColor};
+  color: ${props => props.theme.colors.mainThemeColor};
   align-items: center;
 
   span {

@@ -33,12 +33,12 @@ S.IntroPage = styled.div`
   p {
     font-size: 2.08rem;
     width: 100%;
-    color: ${colors.whiteColor};
-    background-color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.whiteColor};
+    background-color: ${props => props.theme.colors.mainThemeColor};
     line-height: 3.12rem;
     font-weight: bold;
     text-align: left;
-    border: 1px solid #6e827f;
+    border: 1px solid ${props => props.theme.colors.mainThemeColor};;
     padding: 2.7rem;
     border-radius: .8rem;
     margin-bottom: 4.16rem;

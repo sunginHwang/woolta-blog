@@ -6,4 +6,10 @@ export default {
   titleFontColor: '#6e827f',
   customBlackColor: '#585858',
   bottomLineColor: '#f2f5ee',
+  SideBarSpaceColor: 'rgba(0,0,0,.3)',
+  greyL1: '#9ba5a0',
+  greyL2: '#eee',
+  greyL3: '#ebebeb',
+  greyL4: '#e8e8e8',
+  cyanL1: '#56b6c2',
 };

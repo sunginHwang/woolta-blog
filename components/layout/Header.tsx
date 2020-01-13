@@ -62,11 +62,11 @@ S.Header = styled.div`
   right: 0;
   left: 0;
   z-index: 100;
-  background-color: ${colors.whiteColor};
-  color: ${colors.mainThemeColor};
+  background-color: ${props => props.theme.colors.whiteColor};
+  color: ${props => props.theme.colors.mainThemeColor};
   border-bottom-style: solid;
   height: ${layouts.mainHeaderHeight};
-  border-color: ${colors.customGrayColor};
+  border-color: ${props => props.theme.colors.customGrayColor};
   border-width: .1rem .1rem .2rem .1rem;
 
   @media screen and (max-width: ${layouts.mobileWidth}){
