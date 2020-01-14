@@ -14,7 +14,9 @@ function Content({
 
   return (
     <S.Content editMode={editMode}>
-      {children}
+      <div>
+        {children}
+      </div>
     </S.Content>
   );
 };
@@ -29,7 +31,9 @@ const S: any = {};
 
 S.Content = styled.div`
   background-color: ${props => props.theme.colors.whiteColor} !important;
-  min-height: 100%;
+  
+  >div{
+   min-height: 100%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -37,10 +41,11 @@ S.Content = styled.div`
   padding: 8rem 0;
   
   ${props => props.editMode && css`
+
     height: calc(100% - 6.2rem);
     min-height: calc(100% - 6.2rem);
     min-width: 100%;
     margin-top: 6rem;
-    padding: 0;`
+    padding: 0;`}
   }
 `;
