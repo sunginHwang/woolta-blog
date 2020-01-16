@@ -73,11 +73,11 @@ S.MarkDownView = styled.div`
   }
 
   blockquote {
-    color: #666;
+    color: ${props => props.theme.colors.greyL5};
     margin-top: 3.2rem;
     margin-bottom: 3.2rem;
     padding: 1.6rem 1.5rem 1.6rem 1.5rem;
-    border-left: 0.8rem #eee solid;
+    border-left: 0.8rem ${props => props.theme.colors.greyL2} solid;
     @media screen and (max-width: ${layouts.phoneWidth}) {
       font-size: 1.6rem;
     }
@@ -151,17 +151,17 @@ S.MarkDownView = styled.div`
   hr {
     border: 0;
     border-top: .1rem solid rgba(0, 0, 0, 0.1);
-    border-bottom: .1rem solid #fff;
+    border-bottom: .1rem solid ${props => props.theme.colors.whiteColor};
     margin: 1.6rem 0
   }
 
   a {
-    color: #868e96;
+    color: ${props => props.theme.colors.greyD2};
     text-decoration: none
   }
 
   strong {
-    color:${colors.customBlackColor};
+    color:  ${props => props.theme.colors.customBlackColor};
   }
 
 
@@ -172,7 +172,7 @@ S.MarkDownView = styled.div`
   h5,
   h6 {
     line-height: 2.43rem;
-    color:${colors.customBlackColor};
+    color: ${props => props.theme.colors.customBlackColor};
     font-weight: 700;
     margin-top: 3.6rem;
     margin-bottom: 1.6rem;
@@ -188,7 +188,7 @@ S.MarkDownView = styled.div`
   h4 a,
   h5 a,
   h6 a {
-    color: #383838
+    color:  ${props => props.theme.colors.greyD1};
   }
 
 
@@ -204,8 +204,8 @@ S.MarkDownView = styled.div`
       padding: .326rem .39rem;
       border-radius: .3rem;
       background-color: rgba(27, 31, 35, .05);
-      border: .1rem solid ${colors.mainThemeColor};
-      color: ${colors.mainThemeColor};
+      border: .1rem solid ${props => props.theme.colors.markdownCodeColor};
+      color: ${props => props.theme.colors.markdownCodeColor};
       margin: 0 .39rem;
     }
   }
@@ -224,17 +224,17 @@ S.MarkDownView = styled.div`
   }
 
   tr {
-    border-top: .1rem solid #c6cbd1;
-    background: #fff;
+    border-top: .1rem solid ${props => props.theme.colors.whiteL1};
+    background: ${props => props.theme.colors.whiteColor};
   }
 
   th,
   td {
     padding: .6rem 1.3rem;
-    border: .1rem solid #dfe2e5;
+    border: .1rem solid ${props => props.theme.colors.whiteL2};
   }
 
   table tr:nth-child(2n) {
-    background: #f6f8fa;
+    background: ${props => props.theme.colors.whiteL3};;
   }
 `;

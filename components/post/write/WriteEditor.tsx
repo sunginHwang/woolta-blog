@@ -183,7 +183,7 @@ S.WriteEditorHeader = styled.div`
   }
   
   span{
-    color: ${colors.mainThemeColor};
+    color: ${props => props.theme.colors.mainThemeColor};
     font-weight: bold;
   }
 `;

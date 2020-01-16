@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import { MdList } from 'react-icons/md';
 import { goMainPage } from '../../core/utils/routeUtil';
 import useToast from '../../core/hooks/useToast';
@@ -30,12 +30,15 @@ function Header({
   const onToggleSideBar = React.useCallback(() => toggleSideBar(!showSideBar), [showSideBar]);
 
   return (
-    <S.Header isShowMobileHeader={showMobileHeader}>
-      <S.HeaderLogo onClick={onMainPageClick}>woolta</S.HeaderLogo>
-      <S.HeaderMenu onClick={onToggleSideBar}>
-        <MdList/>
-      </S.HeaderMenu>
-    </S.Header>
+    <>
+      <S.GlobalStyle/>
+      <S.Header isShowMobileHeader={showMobileHeader}>
+        <S.HeaderLogo onClick={onMainPageClick}>woolta</S.HeaderLogo>
+        <S.HeaderMenu onClick={onToggleSideBar}>
+          <MdList/>
+        </S.HeaderMenu>
+      </S.Header>
+    </>
   );
 };
 
@@ -89,4 +92,14 @@ S.HeaderMenu = styled.span`
   cursor: pointer;
   font-size: 3rem;
   margin: 1.6rem;
+`;
+
+S.GlobalStyle = createGlobalStyle`
+  body {
+      background-color: ${props => props.theme.colors.whiteColor};
+  }
+  
+  img{
+      opacity: ${props => props.theme.colors.imgOpacity};;
+  }
 `;
