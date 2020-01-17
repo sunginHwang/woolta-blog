@@ -65,7 +65,7 @@ S.Header = styled.div`
   right: 0;
   left: 0;
   z-index: 100;
-  background-color: ${props => props.theme.colors.whiteColor};
+  background-color: ${props => props.theme.colors.headerColor};
   color: ${props => props.theme.colors.mainThemeColor};
   border-bottom-style: solid;
   height: ${layouts.mainHeaderHeight};

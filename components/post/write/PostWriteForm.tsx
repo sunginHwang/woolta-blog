@@ -55,4 +55,6 @@ S.PostWriteForm = styled.textarea`
   font-size: 1.6rem;
   border: none;
   resize: none;
+  color: ${({theme}) => theme.colors.mainThemeColor};
+  background-color: ${({theme}) => theme.colors.whiteColor};
 `;

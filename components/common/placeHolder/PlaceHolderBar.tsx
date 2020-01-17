@@ -23,22 +23,10 @@ export default PlaceHolderBar;
 const S: any = {};
 
 S.PlaceHolderBar = styled.div`
-  width: ${props => props.widows};
+  width: ${props => props.width};
   height: ${props => props.height};
-  animation: loading-animation 1.3s infinite ease-in-out;
+  animation: ${({ theme }) => theme.animations.loading} 1.3s infinite ease-in-out;
   border-radius: .3rem;
   margin-bottom: .5rem;
-  
-  @keyframes loading-animation {
-    0% {
-      background-color: hsl(0,0%,89%);
-    }
-    50% {
-      background-color: hsl(0,0%,85%);
-    }
-    100% {
-      background-color: hsl(0,0%,89%);
-    }
-  }
-  `;
+`;
 

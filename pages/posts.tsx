@@ -38,7 +38,7 @@ const Posts: NextPageCustom<PostsProps> = ({ categoryNo, isServer }) => {
     setTitle(headerTitle);
   };
 
-  if (loading) return <PostsPlaceHolder/>;
+  if (true) return <PostsPlaceHolder/>;
 
   return <PostLayout posts={posts}/>;
 };

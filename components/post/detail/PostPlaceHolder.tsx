@@ -48,11 +48,11 @@ S.postPlaceHolderSub = styled.div`
   align-items: center;
   margin-bottom: 45px;
   padding-bottom: 10px;
-  border-bottom: 1px solid ${props => props.theme.colors.greyL2};
+  border-bottom: 1px solid ${props => props.theme.colors.loadingAnimationColor1};
 `;
 
 S.circlePlaceHolder = styled.div`
-  animation: ${animations.loading} 1.3s infinite ease-in-out;
+  animation: ${({ theme }) => theme.animations.loading} 1.3s infinite ease-in-out;
   border-radius: 50%;
   width: 30px;
   height: 30px;

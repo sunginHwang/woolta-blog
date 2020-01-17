@@ -80,7 +80,8 @@ S.WriteHeaderLeft = styled.div`
     width: 100%;
     height: 100%;
     border: none;
-    color: ${props => props.theme.colors.mainThemeColor};
+    color: ${({theme}) => theme.colors.mainThemeColor};
+    background-color: ${({theme}) => theme.colors.whiteColor};
     outline-style: none;
     font-size: 2.4rem;
   }

@@ -82,11 +82,11 @@ S.PostItemTitle = styled.h2`
   }
 `;
 
-S.PostItemContent = styled.h2`
+S.PostItemContent = styled.p`
   margin-bottom: 1rem;
   cursor: pointer;
   font-size: 1.76rem;
-  color: ${props => props.theme.colors.mainThemeColor};
+  color: ${props => props.theme.colors.contentColor};
   max-width: 80%;
   line-height: 2.64rem;
     
@@ -117,8 +117,7 @@ S.Separator = styled.span`
   }
 `;
 
-S.categoryLabel = styled.span`
-  ${S.Meta};
+S.categoryLabel = styled(S.Meta)`
   color:${props => props.theme.colors.greyL1} !important;
   margin-right: 1rem !important;
 `;

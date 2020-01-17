@@ -1,11 +1,13 @@
+import { keyframes } from 'styled-components';
+
 export default {
   colors: {
-    mainThemeColor: '#6e827f',
-    whiteColor: '#2C3039',
+    mainThemeColor: 'rgba(255, 255, 255, 0.88)',
+    whiteColor: '#1f1f1f',
     customGrayColor: '#3A3E46',
     sideFontGrayColor: '#c2cab9',
-    titleFontColor: '#6e827f',
-    customBlackColor: '#6e827f',
+    titleFontColor: 'rgba(255, 255, 255, 0.88)',
+    customBlackColor: 'rgba(255, 255, 255, 0.88)',
     bottomLineColor: '#53544F',
     SideBarSpaceColor: 'rgba(0,0,0,.3)',
     greyL1: '#888E8C',
@@ -20,7 +22,24 @@ export default {
     greyD1: '#383838',
     greyD2: '#abb2bf',
     markdownCodeColor: '#c2cab9',
-    imgOpacity: '.75'
-
+    imgOpacity: '.75',
+    headerColor: '#282828',
+    contentColor: '#aaa',
+    loadingAnimationColor1: '#292929',
+    loadingAnimationColor2: '#303030',
+    loadingAnimationColor3: '#313131',
   },
-};
+  animations: {
+    loading: keyframes`
+      0% {
+        background-color: #292929;
+      }
+      50% {
+        background-color: #303030;
+      }
+      100% {
+        background-color: #313131;
+      }`,
+  },
+}
+;

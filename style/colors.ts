@@ -1,3 +1,5 @@
+import { keyframes } from 'styled-components';
+
 export default {
   colors: {
     mainThemeColor: '#6e827f',
@@ -22,5 +24,23 @@ export default {
     textColor: '#6e827f',
     markdownCodeColor: '#6e827f',
     imgOpacity: '1',
+    headerColor: '#fff',
+    contentColor: '#6e827f',
+    loadingAnimationColor1: 'hsl(0,0%,89%)',
+    loadingAnimationColor2: 'hsl(0,0%,85%)',
+    loadingAnimationColor3: 'hsl(0,0%,89%)',
   },
+  animations: {
+    loading: keyframes`
+      0% {
+        background-color: hsl(0,0%,89%);
+      }
+      50% {
+        background-color: hsl(0,0%,85%);
+      }
+      100% {
+        background-color: hsl(0,0%,89%);
+      }
+`,
+  }
 };
