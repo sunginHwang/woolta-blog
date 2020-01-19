@@ -86,6 +86,7 @@ S.LoginInput = styled.div`
     margin-bottom: 1.6rem;
     outline-style: none;
     color: ${props => props.theme.colors.mainThemeColor};
+    background-color: ${props => props.theme.colors.whiteColor};
     border: none;
     border-bottom: .2rem solid ${props => props.theme.colors.bottomLineColor};
 
