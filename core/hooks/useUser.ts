@@ -1,15 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ACCESS_TOKEN } from '../constants';
-import { loadUserInfo } from '../../store/reducers/authReducer';
+import Cookies from 'js-cookie';
+
 import { useCallback } from 'react';
+import { RootState } from '../../types/redux/RootState';
 
 export default function useUser() {
-  const dispatch = useDispatch();
+
+  const {
+    userInfo,
+  } = useSelector((state: RootState) => ({ userInfo: state.authReducer.userInfo }));
 
   const checkUserInfo = useCallback(() => {
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    accessToken && dispatch(loadUserInfo());
-  }, [dispatch]);
+    userInfo.no <= 0 && Cookies.remove(ACCESS_TOKEN);
+  }, [userInfo]);
 
   return [checkUserInfo] as [typeof checkUserInfo];
 }

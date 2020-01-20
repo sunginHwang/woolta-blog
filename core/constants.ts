@@ -12,7 +12,13 @@ export const PWA_NOTIFICATION_PERMISSIONS = {
   default: 'default',
   granted: 'granted',
   denied: 'denied',
-}
+};
 export const PWA_LOG: string = '[WOOLTA_BLOG_SERVICE_WORKER]';
 
-export const FIVE_MIN:number = 1000 * 60 * 5;
+export const FIVE_MIN: number = 1000 * 60 * 5;
+
+export const COOKIE_CONFIG: {
+  expires: number
+} = {
+  expires: 180,
+};

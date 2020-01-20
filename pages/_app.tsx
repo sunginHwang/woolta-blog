@@ -11,8 +11,10 @@ import { fetchCategories } from '../core/api/blogApi';
 import { initSubscribe } from '../pwa/pushConfig';
 import { ThemeProvider } from 'styled-components';
 import '../style/scss/style.scss';
-import { PWA_LOG } from '../core/constants';
+import { ACCESS_TOKEN, PWA_LOG } from '../core/constants';
 import darkTheme from '../style/theme/dark';
+import { loadUserInfo } from '../store/reducers/authReducer';
+import { settingAccessHeaderToken } from '../core/utils/apiCall';
 
 type Props = { store: Store } & AppInitialProps & AppContext;
 
@@ -56,7 +58,13 @@ const App = (props: Props) => {
 App.getInitialProps = async ({ Component, ctx }) => {
   if (Component.type) {
     const pageProps = await Component.type.getInitialProps(ctx);
-    ctx.isServer && await ctx.store.dispatch(getCategories(fetchCategories()));
+
+    if (ctx.isServer) {
+      await settingAccessHeaderToken(ctx.req.cookies[ACCESS_TOKEN]);
+      await ctx.store.dispatch(loadUserInfo());
+      await ctx.store.dispatch(getCategories(fetchCategories()));
+    }
+
     return { pageProps };
   }
 

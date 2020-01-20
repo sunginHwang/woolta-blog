@@ -5,8 +5,9 @@ import IAsyncAction from '../../types/redux/IAsyncAction';
 import { apiRequestThunk, asyncActionTypeCreator } from '../../core/utils/reduxUtil';
 import { FluxStandardAction } from 'redux-promise-middleware';
 import { fetchUserInfo, userLogin } from '../../core/api/AuthApi';
-import { ACCESS_TOKEN } from '../../core/constants';
+import { ACCESS_TOKEN, COOKIE_CONFIG } from '../../core/constants';
 import { settingAccessHeaderToken } from '../../core/utils/apiCall';
+import Cookies from 'js-cookie';
 
 const prefix: string = 'AUTH_';
 
@@ -39,7 +40,7 @@ export default createReducer(initialState, {
   [LOGIN.SUCCESS]: (state, action: FluxStandardAction) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = action.payload;
-      localStorage.setItem(ACCESS_TOKEN, action.payload.authToken);
+      Cookies.set(ACCESS_TOKEN, action.payload.authToken, COOKIE_CONFIG);
       settingAccessHeaderToken(action.payload.authToken);
     }),
   [LOGIN.FAILURE]: (state) =>
@@ -49,7 +50,7 @@ export default createReducer(initialState, {
   [LOGOUT]: (state) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = initialState.userInfo;
-      localStorage.removeItem(ACCESS_TOKEN);
+      Cookies.remove(ACCESS_TOKEN);
       settingAccessHeaderToken('');
     }),
   [LOAD_USER_INFO.SUCCESS]: (state, action: FluxStandardAction) =>
@@ -59,7 +60,6 @@ export default createReducer(initialState, {
   [LOAD_USER_INFO.FAILURE]: (state) =>
     produce<authInitType>(state, draft => {
       draft.userInfo = initialState.userInfo;
-      localStorage.removeItem(ACCESS_TOKEN);
       settingAccessHeaderToken('');
     }),
 });
