@@ -27,7 +27,6 @@ export const apiRequestThunk = (types: IAsyncAction, axiosApiRequest: any) => (p
       type: types.FAILURE,
       payload: e,
     });
-    throw e;
   }
 };
 
