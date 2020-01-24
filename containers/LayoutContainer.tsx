@@ -87,4 +87,4 @@ const LayoutContainer = ({ children }: LayoutContainerProps) => {
   );
 };
 
-export default React.memo(LayoutContainer);
+export default LayoutContainer;

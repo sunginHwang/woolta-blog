@@ -1,4 +1,5 @@
 /*토큰 상수*/
+export const SETTING_THEME: string = 'SETTING_THEME';
 export const ACCESS_TOKEN: string = '_WOOLTA_USER_';
 export const ACCESS_PUSH_TOKEN: string = '_WOOLTA_PUSH__';
 export const PUSH_APPLICATION_SERVER_KEY = 'BBUmILImgSCb6wcUMIDPKj1B-kxu_x4VtHeQYVkLIRAlFCtTTFblcRsANxQCBfBYR8jOSx4OsvoFjObsyWc5p9Y';
