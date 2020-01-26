@@ -41,7 +41,6 @@ const App = (props: Props) => {
       });
     }
   }, []);
-  console.log('initTheme' + props.initTheme);
   const [theme, toggleTheme] = useDarkMode(props.initTheme);
   const isDarkMode = theme === 'dark';
   const s = {
