@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { MdList } from 'react-icons/md';
 import { goMainPage } from '../../core/utils/routeUtil';
 import useToast from '../../core/hooks/useToast';
@@ -54,12 +54,8 @@ const S: any = {};
 
 S.Header = styled.div`
   position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   top: 0;
   right: 0;

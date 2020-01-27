@@ -15,12 +15,16 @@ import { nanoBarLoadingSetup } from '../core/utils/apiCall';
 import Content from '../components/layout/Content';
 import NotificationBar from '../components/common/notification/NotificationBar';
 import useUser from '../core/hooks/useUser';
+import ToggleThemeSwitch from '../components/common/toggle/ToggleThemeSwitch';
+import ThemeHeader from '../components/layout/ThemeHeader';
 
 interface LayoutContainerProps {
+  isDarkMode: boolean;
   children: React.ReactNode;
+  toggleTheme: () => void;
 }
 
-const LayoutContainer = ({ children }: LayoutContainerProps) => {
+function LayoutContainer({ children, isDarkMode, toggleTheme }: LayoutContainerProps) {
 
   const [showSidebar, setShowSideBar] = useState(false);
   const [checkUserInfo] = useUser();
@@ -77,6 +81,9 @@ const LayoutContainer = ({ children }: LayoutContainerProps) => {
       <SpinnerLoading loading={spinnerLoading}/>
       <NanoBarLoading/>
       <Content editMode={editMode}>
+        <ThemeHeader>
+          <ToggleThemeSwitch isDarkMode={isDarkMode} onChangeTheme={toggleTheme}/>
+        </ThemeHeader>
         {children}
       </Content>
       <NotificationBar isShow={toast.isShow}
@@ -85,6 +92,10 @@ const LayoutContainer = ({ children }: LayoutContainerProps) => {
       <Footer editMode={editMode}/>
     </>
   );
+};
+
+LayoutContainer.defaultProps = {
+  isDarkMode: false,
 };
 
 export default LayoutContainer;

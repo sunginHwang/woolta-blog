@@ -15,7 +15,6 @@ import useDarkMode from '../core/hooks/useDarkMode';
 import { loadUserInfo } from '../store/reducers/authReducer';
 import { settingAccessHeaderToken } from '../core/utils/apiCall';
 import Theme from '../components/layout/Theme';
-import ToggleThemeSwitch from '../components/common/toggle/ToggleThemeSwitch';
 
 type Theme = {
   initTheme: string;
@@ -43,22 +42,13 @@ const App = (props: Props) => {
   }, []);
   const [theme, toggleTheme] = useDarkMode(props.initTheme);
   const isDarkMode = theme === 'dark';
-  const s = {
-    marginTop: '200px',
-  };
 
   return (
     <Theme theme={theme}>
       <Provider store={store}>
-        <>
-          <button style={s} onClick={() => toggleTheme()}>{
-            theme + '모드'
-          }</button>
-          <ToggleThemeSwitch isDarkMode={isDarkMode} onChangeTheme={() => toggleTheme()}/>
-          <LayoutContainer>
-            <Component {...pageProps} />
-          </LayoutContainer>
-        </>
+        <LayoutContainer isDarkMode={isDarkMode} toggleTheme={toggleTheme}>
+          <Component {...pageProps} />
+        </LayoutContainer>
       </Provider>
     </Theme>
   );
@@ -72,6 +62,7 @@ App.getInitialProps = async ({ Component, ctx }) => {
     const pageProps = await Component.type.getInitialProps(ctx);
 
     if (ctx.isServer) {
+      // 사용자가 지정한 테마 정보를 가져온다.(서버에서 판단하는 기준.)
       initTheme = ctx.req.cookies[SETTING_THEME] || '';
       await settingAccessHeaderToken(ctx.req.cookies[ACCESS_TOKEN]);
       await ctx.store.dispatch(loadUserInfo());
