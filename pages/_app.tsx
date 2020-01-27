@@ -44,13 +44,13 @@ const App = (props: Props) => {
   const isDarkMode = theme === 'dark';
 
   return (
-    <Theme theme={theme}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Theme theme={theme}>
         <LayoutContainer isDarkMode={isDarkMode} toggleTheme={toggleTheme}>
           <Component {...pageProps} />
         </LayoutContainer>
-      </Provider>
-    </Theme>
+      </Theme>
+    </Provider>
   );
 
 };
@@ -68,7 +68,7 @@ App.getInitialProps = async ({ Component, ctx }) => {
       await ctx.store.dispatch(loadUserInfo());
       await ctx.store.dispatch(getCategories(fetchCategories()));
     }
-    return { ...pageProps, initTheme };
+    return { pageProps, initTheme };
   }
 
   return { initTheme };
