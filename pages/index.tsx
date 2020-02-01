@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getRecentPosts } from '../store/reducers/postsReducer';
-import IntroPage from '../components/main/IntroPage';
 import PostsPlaceHolder from '../components/post/list/PostsPlaceHolder';
 import PostLayout from '../components/post/list/PostLayout';
 import { NextPageCustom } from '../types/next/NextPageCustom';
@@ -19,7 +18,6 @@ const Index: NextPageCustom<{}> = () => {
 
   return (
     <>
-      <IntroPage/>
       {renderNewPosts}
     </>
   );
