@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//todo convert functional component
 export default class Error extends Component {
   static getInitialProps({ res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
