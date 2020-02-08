@@ -11,8 +11,9 @@ type ToggleThemeSwitchProps = {
 function ToggleThemeSwitch({ isDarkMode, onChangeTheme }: ToggleThemeSwitchProps) {
 
   const renderIcon = isDarkMode ?
-    <IcoSunny width={18} height={18} color={'#FEDF4E'}/> :
-    <IcoBrightness width={18} height={18} color={'#FEDF4E'}/>;
+    <IcoBrightness width={18} height={18} color={'#FEDF4E'}/> :
+    <IcoSunny width={18} height={18} color={'#FEDF4E'}/>;
+
   return (
     <S.ToggleThemeSwitch isDarkMode={isDarkMode} onClick={onChangeTheme}>
       <div>
