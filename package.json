@@ -20,7 +20,7 @@
     "immer": "^3.2.0",
     "js-cookie": "^2.2.1",
     "nanobar": "^0.4.2",
-    "next": "9.0.4",
+    "next": "9.3.3",
     "next-compose": "0.0.2",
     "next-redux-wrapper": "^3.0.0",
     "next-routes": "^1.4.2",
