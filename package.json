@@ -22,6 +22,7 @@
     "nanobar": "^0.4.2",
     "next": "9.0.4",
     "next-compose": "0.0.2",
+    "next-cookies": "^2.0.3",
     "next-redux-wrapper": "^3.0.0",
     "next-routes": "^1.4.2",
     "node-sass": "^4.12.0",

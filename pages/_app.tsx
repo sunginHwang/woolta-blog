@@ -4,13 +4,14 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import store from '../store';
+import cookies from 'next-cookies';
 
 import LayoutContainer from '../containers/LayoutContainer';
 import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import { initSubscribe } from '../pwa/pushConfig';
 import '../style/scss/style.scss';
-import { ACCESS_TOKEN, PWA_LOG, SETTING_THEME } from '../core/constants';
+import { PWA_LOG } from '../core/constants';
 import useDarkMode from '../core/hooks/useDarkMode';
 import { loadUserInfo } from '../store/reducers/authReducer';
 import { settingAccessHeaderToken } from '../core/utils/apiCall';
@@ -62,9 +63,10 @@ App.getInitialProps = async ({ Component, ctx }) => {
     const pageProps = await Component.type.getInitialProps(ctx);
 
     if (ctx.isServer) {
+      const { SETTING_THEME, _WOOLTA_USER_ } = cookies(ctx);
       // 사용자가 지정한 테마 정보를 가져온다.(서버에서 판단하는 기준.)
-      initTheme = ctx.req.cookies[SETTING_THEME] || '';
-      await settingAccessHeaderToken(ctx.req.cookies[ACCESS_TOKEN]);
+      initTheme = SETTING_THEME || '';
+      await settingAccessHeaderToken(_WOOLTA_USER_ || '');
       await ctx.store.dispatch(loadUserInfo());
       await ctx.store.dispatch(getCategories(fetchCategories()));
     }
@@ -75,5 +77,6 @@ App.getInitialProps = async ({ Component, ctx }) => {
 
 };
 
+// @ts-ignore
 export default withRedux(store)(App);
 
