@@ -213,7 +213,10 @@ S.MarkDownView = styled.div`
   h2{
     margin-top: 7rem;
     margin-bottom: 3rem;
-    font-size: 3.4rem;
+    font-weight: bold;
+    font-size: 3.2rem;
+    color: ${props => props.theme.colors.mainThemeColor};
+    border-bottom: .2rem solid ${props => props.theme.colors.customGrayColor};
     line-height: 4.4rem;
   }
 

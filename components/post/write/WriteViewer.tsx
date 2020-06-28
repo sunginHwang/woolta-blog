@@ -45,7 +45,7 @@ S.writeViewer = styled.div`
   width: calc(100% - 4rem);
   padding: 2rem;
   
-  h2{
+  >h2{
     font-size: 3.2rem;
     font-weight: bold;
     color: ${props => props.theme.colors.mainThemeColor};
@@ -54,7 +54,7 @@ S.writeViewer = styled.div`
     margin-bottom: 3rem;
   }
   
-  div{
+  >div{
     width: 100%;
     display: inline-block;
     outline-style: none;
