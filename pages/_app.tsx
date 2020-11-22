@@ -11,11 +11,12 @@ import { getCategories } from '../store/reducers/categoryReducer';
 import { fetchCategories } from '../core/api/blogApi';
 import { initSubscribe } from '../pwa/pushConfig';
 import '../style/scss/style.scss';
-import { PWA_LOG } from '../core/constants';
+import { PWA_LOG, ACCESS_TOKEN } from '../core/constants';
 import useDarkMode from '../core/hooks/useDarkMode';
 import { loadUserInfo } from '../store/reducers/authReducer';
 import { settingAccessHeaderToken } from '../core/utils/apiCall';
 import Theme from '../components/layout/Theme';
+import { getCookie } from '../core/utils/cookie';
 
 type Theme = {
   initTheme: string;
@@ -69,6 +70,11 @@ App.getInitialProps = async ({ Component, ctx }) => {
       await settingAccessHeaderToken(_WOOLTA_USER_ || '');
       await ctx.store.dispatch(loadUserInfo());
       await ctx.store.dispatch(getCategories(fetchCategories()));
+    } else {
+      // todo client init 정보 세팅이 안되는 현상 일단 임시로 처리한것
+      // 현재 이 구조로는 라우터 변경시마다 이곳도 돌게 된다 클라이언트 첫 렌더링 시점에 넣어주는거로 변경하자.
+      const accessToken = getCookie(ACCESS_TOKEN);
+      settingAccessHeaderToken(accessToken);
     }
     return { pageProps, initTheme };
   }

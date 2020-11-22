@@ -210,6 +210,12 @@ S.MarkDownView = styled.div`
     }
   }
 
+  h1{
+    font-size: 4rem;
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+  }
+  
   h2{
     margin-top: 7rem;
     margin-bottom: 3rem;
@@ -239,5 +245,12 @@ S.MarkDownView = styled.div`
 
   table tr:nth-child(2n) {
     background: ${props => props.theme.colors.whiteL3};;
+  }
+  
+  /* 마크다운 뷰어 첫줄 패딩 이슈 처리 */
+  pre {
+    code {
+      padding: 0;
+    }
   }
 `;
