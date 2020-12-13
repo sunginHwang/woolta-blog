@@ -8,7 +8,6 @@ class NextHeadWithInlineCss extends Head {
   getInlineCss() {
     const { files } = this.context._documentProps;
     if (!files || files.length === 0) return null;
-
     return files.filter(file => /\.css$/.test(file)).map(file => (
       <style key={file}
 
@@ -21,7 +20,6 @@ class NextHeadWithInlineCss extends Head {
 
   render() {
     const { head } = this.context._documentProps;
-
 
     return (
       <head {...this.props}>
@@ -91,8 +89,8 @@ class MyDocument extends Document {
   render() {
     return (
       <html>
-      <Head></Head>
       <NextHeadWithInlineCss/>
+      <Head></Head>
       <body>
       <Main/>
       <NextScript/>
